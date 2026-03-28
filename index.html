@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SuperCareDiabetes | Living Health Interface</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3f6653",
+                        "secondary": "#2c6956",
+                        "surface": "#f5fbf8",
+                        "surface-container": "#e9efec",
+                        "surface-container-low": "#eff5f2",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#dee4e1",
+                        "primary-container": "#b7e3cb",
+                        "secondary-container": "#aeedd5",
+                        "outline-variant": "#bfc9c3",
+                        "on-surface": "#171d1b",
+                        "on-surface-variant": "#404945",
+                        "dark-green": "#1B4332",
+                        "mint-green": "#A8E6CF",
+                        "pale-green": "#E8F8F5"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { overflow-x: hidden; background: radial-gradient(circle at 18% 10%, rgba(168,230,207,0.24), transparent 25%), radial-gradient(circle at 84% 16%, rgba(183,227,203,0.36), transparent 28%), linear-gradient(180deg, #fbfffd 0%, #f5fbf8 48%, #eef7f3 100%); }
+        .glass-card { background: rgba(255,255,255,0.58); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+        .living-grid { background-image: linear-gradient(rgba(63,102,83,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(63,102,83,0.05) 1px, transparent 1px); background-size: 60px 60px; }
+        .health-core-shell { position: relative; width: min(60vw, 520px); aspect-ratio: 1; margin: 0 auto; display: grid; place-items: center; }
+        .health-core-shell::before, .health-core-shell::after { content: ""; position: absolute; inset: 8%; border-radius: 9999px; border: 1px solid rgba(63,102,83,0.12); animation: spin 20s linear infinite; }
+        .health-core-shell::after { inset: 18%; border-style: dashed; animation-direction: reverse; animation-duration: 24s; }
+        .health-core { position: relative; width: 54%; aspect-ratio: 1; border-radius: 9999px; background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.96), rgba(183,227,203,0.95) 36%, rgba(63,102,83,0.92) 72%, rgba(27,67,50,1) 100%); box-shadow: 0 0 0 16px rgba(255,255,255,0.14), 0 0 60px rgba(168,230,207,0.56), 0 0 120px rgba(63,102,83,0.24); animation: pulse 3s ease-in-out infinite; transition: transform 220ms ease, box-shadow 220ms ease; }
+        .health-core::before { content: ""; position: absolute; inset: -24%; border-radius: inherit; border: 1px solid rgba(255,255,255,0.4); animation: halo 3.4s ease-in-out infinite; }
+        .journey-line { stroke-dasharray: 10 12; animation: dash 18s linear infinite; }
+        .feature-step.active-step { transform: translateY(-8px); background: rgba(255,255,255,0.88); box-shadow: 0 20px 56px rgba(27,67,50,0.12); }
+        .feature-step.active-step .step-dot { background: #3f6653; color: white; box-shadow: 0 0 0 10px rgba(168,230,207,0.26); }
+        .guide-option.active-guide { background: #1B4332; color: white; border-color: transparent; transform: translateX(8px); }
+        .ecg-path { stroke-dasharray: 340; stroke-dashoffset: 340; animation: ecg 5s ease-in-out infinite; }
+        .scan-expand { transform: scale(1.04); box-shadow: 0 0 0 12px rgba(168,230,207,0.2), 0 24px 80px rgba(27,67,50,0.3); }
+        @keyframes pulse { 0%,100%{transform:scale(.98)} 40%{transform:scale(1.03)} 60%{transform:scale(1)} }
+        @keyframes halo { 0%,100%{transform:scale(.96);opacity:.24} 50%{transform:scale(1.08);opacity:.72} }
+        @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        @keyframes dash { to{stroke-dashoffset:-300} }
+        @keyframes ecg { 0%{stroke-dashoffset:340;opacity:.25} 40%,75%{stroke-dashoffset:0;opacity:1} 100%{stroke-dashoffset:-340;opacity:.25} }
+        @keyframes doctor-verify-fade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes doctor-badge-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(63, 102, 83, 0.28); } 50% { box-shadow: 0 0 22px 6px rgba(168, 230, 207, 0.45); } }
+        @keyframes doctor-badge-alert { 0%, 100% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.2); } 50% { box-shadow: 0 0 18px 4px rgba(248, 113, 113, 0.35); } }
+        @keyframes doctor-shimmer-move { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .doctor-verify-result-enter { animation: doctor-verify-fade 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        .doctor-badge-verified { animation: doctor-badge-glow 2.6s ease-in-out infinite; }
+        .doctor-badge-notfound { animation: doctor-badge-alert 2.4s ease-in-out infinite; }
+        .doctor-verify-input:focus { outline: none; box-shadow: 0 0 0 3px rgba(63, 102, 83, 0.2), 0 12px 36px rgba(27, 67, 50, 0.08); border-color: rgba(63, 102, 83, 0.45); transform: translateY(-1px); }
+        .doctor-verify-shimmer-bar { background: linear-gradient(105deg, rgba(255,255,255,0) 40%, rgba(183,227,203,0.5) 50%, rgba(255,255,255,0) 60%); background-size: 200% 100%; animation: doctor-shimmer-move 1.15s linear infinite; border-radius: 9999px; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-dark-green">
+    <nav class="fixed top-0 w-full z-50 rounded-b-3xl bg-emerald-50/70 backdrop-blur-lg shadow-[0_12px_40px_rgba(27,67,50,0.06)]">
+        <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 bg-dark-green rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300"><span class="material-symbols-outlined text-white text-lg">monitoring</span></div>
+                    <div class="text-2xl font-bold tracking-tighter text-dark-green font-headline group-hover:text-primary transition-colors duration-300">SuperCareDiabetes</div>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-emerald-700 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="index.html">Home</a>
+                <a class="text-emerald-800/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="features.html">Features</a>
+                <a class="text-emerald-800/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="about.html">About</a>
+                <a class="text-emerald-800/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="pricing.html">Pricing</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="open-demo-auth" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1"><span class="text-sm font-semibold text-on-surface-variant">Sign In</span></button>
+                <a href="profile.html" class="px-6 py-2.5 bg-dark-green text-white rounded-full font-semibold hover:opacity-90 transition-all hover:-translate-y-1 active:scale-95 duration-300 shadow-lg shadow-dark-green/20 hover:shadow-xl hover:shadow-dark-green/30">Profile</a>
+            </div>
+        </div>
+    </nav>
+    <main class="relative pt-24 overflow-hidden living-grid">
+        <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+            <div class="absolute top-[-8%] left-[-4%] w-[520px] h-[520px] bg-mint-green/30 rounded-full blur-[80px]"></div>
+            <div class="absolute top-[18%] right-[-10%] w-[580px] h-[580px] bg-primary-container/40 rounded-full blur-[80px]"></div>
+        </div>
+        <section class="max-w-7xl mx-auto px-6 md:px-8 pt-10 pb-24">
+            <div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-14 items-center">
+                <div class="space-y-8">
+                    <div class="space-y-5">
+                        <h1 class="font-headline text-5xl md:text-7xl lg:text-[5rem] font-extrabold text-on-surface tracking-tight leading-[0.98]">Your Health, <br />Visualized.</h1>
+                        <div class="max-w-xl lg:max-w-none overflow-visible">
+                            <svg class="w-full lg:w-[calc(100%+16rem)] h-[44px] opacity-45" viewBox="0 0 1020 60" fill="none" preserveAspectRatio="none"><path id="hero-ecg-path" class="ecg-path" d="M0 34 H118 L148 34 L176 20 L204 48 L234 8 L264 34 H392 L424 34 L452 24 L478 34 H604 L634 34 L664 12 L694 50 L724 34 H816 L846 34 L876 24 L904 34 H972 L996 34 L1020 30" stroke="#3f6653" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </div>
+                        <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-xl font-medium">An intelligent system that understands and guides your body in real-time.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-4">
+                        <button id="start-health-scan" class="group inline-flex items-center gap-4 px-8 md:px-10 py-5 rounded-full bg-dark-green text-white font-headline font-bold text-lg shadow-[0_24px_70px_rgba(27,67,50,0.25)] transition-all duration-300"><span>Start Your Scan</span><span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span></button>
+                        <a href="about.html" class="inline-flex items-center gap-3 px-8 md:px-10 py-5 rounded-full border border-outline-variant/20 bg-white/80 text-dark-green font-headline font-bold text-lg shadow-[0_16px_40px_rgba(27,67,50,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_rgba(27,67,50,0.12)]">Learn More<span class="material-symbols-outlined text-[20px]">north_east</span></a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="health-core-shell" id="health-core-shell">
+                        <div id="health-core" class="health-core cursor-pointer"></div>
+                        <div class="absolute inset-0 pointer-events-none"><svg class="w-full h-full" viewBox="0 0 560 560" fill="none"><path d="M90 190 C160 120 250 110 312 150 S420 245 470 190" stroke="rgba(63,102,83,0.24)" stroke-width="2" class="journey-line"></path><path d="M76 350 C158 420 254 436 332 392 S442 302 488 344" stroke="rgba(63,102,83,0.18)" stroke-width="2" class="journey-line"></path></svg></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="max-w-7xl mx-auto px-6 md:px-8 pb-24">
+            <div class="glass-card rounded-[2.5rem] border border-white/70 shadow-[0_18px_50px_rgba(27,67,50,0.08)] p-6 md:p-8">
+                <div class="max-w-4xl mx-auto">
+                    <div class="space-y-4 text-center">
+                        <p class="text-sm font-bold tracking-[0.22em] uppercase text-primary">Interactive Story Flow</p>
+                        <h2 class="font-headline text-3xl md:text-4xl font-bold text-on-surface leading-tight">A guided path from data to confidence.</h2>
+                        <p class="text-on-surface-variant leading-relaxed max-w-2xl mx-auto">Instead of static cards, SuperCareDiabetes unfolds as a connected sequence with subtle motion and depth.</p>
+                    </div>
+                    <div class="relative mt-10">
+                        <svg class="absolute left-[34px] top-10 h-[calc(100%-5rem)] w-10 hidden md:block" viewBox="0 0 40 560" fill="none" preserveAspectRatio="none"><path d="M20 0 C8 90 34 150 20 230 C8 320 34 400 20 560" stroke="rgba(63,102,83,0.22)" stroke-width="2.5" class="journey-line"></path></svg>
+                        <div class="space-y-5">
+                            <article class="feature-step active-step rounded-[2rem] border border-white/80 bg-white/70 p-6 md:p-7 transition-all duration-300"><div class="flex items-start gap-5"><div class="step-dot w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center font-headline font-extrabold text-2xl shrink-0 transition-all duration-300">1</div><div><p class="text-xs font-bold tracking-[0.22em] uppercase text-on-surface-variant">Step 1</p><h3 class="mt-2 font-headline text-2xl font-bold text-on-surface">Enter your health data</h3><p class="mt-3 text-on-surface-variant leading-relaxed">Input becomes guided and calm, like a premium assistant intake flow.</p></div></div></article>
+                            <article class="feature-step rounded-[2rem] border border-white/80 bg-white/60 p-6 md:p-7 transition-all duration-300 md:ml-12"><div class="flex items-start gap-5"><div class="step-dot w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center font-headline font-extrabold text-2xl shrink-0 transition-all duration-300">2</div><div><p class="text-xs font-bold tracking-[0.22em] uppercase text-on-surface-variant">Step 2</p><h3 class="mt-2 font-headline text-2xl font-bold text-on-surface">AI predicts your risk</h3><p class="mt-3 text-on-surface-variant leading-relaxed">The pulse of the interface shifts as your risk view comes alive.</p></div></div></article>
+                            <article class="feature-step rounded-[2rem] border border-white/80 bg-white/60 p-6 md:p-7 transition-all duration-300"><div class="flex items-start gap-5"><div class="step-dot w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center font-headline font-extrabold text-2xl shrink-0 transition-all duration-300">3</div><div><p class="text-xs font-bold tracking-[0.22em] uppercase text-on-surface-variant">Step 3</p><h3 class="mt-2 font-headline text-2xl font-bold text-on-surface">Get personalized plan</h3><p class="mt-3 text-on-surface-variant leading-relaxed">Diet and exercise appear as an adaptive OS-style plan.</p></div></div></article>
+                            <article class="feature-step rounded-[2rem] border border-white/80 bg-white/60 p-6 md:p-7 transition-all duration-300 md:ml-12"><div class="flex items-start gap-5"><div class="step-dot w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center font-headline font-extrabold text-2xl shrink-0 transition-all duration-300">4</div><div><p class="text-xs font-bold tracking-[0.22em] uppercase text-on-surface-variant">Step 4</p><h3 class="mt-2 font-headline text-2xl font-bold text-on-surface">Consult experts</h3><p class="mt-3 text-on-surface-variant leading-relaxed">Human care feels like the next natural layer, not a disconnected handoff.</p></div></div></article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="max-w-7xl mx-auto px-6 md:px-8 pb-24">
+            <div class="space-y-8">
+                    <div class="glass-card rounded-[2.5rem] border border-white/70 shadow-[0_18px_50px_rgba(27,67,50,0.08)] p-6 md:p-8 w-full">
+                        <div>
+                            <p class="text-sm font-bold tracking-[0.2em] uppercase text-primary">Medical registry check</p>
+                            <h2 class="mt-3 font-headline text-3xl font-bold text-on-surface">Verify Your Doctor</h2>
+                            <p class="mt-3 text-on-surface-variant leading-relaxed max-w-lg">Check doctor authenticity using official medical registry data.</p>
+                        </div>
+                        <form id="doctor-verify-form" class="mt-8 space-y-3" autocomplete="off">
+                            <div class="relative">
+                                <label class="sr-only" for="doctor-verify-input">Doctor name or registration number</label>
+                                <div class="flex flex-col gap-3 sm:flex-row sm:items-stretch">
+                                    <input id="doctor-verify-input" type="search" placeholder="Enter doctor name or registration number" class="doctor-verify-input min-h-[52px] flex-1 rounded-2xl border border-outline-variant/25 bg-white/85 px-5 py-3 text-on-surface placeholder:text-on-surface-variant/55 transition-all duration-300" />
+                                    <button type="submit" id="doctor-verify-submit" class="inline-flex min-h-[52px] shrink-0 items-center justify-center gap-2 rounded-2xl bg-dark-green px-8 font-headline font-bold text-white shadow-[0_14px_40px_rgba(27,67,50,0.22)] transition-all hover:opacity-95 active:scale-[0.98] disabled:opacity-55">
+                                        <span class="material-symbols-outlined text-[22px]">verified_user</span>
+                                        <span>Verify</span>
+                                    </button>
+                                </div>
+                                <div id="doctor-verify-suggestions" class="absolute left-0 right-0 top-full z-30 mt-2 hidden max-h-56 overflow-auto rounded-2xl border border-white/80 bg-white/95 py-1 shadow-[0_18px_50px_rgba(27,67,50,0.12)] backdrop-blur-lg" role="listbox" aria-label="Suggestions"></div>
+                            </div>
+                        </form>
+                        <div id="doctor-verify-empty" class="mt-8 rounded-[2rem] border border-dashed border-primary/25 bg-white/40 px-6 py-10 text-center">
+                            <span class="material-symbols-outlined mx-auto block text-4xl text-primary/50">manage_search</span>
+                            <p class="mt-4 font-headline text-lg font-semibold text-on-surface">Ready to verify</p>
+                            <p class="mt-2 mx-auto max-w-md text-sm text-on-surface-variant leading-relaxed">Enter a doctor name or State / NMC registration number to check the mock registry.</p>
+                        </div>
+                        <div id="doctor-verify-loading" class="mt-8 hidden rounded-[2rem] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.72),rgba(232,248,245,0.9))] p-6 md:p-8" aria-hidden="true">
+                            <div class="space-y-4">
+                                <div class="doctor-verify-shimmer-bar h-6 w-3/5 max-w-xs"></div>
+                                <div class="doctor-verify-shimmer-bar h-4 w-full max-w-md"></div>
+                                <div class="doctor-verify-shimmer-bar h-4 w-11/12 max-w-lg"></div>
+                                <div class="grid gap-3 pt-4 sm:grid-cols-2">
+                                    <div class="doctor-verify-shimmer-bar h-16 rounded-2xl"></div>
+                                    <div class="doctor-verify-shimmer-bar h-16 rounded-2xl"></div>
+                                </div>
+                            </div>
+                            <p class="mt-6 text-center text-sm font-semibold text-on-surface-variant">Searching registry…</p>
+                        </div>
+                        <div id="doctor-verify-result" class="mt-8 hidden rounded-[2rem] border border-white/80 bg-white/55 p-6 md:p-8 shadow-[0_14px_44px_rgba(27,67,50,0.07)] backdrop-blur-md" role="region" aria-live="polite">
+                            <div class="flex flex-wrap items-start justify-between gap-4">
+                                <div>
+                                    <p class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Registration status</p>
+                                    <p id="doctor-result-name" class="mt-2 font-headline text-2xl font-bold text-on-surface"></p>
+                                    <p id="doctor-result-spec" class="mt-1 text-sm font-medium text-primary"></p>
+                                </div>
+                                <span id="doctor-result-badge" class="inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider"></span>
+                            </div>
+                            <dl class="mt-8 grid gap-5 sm:grid-cols-2">
+                                <div class="rounded-2xl border border-white/70 bg-white/55 px-4 py-3">
+                                    <dt class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">Qualification</dt>
+                                    <dd id="doctor-result-qual" class="mt-1 text-sm font-semibold text-on-surface"></dd>
+                                </div>
+                                <div class="rounded-2xl border border-white/70 bg-white/55 px-4 py-3">
+                                    <dt class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">Medical council</dt>
+                                    <dd id="doctor-result-council" class="mt-1 text-sm font-semibold text-on-surface"></dd>
+                                </div>
+                                <div class="rounded-2xl border border-white/70 bg-white/55 px-4 py-3 sm:col-span-2">
+                                    <dt class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">Registration number</dt>
+                                    <dd id="doctor-result-reg" class="mt-1 font-mono text-sm font-semibold text-dark-green"></dd>
+                                </div>
+                                <div class="rounded-2xl border border-white/70 bg-white/55 px-4 py-3 sm:col-span-2">
+                                    <dt class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">Validity</dt>
+                                    <dd id="doctor-result-validity" class="mt-1 text-sm font-semibold text-on-surface"></dd>
+                                </div>
+                            </dl>
+                            <p id="doctor-result-notfound-msg" class="mt-4 hidden text-sm leading-relaxed text-on-surface-variant"></p>
+                            <div id="doctor-result-actions" class="mt-8 flex flex-wrap gap-3">
+                                <a href="consult.html" class="inline-flex items-center justify-center gap-2 rounded-full bg-dark-green px-6 py-3 font-headline font-bold text-white shadow-[0_12px_36px_rgba(27,67,50,0.2)] transition-all hover:opacity-95">Book Consultation<span class="material-symbols-outlined text-[20px]">event_available</span></a>
+                                <a href="consult.html" class="inline-flex items-center justify-center gap-2 rounded-full border border-outline-variant/30 bg-white/90 px-6 py-3 font-semibold text-dark-green transition-all hover:bg-white">View Profile<span class="material-symbols-outlined text-[20px]">badge</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-[2.5rem] border border-white/70 shadow-[0_18px_50px_rgba(27,67,50,0.08)] p-6 md:p-8 w-full"><p class="text-sm font-bold tracking-[0.2em] uppercase text-primary">Pulse Layer</p><h2 class="mt-3 font-headline text-3xl font-bold text-on-surface">A subtle ECG story in motion.</h2><p class="mt-4 text-on-surface-variant leading-relaxed">The background pulse reacts as you scroll, so the page feels less like a brochure and more like a living assistant sensing your progress.</p></div>
+            </div>
+        </section>
+        <section class="max-w-6xl mx-auto px-6 md:px-8 pb-28">
+            <div class="relative rounded-[3rem] border border-white/70 bg-[linear-gradient(135deg,rgba(27,67,50,0.98),rgba(63,102,83,0.96),rgba(83,140,116,0.92))] overflow-hidden shadow-[0_24px_90px_rgba(27,67,50,0.24)]">
+                <div class="relative z-10 p-8 md:p-14 text-center"><p class="text-sm font-bold tracking-[0.24em] uppercase text-emerald-100/70">Transition-Based CTA</p><h2 class="mt-5 font-headline text-4xl md:text-6xl font-bold text-white leading-tight">Move from curiosity to care in one gesture.</h2><p class="mt-5 max-w-2xl mx-auto text-lg md:text-xl text-emerald-100/82 leading-relaxed">Start the experience with a motion-led entry point that feels like opening a healthcare operating system, not clicking a website button.</p><div class="mt-10"><button id="cta-health-scan" class="group inline-flex items-center gap-4 px-8 md:px-10 py-5 rounded-full bg-white text-dark-green font-headline font-bold text-lg shadow-[0_18px_60px_rgba(0,0,0,0.18)] transition-all duration-300 hover:scale-[1.03] active:scale-95">Start Your Health Scan<span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span></button></div></div>
+            </div>
+        </section>
+    </main>
+    <div id="demo-auth-modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-[rgba(23,29,27,0.34)] px-4">
+        <div class="absolute inset-0" id="demo-auth-backdrop"></div>
+        <div class="relative w-full max-w-md rounded-[2rem] border border-white/70 bg-white/90 p-6 md:p-7 shadow-[0_24px_70px_rgba(27,67,50,0.18)] backdrop-blur-xl">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-sm font-bold tracking-[0.2em] uppercase text-primary">Demo Access</p>
+                    <h2 class="mt-2 font-headline text-3xl font-bold text-on-surface">Enter the experience</h2>
+                    <p class="mt-3 text-on-surface-variant leading-relaxed">Enter a few details to unlock your personalized health journey.</p>
+                </div>
+                <button id="close-demo-auth" class="w-10 h-10 rounded-full border border-outline-variant/20 bg-white/80 text-on-surface-variant transition-all hover:bg-white"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <form id="demo-auth-form" class="mt-6 space-y-4">
+                <label class="block">
+                    <span class="mb-2 block text-sm font-semibold text-on-surface">Full Name</span>
+                    <input id="demo-auth-name" type="text" required class="w-full rounded-2xl border border-outline-variant/20 bg-white/90 px-4 py-3 text-on-surface placeholder:text-on-surface-variant/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/15" placeholder="Enter your name" />
+                </label>
+                <label class="block">
+                    <span class="mb-2 block text-sm font-semibold text-on-surface">Email</span>
+                    <input id="demo-auth-email" type="email" required class="w-full rounded-2xl border border-outline-variant/20 bg-white/90 px-4 py-3 text-on-surface placeholder:text-on-surface-variant/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/15" placeholder="you@example.com" />
+                </label>
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-dark-green px-6 py-3 font-headline font-bold text-white shadow-[0_18px_44px_rgba(27,67,50,0.2)] transition-all hover:opacity-95">Continue to Scan<span class="material-symbols-outlined text-[20px]">arrow_forward</span></button>
+                    <button type="button" id="demo-auth-cancel" class="inline-flex items-center gap-2 rounded-full border border-outline-variant/20 bg-white px-6 py-3 font-semibold text-on-surface-variant transition-all hover:bg-surface-container-low">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer class="w-full py-20 px-8 bg-emerald-50/80">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="space-y-6 col-span-1 md:col-span-1"><div class="flex items-center gap-2"><div class="w-6 h-6 bg-dark-green rounded flex items-center justify-center"><span class="material-symbols-outlined text-white text-xs">monitoring</span></div><div class="font-headline font-bold text-dark-green text-xl tracking-tight">SuperCareDiabetes</div></div><p class="text-sm text-on-surface-variant leading-relaxed">A future healthcare OS where risk, guidance, and care feel intelligent, emotional, and alive.</p></div>
+            <div><h5 class="font-headline font-bold text-on-surface mb-6">Journey</h5><ul class="space-y-4 text-sm text-on-surface-variant font-medium"><li><a class="hover:text-primary transition-colors" href="features.html">Features</a></li><li><a class="hover:text-primary transition-colors" href="prediction.html">Risk Scan</a></li><li><a class="hover:text-primary transition-colors" href="diet.html">Diet Plan</a></li><li><a class="hover:text-primary transition-colors" href="exercise.html">Exercise Flow</a></li></ul></div>
+            <div><h5 class="font-headline font-bold text-on-surface mb-6">Support</h5><ul class="space-y-4 text-sm text-on-surface-variant font-medium"><li><a class="hover:text-primary transition-colors" href="consult.html">Consult Experts</a></li><li><a class="hover:text-primary transition-colors" href="medicines.html">Medicines</a></li><li><a class="hover:text-primary transition-colors" href="profile.html">Profile</a></li><li><a class="hover:text-primary transition-colors" href="about.html">About</a></li></ul></div>
+            <div><h5 class="font-headline font-bold text-on-surface mb-6">Start</h5><p class="text-sm text-on-surface-variant mb-4">Begin the living health experience from the scan flow.</p><a href="features.html" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-dark-green text-white font-bold hover:opacity-90 transition-all">Start Your Health Scan<span class="material-symbols-outlined text-sm">arrow_forward</span></a></div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-6"><div class="text-on-surface-variant/60 text-xs font-bold tracking-widest uppercase">© 2024 SuperCareDiabetes • Clinical Ethereality.</div><div class="flex gap-8 text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest"><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a><a class="hover:text-primary transition-colors" href="#">Terms of Service</a><a class="hover:text-primary transition-colors" href="#">Cookie Policy</a></div></div>
+    </footer>
+    <script>
+        const healthCore = document.getElementById("health-core");
+        const healthCoreShell = document.getElementById("health-core-shell");
+        const storySteps = document.querySelectorAll(".feature-step");
+        const startHealthScan = document.getElementById("start-health-scan");
+        const ctaHealthScan = document.getElementById("cta-health-scan");
+        const openDemoAuth = document.getElementById("open-demo-auth");
+        const demoAuthModal = document.getElementById("demo-auth-modal");
+        const demoAuthBackdrop = document.getElementById("demo-auth-backdrop");
+        const closeDemoAuth = document.getElementById("close-demo-auth");
+        const demoAuthCancel = document.getElementById("demo-auth-cancel");
+        const demoAuthForm = document.getElementById("demo-auth-form");
+        const demoAuthName = document.getElementById("demo-auth-name");
+        const demoAuthEmail = document.getElementById("demo-auth-email");
+        let pendingRedirect = null;
+        window.addEventListener("pointermove", function (event) { const rect = healthCoreShell.getBoundingClientRect(); const x = (event.clientX - rect.left - rect.width / 2) / rect.width; const y = (event.clientY - rect.top - rect.height / 2) / rect.height; healthCore.style.transform = "translate(" + (x * 24) + "px," + (y * 24) + "px) scale(1.02)"; });
+        healthCoreShell.addEventListener("mouseleave", function () { healthCore.style.transform = ""; });
+        healthCore.addEventListener("mouseenter", function () { healthCore.style.boxShadow = "0 0 0 16px rgba(255,255,255,0.16), 0 0 80px rgba(168,230,207,0.72), 0 0 140px rgba(63,102,83,0.3)"; });
+        healthCore.addEventListener("mouseleave", function () { healthCore.style.boxShadow = ""; });
+        function showDemoAuth(redirectTarget) { pendingRedirect = redirectTarget || null; demoAuthModal.classList.remove("hidden"); demoAuthModal.classList.add("flex"); window.setTimeout(function () { demoAuthName.focus(); }, 60); }
+        function hideDemoAuth() { demoAuthModal.classList.add("hidden"); demoAuthModal.classList.remove("flex"); pendingRedirect = null; }
+        function goToFeatures(button, openAuth) { button.classList.add("scan-expand"); if (openAuth) { showDemoAuth("features.html"); return; } window.setTimeout(function () { window.location.href = "features.html"; }, 260); }
+        healthCore.addEventListener("click", function () { goToFeatures(startHealthScan, false); });
+        startHealthScan.addEventListener("click", function () { goToFeatures(startHealthScan, true); });
+        ctaHealthScan.addEventListener("click", function () { goToFeatures(ctaHealthScan, false); });
+        openDemoAuth.addEventListener("click", function () { showDemoAuth(null); });
+        closeDemoAuth.addEventListener("click", hideDemoAuth);
+        demoAuthCancel.addEventListener("click", hideDemoAuth);
+        demoAuthBackdrop.addEventListener("click", hideDemoAuth);
+        demoAuthForm.addEventListener("submit", function (event) { event.preventDefault(); const demoUser = { name: demoAuthName.value.trim(), email: demoAuthEmail.value.trim() }; const redirectTarget = pendingRedirect; localStorage.setItem("supercareDiabetesDemoUser", JSON.stringify(demoUser)); hideDemoAuth(); if (redirectTarget) { window.location.href = redirectTarget; } });
+        window.addEventListener("keydown", function (event) { if (event.key === "Escape" && demoAuthModal.classList.contains("flex")) { hideDemoAuth(); } });
+        const observer = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { storySteps.forEach(function (step) { step.classList.remove("active-step"); }); entry.target.classList.add("active-step"); } }); }, { threshold: 0.55 });
+        storySteps.forEach(function (step) { observer.observe(step); });
+        window.addEventListener("scroll", function () { const progress = Math.min(window.scrollY / 700, 1); document.getElementById("hero-ecg-path").style.opacity = String(0.35 + progress * 0.55); });
+        (function doctorRegistryDashboard() {
+            var form = document.getElementById("doctor-verify-form");
+            var input = document.getElementById("doctor-verify-input");
+            var submitBtn = document.getElementById("doctor-verify-submit");
+            var suggestionsEl = document.getElementById("doctor-verify-suggestions");
+            var emptyEl = document.getElementById("doctor-verify-empty");
+            var loadingEl = document.getElementById("doctor-verify-loading");
+            var resultEl = document.getElementById("doctor-verify-result");
+            var elName = document.getElementById("doctor-result-name");
+            var elSpec = document.getElementById("doctor-result-spec");
+            var elQual = document.getElementById("doctor-result-qual");
+            var elCouncil = document.getElementById("doctor-result-council");
+            var elReg = document.getElementById("doctor-result-reg");
+            var elValidity = document.getElementById("doctor-result-validity");
+            var elBadge = document.getElementById("doctor-result-badge");
+            var elNotFound = document.getElementById("doctor-result-notfound-msg");
+            var elActions = document.getElementById("doctor-result-actions");
+            if (!form || !input) { return; }
+            var MOCK_REGISTRY = [
+                { name: "Dr. Ananya Deshpande", reg: "MMC-2019-10432", spec: "Endocrinology & Diabetes", council: "Maharashtra Medical Council", qual: "MBBS, MD (General Medicine)", validity: "Active · renewed, valid until 31 Mar 2027", verified: true },
+                { name: "Dr. Vikram Khanna", reg: "NMC-88421", spec: "Internal Medicine & Metabolic Care", council: "National Medical Commission (NMC)", qual: "MBBS, MD, DM (Endocrinology)", validity: "Active · valid until 15 Dec 2026", verified: true },
+                { name: "Dr. Sarah Mitchell", reg: "TNMC-445102", spec: "Diabetology", council: "Tamil Nadu Medical Council", qual: "MBBS, MD", validity: "Active · valid until 08 Jun 2028", verified: true },
+                { name: "Dr. Rahul Sharma", reg: "MMC-2018-99102", spec: "Chief Diabetology", council: "Maharashtra Medical Council", qual: "MBBS, MD (Medicine)", validity: "Active · valid until 22 Jan 2027", verified: true },
+                { name: "Dr. Elena Petrova", reg: "KMC-7721", spec: "Neurology (consult crossover)", council: "Karnataka Medical Council", qual: "MBBS, MD, DM (Neurology)", validity: "Active · valid until 04 Nov 2026", verified: true },
+                { name: "Dr. Meera Iyer", reg: "DEL-ENT-55600", spec: "ENT Surgery", council: "Delhi Medical Council", qual: "MBBS, MS (ENT)", validity: "Expired · renewal pending (demo)", verified: false }
+            ];
+            function norm(s) { return String(s || "").toLowerCase().replace(/\s+/g, " ").trim(); }
+            function regKey(r) { return norm(r.reg).replace(/\s/g, ""); }
+            function findInMock(q) {
+                var n = norm(q);
+                if (!n) { return null; }
+                var compact = n.replace(/\s/g, "");
+                var i, r;
+                for (i = 0; i < MOCK_REGISTRY.length; i++) {
+                    r = MOCK_REGISTRY[i];
+                    if (regKey(r) === compact || norm(r.reg) === n) { return r; }
+                }
+                for (i = 0; i < MOCK_REGISTRY.length; i++) {
+                    r = MOCK_REGISTRY[i];
+                    if (norm(r.name).indexOf(n) !== -1) { return r; }
+                }
+                for (i = 0; i < MOCK_REGISTRY.length; i++) {
+                    r = MOCK_REGISTRY[i];
+                    if (n.length >= 4 && norm(r.reg).indexOf(compact) !== -1) { return r; }
+                }
+                return null;
+            }
+            function suggestionList(q) {
+                var n = norm(q);
+                if (n.length < 2) { return []; }
+                var out = [];
+                MOCK_REGISTRY.forEach(function (r) {
+                    if (norm(r.name).indexOf(n) !== -1 || norm(r.reg).indexOf(n) !== -1 || regKey(r).indexOf(n.replace(/\s/g, "")) !== -1) {
+                        out.push(r);
+                    }
+                });
+                return out.slice(0, 6);
+            }
+            function hideSuggestions() {
+                suggestionsEl.classList.add("hidden");
+                suggestionsEl.innerHTML = "";
+            }
+            function showView(state) {
+                emptyEl.classList.toggle("hidden", state !== "empty");
+                loadingEl.classList.toggle("hidden", state !== "loading");
+                resultEl.classList.toggle("hidden", state !== "result");
+            }
+            function mockRegistryLookup(q) {
+                if (window.SUPERCARE_REGISTRY_API) {
+                    var headers = { Accept: "application/json" };
+                    var token = localStorage.getItem("supercareDoctorToken");
+                    if (token) { headers.Authorization = "Bearer " + token; }
+                    return fetch(window.SUPERCARE_REGISTRY_API + "?q=" + encodeURIComponent(q), { headers: headers }).then(function (res) {
+                        if (!res.ok) { throw new Error("bad"); }
+                        return res.json();
+                    });
+                }
+                return new Promise(function (resolve) {
+                    window.setTimeout(function () {
+                        var found = findInMock(q);
+                        if (found) { resolve({ ok: true, doctor: found }); }
+                        else { resolve({ ok: false, query: q }); }
+                    }, 720);
+                });
+            }
+            function renderResult(data) {
+                resultEl.classList.remove("doctor-verify-result-enter");
+                void resultEl.offsetWidth;
+                if (data.ok && data.doctor) {
+                    var d = data.doctor;
+                    elName.textContent = d.name;
+                    elSpec.textContent = d.spec;
+                    elQual.textContent = d.qual;
+                    elCouncil.textContent = d.council;
+                    elReg.textContent = d.reg;
+                    elValidity.textContent = d.validity;
+                    elNotFound.classList.add("hidden");
+                    elActions.classList.remove("hidden");
+                    if (d.verified) {
+                        elBadge.textContent = "Verified";
+                        elBadge.className = "doctor-badge-verified inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs font-bold uppercase tracking-wider text-emerald-900";
+                        elBadge.innerHTML = '<span class="material-symbols-outlined text-[18px] text-emerald-600">check_circle</span> Verified';
+                    } else {
+                        elBadge.className = "inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-xs font-bold uppercase tracking-wider text-amber-900";
+                        elBadge.innerHTML = '<span class="material-symbols-outlined text-[18px] text-amber-600">warning</span> Flagged';
+                    }
+                } else {
+                    elName.textContent = "No matching registration";
+                    elSpec.textContent = "—";
+                    elQual.textContent = "—";
+                    elCouncil.textContent = "—";
+                    elReg.textContent = "—";
+                    elValidity.textContent = "—";
+                    elNotFound.textContent = "No matching doctor was found in the demo NMC / state medical council dataset for \"" + (data.query || "") + "\".";
+                    elNotFound.classList.remove("hidden");
+                    elActions.classList.add("hidden");
+                    elBadge.className = "doctor-badge-notfound inline-flex items-center gap-1.5 rounded-full border border-red-200 bg-red-50 px-4 py-2 text-xs font-bold uppercase tracking-wider text-red-800";
+                    elBadge.innerHTML = '<span class="material-symbols-outlined text-[18px] text-red-600">cancel</span> Not Found';
+                }
+                resultEl.classList.add("doctor-verify-result-enter");
+            }
+            function runVerify() {
+                var q = input.value.trim();
+                hideSuggestions();
+                if (!q) { return; }
+                showView("loading");
+                submitBtn.disabled = true;
+                mockRegistryLookup(q).then(function (data) {
+                    showView("result");
+                    if (data.ok && data.doctor) {
+                        renderResult({ ok: true, doctor: data.doctor });
+                    } else if (data && data.doctor) {
+                        var d0 = data.doctor;
+                        renderResult({ ok: true, doctor: { name: d0.name || d0.displayName, reg: d0.registrationNumber || d0.reg, spec: d0.specialization || d0.spec || "—", council: d0.council || "—", qual: d0.qualification || d0.qual || "—", validity: d0.validityStatus || d0.validity || "—", verified: d0.verified !== false } });
+                    } else if (data && (data.name || data.displayName) && (data.registrationNumber || data.reg)) {
+                        renderResult({ ok: true, doctor: { name: data.displayName || data.name, reg: data.registrationNumber || data.reg, spec: data.specialization || data.spec || "—", council: data.council || "—", qual: data.qualification || data.qual || "—", validity: data.validityStatus || data.validity || "—", verified: data.verified !== false } });
+                    } else if (data.ok === false) {
+                        renderResult({ ok: false, query: data.query != null ? data.query : q });
+                    } else {
+                        renderResult({ ok: false, query: q });
+                    }
+                }).catch(function () {
+                    showView("result");
+                    renderResult({ ok: false, query: q });
+                }).finally(function () { submitBtn.disabled = false; });
+            }
+            form.addEventListener("submit", function (e) { e.preventDefault(); runVerify(); });
+            input.addEventListener("input", function () {
+                var list = suggestionList(input.value);
+                if (!list.length) { hideSuggestions(); return; }
+                suggestionsEl.innerHTML = list.map(function (r) {
+                    return '<button type="button" class="doctor-suggest-item flex w-full flex-col items-start gap-0.5 px-4 py-3 text-left text-sm transition-colors hover:bg-primary-container/40" data-name="' + r.name.replace(/"/g, "&quot;") + '"><span class="font-semibold text-on-surface">' + r.name + '</span><span class="font-mono text-xs text-on-surface-variant">' + r.reg + "</span></button>";
+                }).join("");
+                suggestionsEl.classList.remove("hidden");
+            });
+            suggestionsEl.addEventListener("click", function (e) {
+                var btn = e.target.closest(".doctor-suggest-item");
+                if (!btn) { return; }
+                input.value = btn.getAttribute("data-name");
+                hideSuggestions();
+                runVerify();
+            });
+            document.addEventListener("click", function (e) {
+                if (!suggestionsEl.contains(e.target) && e.target !== input) { hideSuggestions(); }
+            });
+            input.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") { hideSuggestions(); }
+            });
+        })();
+    </script>
+    <script src="translation.js"></script>
+    <script src="scroll-reveal.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="page-transitions.js"></script>
+</body>
+</html>

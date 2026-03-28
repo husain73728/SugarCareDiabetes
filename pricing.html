@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SuperCareDiabetes | Pricing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-lowest": "#ffffff",
+              "outline": "#707974",
+              "on-error-container": "#93000a",
+              "on-background": "#171d1b",
+              "inverse-primary": "#a5d0b9",
+              "inverse-surface": "#2b3230",
+              "on-error": "#ffffff",
+              "background": "#f5fbf8",
+              "secondary-fixed-dim": "#96d3bd",
+              "on-tertiary-container": "#536260",
+              "secondary": "#2c6956",
+              "outline-variant": "#bfc9c3",
+              "on-secondary": "#ffffff",
+              "on-primary": "#ffffff",
+              "on-secondary-container": "#316d5b",
+              "on-primary-fixed": "#002114",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed-variant": "#274e3d",
+              "surface-dim": "#d5dbd9",
+              "on-surface": "#171d1b",
+              "surface-container-low": "#eff5f2",
+              "primary": "#3f6653",
+              "on-surface-variant": "#404945",
+              "secondary-container": "#aeedd5",
+              "on-secondary-fixed": "#002118",
+              "surface-variant": "#dee4e1",
+              "on-secondary-fixed-variant": "#0d503f",
+              "tertiary-fixed-dim": "#bacac7",
+              "tertiary-container": "#cdddda",
+              "surface-tint": "#3f6653",
+              "surface-bright": "#f5fbf8",
+              "error": "#ba1a1a",
+              "surface-container-high": "#e3eae7",
+              "surface": "#f5fbf8",
+              "tertiary": "#53615f",
+              "on-tertiary-fixed-variant": "#3b4a48",
+              "primary-fixed": "#c1ecd4",
+              "surface-container": "#e9efec",
+              "inverse-on-surface": "#ecf2ef",
+              "tertiary-fixed": "#d6e6e3",
+              "secondary-fixed": "#b1efd8",
+              "on-tertiary-fixed": "#101e1d",
+              "primary-fixed-dim": "#a5d0b9",
+              "primary-container": "#b7e3cb",
+              "error-container": "#ffdad6",
+              "surface-container-highest": "#dee4e1",
+              "on-primary-container": "#3f6754"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        body {
+            background-color: #f5fbf8;
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .font-headline {
+            font-family: 'Manrope', sans-serif;
+        }
+        .pricing-shell {
+            position: relative;
+            overflow-x: hidden;
+        }
+        .pricing-shell::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 12% 16%, rgba(168, 230, 207, 0.34), transparent 24%),
+                radial-gradient(circle at 88% 12%, rgba(183, 227, 203, 0.42), transparent 28%),
+                linear-gradient(180deg, rgba(255,255,255,0.72), rgba(245,251,248,0.96));
+            pointer-events: none;
+            z-index: -2;
+        }
+        .pricing-shell::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(63,102,83,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(63,102,83,0.045) 1px, transparent 1px);
+            background-size: 56px 56px;
+            pointer-events: none;
+            z-index: -1;
+            mask-image: linear-gradient(180deg, rgba(0,0,0,0.8), transparent 85%);
+        }
+        .pricing-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.26), rgba(255,255,255,0.02));
+            pointer-events: none;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 24px 70px rgba(27,67,50,0.12);
+        }
+        .pricing-card-popular {
+            background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(232,248,245,0.86));
+        }
+        .pricing-orb {
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(8px);
+            opacity: 0.75;
+        }
+    </style>
+</head>
+<body class="text-on-background antialiased overflow-x-hidden pricing-shell">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-emerald-50/60 dark:bg-slate-900/60 backdrop-blur-xl shadow-[0_12px_40px_rgba(27,67,50,0.06)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<a class="text-2xl font-bold text-emerald-900 dark:text-emerald-50 tracking-tighter" href="index.html">SuperCareDiabetes</a>
+<div class="hidden md:flex gap-8 items-center font-manrope font-semibold tracking-tight">
+<a class="text-emerald-800/70 dark:text-emerald-200/70 hover:text-emerald-900 hover:bg-emerald-100/50 dark:hover:bg-emerald-800/50 transition-all duration-300 px-3 py-1 rounded-full" href="features.html">Features</a>
+<a class="text-emerald-700 dark:text-emerald-300 border-b-2 border-emerald-700 pb-1 px-3 py-1" href="pricing.html">Pricing</a>
+<a class="text-emerald-800/70 dark:text-emerald-200/70 hover:text-emerald-900 hover:bg-emerald-100/50 dark:hover:bg-emerald-800/50 transition-all duration-300 px-3 py-1 rounded-full" href="about.html">About</a>
+<a class="text-emerald-800/70 dark:text-emerald-200/70 hover:text-emerald-900 hover:bg-emerald-100/50 dark:hover:bg-emerald-800/50 transition-all duration-300 px-3 py-1 rounded-full" href="consult.html">Support</a>
+</div>
+<a class="bg-primary text-on-primary px-6 py-2 rounded-full font-semibold scale-95 active:scale-90 transition-transform inline-flex items-center justify-center" href="prediction.html">Get Started</a>
+</div>
+</nav>
+<main class="pt-32 pb-24">
+<!-- Hero Section -->
+<section class="max-w-4xl mx-auto text-center px-6 mb-16">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/75 border border-white/80 shadow-sm text-[11px] font-bold tracking-[0.2em] uppercase text-primary mb-6">
+<span class="material-symbols-outlined text-sm">workspace_premium</span>
+                Premium Access
+</div>
+<h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-on-surface mb-6">Pricing That Feels Like a Care Upgrade</h1>
+<p class="text-xl text-on-surface-variant mb-12 max-w-3xl mx-auto">Choose the level of intelligence, guidance, and clinical support that matches how deeply you want SuperCareDiabetes to work for you.</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 text-left">
+<div class="glass-card rounded-[1.6rem] border border-white/80 px-5 py-4 shadow-[0_16px_32px_rgba(27,67,50,0.06)]">
+<p class="text-[11px] font-bold tracking-[0.18em] uppercase text-on-surface-variant">Prediction Engine</p>
+<p class="mt-2 text-sm font-semibold text-dark-green">Move from basic risk checks to richer guidance and expert-backed follow-up.</p>
+</div>
+<div class="glass-card rounded-[1.6rem] border border-white/80 px-5 py-4 shadow-[0_16px_32px_rgba(27,67,50,0.06)]">
+<p class="text-[11px] font-bold tracking-[0.18em] uppercase text-on-surface-variant">Care Intensity</p>
+<p class="mt-2 text-sm font-semibold text-dark-green">Scale from self-guided wellness to high-touch consultation and reporting.</p>
+</div>
+<div class="glass-card rounded-[1.6rem] border border-white/80 px-5 py-4 shadow-[0_16px_32px_rgba(27,67,50,0.06)]">
+<p class="text-[11px] font-bold tracking-[0.18em] uppercase text-on-surface-variant">Flexible Billing</p>
+<p class="mt-2 text-sm font-semibold text-dark-green">Switch billing modes instantly and surface savings without changing plans.</p>
+</div>
+</div>
+</section>
+<!-- Pricing Cards Grid -->
+<section class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 items-end">
+<!-- Basic Plan -->
+<div class="glass-card pricing-card p-8 rounded-xl border border-outline-variant/15 flex flex-col h-full transition-all duration-500 shadow-[0_16px_44px_rgba(27,67,50,0.06)]">
+<div class="pricing-orb w-28 h-28 top-[-18px] right-[-12px] bg-mint-green/40"></div>
+<div class="mb-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/75 border border-white/70 text-[11px] font-bold tracking-[0.18em] uppercase text-primary mb-4">Starter Care</div>
+<h3 class="text-lg font-bold text-primary mb-2">Basic Plan</h3>
+<div class="flex items-baseline gap-1">
+<span class="price-value text-4xl font-extrabold text-on-surface" data-monthly="199" data-half-yearly="955" data-yearly="1433">Rs.199</span>
+<span class="price-period text-on-surface-variant">/mo</span>
+</div>
+<p class="mt-4 text-sm text-on-surface-variant leading-relaxed">A clean self-serve starting point for prediction, foundational diet guidance, and movement recommendations.</p>
+</div>
+<ul class="space-y-4 mb-10 flex-grow">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface-variant text-sm">AI Diabetes Prediction</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface-variant text-sm">Basic Diet Plan</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface-variant text-sm">Exercise Recommendations</span>
+</li>
+</ul>
+<a class="w-full py-4 bg-[#1B4332] text-white rounded-full font-bold hover:opacity-90 transition-all inline-flex items-center justify-center shadow-[0_16px_36px_rgba(27,67,50,0.18)]" href="prediction.html">Choose Plan</a>
+</div>
+<!-- Pro Plan (Most Popular) -->
+<div class="glass-card pricing-card pricing-card-popular p-10 rounded-xl border-2 border-primary/20 flex flex-col h-full relative shadow-2xl shadow-primary/10 transition-all duration-500 md:scale-105 bg-white/60">
+<div class="pricing-orb w-36 h-36 top-[-26px] right-[-18px] bg-primary-container/50"></div>
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-4 py-1 rounded-full font-bold tracking-widest uppercase">Most Popular</div>
+<div class="mb-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-white/70 text-[11px] font-bold tracking-[0.18em] uppercase text-primary mb-4">Smartest Value</div>
+<h3 class="text-xl font-bold text-primary mb-2">Pro Plan</h3>
+<div class="flex items-baseline gap-1">
+<span class="price-value text-5xl font-extrabold text-on-surface" data-monthly="399" data-half-yearly="1915" data-yearly="2873">Rs.399</span>
+<span class="price-period text-on-surface-variant">/mo</span>
+</div>
+<p class="mt-4 text-sm text-on-surface-variant leading-relaxed">A richer prediction layer with personalized planning, stronger care intelligence, and priority responsiveness.</p>
+</div>
+<ul class="space-y-4 mb-10 flex-grow">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="verified">verified</span>
+<span class="text-on-surface font-semibold text-sm">Everything in Basic</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface-variant text-sm">Advanced AI Prediction</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface-variant text-sm">Personalized Diet Plan</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface-variant text-sm">Exercise Tracking</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface-variant text-sm">Priority Support</span>
+</li>
+</ul>
+<a class="w-full py-4 bg-[#1B4332] text-white rounded-full font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-all inline-flex items-center justify-center" href="prediction.html">Choose Plan</a>
+</div>
+<!-- Premium Plan -->
+<div class="glass-card pricing-card p-8 rounded-xl border border-outline-variant/15 flex flex-col h-full transition-all duration-500 shadow-[0_16px_44px_rgba(27,67,50,0.06)]">
+<div class="pricing-orb w-28 h-28 top-[-18px] right-[-12px] bg-secondary-container/40"></div>
+<div class="mb-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/75 border border-white/70 text-[11px] font-bold tracking-[0.18em] uppercase text-primary mb-4">Clinical Touch</div>
+<h3 class="text-lg font-bold text-primary mb-2">Premium Plan</h3>
+<div class="flex items-baseline gap-1">
+<span class="price-value text-4xl font-extrabold text-on-surface" data-monthly="699" data-half-yearly="3355" data-yearly="5033">Rs.699</span>
+<span class="price-period text-on-surface-variant">/mo</span>
+</div>
+<p class="mt-4 text-sm text-on-surface-variant leading-relaxed">The highest-touch path with consultation access, medicine guidance, video support, and deeper reporting.</p>
+</div>
+<ul class="space-y-4 mb-10 flex-grow">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="verified">verified</span>
+<span class="text-on-surface font-semibold text-sm">Everything in Pro</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface-variant text-sm">Doctor Consultation</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface-variant text-sm">Video Call Access</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface-variant text-sm">Medicine Recommendations</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="check_circle">check_circle</span>
+<span class="text-on-surface-variant text-sm">Health Reports Dashboard</span>
+</li>
+</ul>
+<a class="w-full py-4 bg-[#1B4332] text-white rounded-full font-bold hover:opacity-90 transition-all inline-flex items-center justify-center shadow-[0_16px_36px_rgba(27,67,50,0.18)]" href="consult.html">Choose Plan</a>
+</div>
+</section>
+<!-- Trust Section -->
+<section class="max-w-5xl mx-auto px-6">
+<div class="bg-surface-container-low rounded-xl p-8 flex flex-wrap justify-center md:justify-around gap-12 items-center text-on-surface-variant">
+<div class="flex items-center gap-3 group">
+<span class="material-symbols-outlined text-primary bg-primary-container p-2 rounded-lg" data-icon="lock">lock</span>
+<span class="font-semibold text-on-surface">Secure payments</span>
+</div>
+<div class="flex items-center gap-3 group">
+<span class="material-symbols-outlined text-primary bg-primary-container p-2 rounded-lg" data-icon="event_available">event_available</span>
+<span class="font-semibold text-on-surface">Cancel anytime</span>
+</div>
+<div class="flex items-center gap-3 group">
+<span class="material-symbols-outlined text-primary bg-primary-container p-2 rounded-lg" data-icon="clinical_notes">clinical_notes</span>
+<span class="font-semibold text-on-surface">Trusted healthcare AI platform</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-emerald-50 dark:bg-slate-950 w-full py-12 mt-auto tonal-shift bg-emerald-100/30">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
+<a class="font-manrope font-bold text-emerald-800 text-xl" href="index.html">SuperCareDiabetes</a>
+<div class="flex gap-6 text-sm font-inter text-emerald-700/60 hover:text-emerald-800 dark:text-emerald-400/60">
+<a class="hover:underline decoration-emerald-500/30 opacity-80 hover:opacity-100 transition-opacity" href="about.html">Privacy Policy</a>
+<a class="hover:underline decoration-emerald-500/30 opacity-80 hover:opacity-100 transition-opacity" href="about.html">Terms of Service</a>
+<a class="hover:underline decoration-emerald-500/30 opacity-80 hover:opacity-100 transition-opacity" href="pricing.html">Secure Payments</a>
+<a class="hover:underline decoration-emerald-500/30 opacity-80 hover:opacity-100 transition-opacity" href="consult.html">Contact</a>
+</div>
+<p class="text-sm font-inter antialiased text-emerald-900 dark:text-emerald-100 opacity-80">Copyright 2024 SuperCareDiabetes. Clinical Precision.</p>
+</div>
+</footer>
+<!-- Background Decoration -->
+<div class="fixed top-[-10%] left-[-5%] w-[40%] h-[40%] bg-emerald-100/30 rounded-full blur-[120px] -z-10"></div>
+<div class="fixed bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-primary-container/20 rounded-full blur-[120px] -z-10"></div>
+<script src="translation.js"></script>
+<script src="page-transitions.js"></script>
+</body></html>

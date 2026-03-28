@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+<html class="light scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AI Diabetes Risk Prediction | SuperCareDiabetes</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "dark-green": "#1B4332",
+                        "surface-tint": "#3f6653",
+                        "tertiary-container": "#cdddda",
+                        "surface-container": "#e9efec",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#ecf2ef",
+                        "inverse-primary": "#a5d0b9",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#bacac7",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#96d3bd",
+                        "on-surface-variant": "#404945",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#3f6754",
+                        "inverse-surface": "#2b3230",
+                        "surface-variant": "#dee4e1",
+                        "secondary-fixed": "#b1efd8",
+                        "on-secondary-fixed-variant": "#0d503f",
+                        "primary-container": "#b7e3cb",
+                        "outline-variant": "#bfc9c3",
+                        "tertiary-fixed": "#d6e6e3",
+                        "background": "#f5fbf8",
+                        "surface-dim": "#d5dbd9",
+                        "secondary": "#2c6956",
+                        "on-secondary-container": "#316d5b",
+                        "tertiary": "#53615f",
+                        "primary": "#3f6653",
+                        "surface-container-high": "#e3eae7",
+                        "on-tertiary-fixed": "#101e1d",
+                        "on-tertiary-fixed-variant": "#3b4a48",
+                        "outline": "#707974",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#171d1b",
+                        "surface": "#f5fbf8",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "surface-bright": "#f5fbf8",
+                        "secondary-container": "#aeedd5",
+                        "on-primary-fixed": "#002114",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#536260",
+                        "surface-container-low": "#eff5f2",
+                        "primary-fixed": "#c1ecd4",
+                        "on-surface": "#171d1b",
+                        "surface-container-highest": "#dee4e1",
+                        "on-secondary-fixed": "#002118",
+                        "on-primary-fixed-variant": "#274e3d"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .tonal-transition {
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .bg-wave-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(63, 102, 83, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+
+        .risk-theme-green {
+            border-color: rgba(34, 197, 94, 0.24);
+            box-shadow: 0 12px 40px rgba(34, 197, 94, 0.08);
+        }
+
+        .risk-theme-yellow {
+            border-color: rgba(234, 179, 8, 0.28);
+            box-shadow: 0 12px 40px rgba(234, 179, 8, 0.1);
+        }
+
+        .risk-theme-red {
+            border-color: rgba(239, 68, 68, 0.24);
+            box-shadow: 0 12px 40px rgba(239, 68, 68, 0.1);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container min-h-screen">
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 rounded-b-3xl bg-emerald-50/70 dark:bg-emerald-950/70 backdrop-blur-lg shadow-[0_12px_40px_rgba(27,67,50,0.06)]">
+        <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 bg-dark-green rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-white text-lg">monitoring</span>
+                    </div>
+                    <div class="text-2xl font-bold tracking-tighter text-dark-green dark:text-emerald-50 font-headline group-hover:text-primary transition-colors duration-300">
+                        SuperCareDiabetes
+                    </div>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="index.html">Home</a>
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="features.html">Features</a>
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="about.html">About</a>
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="pricing.html">Pricing</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://accounts.google.com/ServiceLogin" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
+                    <span class="text-sm font-semibold text-on-surface-variant">Sign In</span>
+                </a>
+                <a href="profile.html" class="px-6 py-2.5 bg-dark-green text-white rounded-full font-semibold hover:opacity-90 transition-all hover:-translate-y-1 active:scale-95 duration-300 shadow-lg shadow-dark-green/20 hover:shadow-xl hover:shadow-dark-green/30">
+                    Profile
+                </a>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-20 px-6 min-h-screen relative overflow-hidden bg-wave-pattern">
+        <!-- Background Decorative Elements -->
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-container/20 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary-container/20 rounded-full blur-3xl -z-10">
+        </div>
+        <section class="max-w-4xl mx-auto relative z-10">
+            <!-- Header Section -->
+            <div class="text-center mb-12">
+                <h1 class="font-headline text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight mb-4">
+                    AI Diabetes Risk Prediction
+                </h1>
+                <p class="text-on-surface-variant text-lg max-w-2xl mx-auto font-medium">
+                    Enter your health parameters to get an instant AI-based prediction.
+                    Our neural networks analyze complex patterns to provide personalized insights.
+                </p>
+                <div
+                    class="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-full text-xs font-semibold text-on-surface-variant border border-outline-variant/15">
+                    <span class="material-symbols-outlined text-sm" data-icon="info">info</span>
+                    This model uses medical data patterns to estimate diabetes risk. Results are indicative and not a
+                    medical diagnosis.
+                </div>
+            </div>
+            <!-- Prediction Form Card -->
+            <div
+                class="glass-card rounded-xl p-8 md:p-12 shadow-[0_12px_40px_rgba(27,67,50,0.06)] border border-white/40">
+                <form id="prediction-form" class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+                    <!-- Pregnancies -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-on-surface-variant ml-2">Pregnancies</label>
+                        <div class="relative group">
+                            <input
+                                id="pregnancies"
+                                class="w-full bg-surface-container-low border-none rounded-lg py-4 px-6 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all duration-200 outline-none placeholder:text-outline"
+                                placeholder="0" type="number" />
+                            <span
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-primary/40 material-symbols-outlined"
+                                data-icon="child_care">child_care</span>
+                        </div>
+                    </div>
+                    <!-- Glucose -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-on-surface-variant ml-2">Glucose (mg/dL)</label>
+                        <div class="relative group">
+                            <input
+                                id="glucose"
+                                class="w-full bg-surface-container-low border-none rounded-lg py-4 px-6 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all duration-200 outline-none placeholder:text-outline"
+                                placeholder="120" type="number" />
+                            <span
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-primary/40 material-symbols-outlined"
+                                data-icon="opacity">opacity</span>
+                        </div>
+                    </div>
+                    <!-- Blood Pressure -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-on-surface-variant ml-2">Blood Pressure (mm
+                            Hg)</label>
+                        <div class="relative group">
+                            <input
+                                id="blood-pressure"
+                                class="w-full bg-surface-container-low border-none rounded-lg py-4 px-6 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all duration-200 outline-none placeholder:text-outline"
+                                placeholder="80" type="number" />
+                            <span
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-primary/40 material-symbols-outlined"
+                                data-icon="speed">speed</span>
+                        </div>
+                    </div>
+                    <!-- Skin Thickness -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-on-surface-variant ml-2">Skin Thickness
+                            (mm)</label>
+                        <div class="relative group">
+                            <input
+                                id="skin-thickness"
+                                class="w-full bg-surface-container-low border-none rounded-lg py-4 px-6 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all duration-200 outline-none placeholder:text-outline"
+                                placeholder="20" type="number" />
+                            <span
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-primary/40 material-symbols-outlined"
+                                data-icon="straighten">straighten</span>
+                        </div>
+                    </div>
+                    <!-- Insulin -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-on-surface-variant ml-2">Insulin (mu
+                            U/ml)</label>
+                        <div class="relative group">
+                            <input
+                                id="insulin"
+                                class="w-full bg-surface-container-low border-none rounded-lg py-4 px-6 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all duration-200 outline-none placeholder:text-outline"
+                                placeholder="79" type="number" />
+                            <span
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-primary/40 material-symbols-outlined"
+                                data-icon="vaccines">vaccines</span>
+                        </div>
+                    </div>
+                    <!-- BMI -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-on-surface-variant ml-2">BMI (kg/m²)</label>
+                        <div class="relative group">
+                            <input
+                                id="bmi"
+                                class="w-full bg-surface-container-low border-none rounded-lg py-4 px-6 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all duration-200 outline-none placeholder:text-outline"
+                                placeholder="24.5" step="0.1" type="number" />
+                            <span
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-primary/40 material-symbols-outlined"
+                                data-icon="monitor_weight">monitor_weight</span>
+                        </div>
+                    </div>
+                    <!-- Diabetes Pedigree Function -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-on-surface-variant ml-2">Diabetes Pedigree
+                            Function</label>
+                        <div class="relative group">
+                            <input
+                                id="pedigree"
+                                class="w-full bg-surface-container-low border-none rounded-lg py-4 px-6 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all duration-200 outline-none placeholder:text-outline"
+                                placeholder="0.471" step="0.001" type="number" />
+                            <span
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-primary/40 material-symbols-outlined"
+                                data-icon="family_history">family_history</span>
+                        </div>
+                    </div>
+                    <!-- Age -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-on-surface-variant ml-2">Age</label>
+                        <div class="relative group">
+                            <input
+                                id="age"
+                                class="w-full bg-surface-container-low border-none rounded-lg py-4 px-6 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all duration-200 outline-none placeholder:text-outline"
+                                placeholder="33" type="number" />
+                            <span
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-primary/40 material-symbols-outlined"
+                                data-icon="calendar_today">calendar_today</span>
+                        </div>
+                    </div>
+                    <!-- Submit Button Row -->
+                    <div class="md:col-span-2 pt-8 flex justify-center">
+                        <button
+                            class="group relative bg-primary text-on-primary font-headline font-bold text-lg py-4 px-12 rounded-full shadow-[0_8px_30px_rgb(63,102,83,0.3)] hover:shadow-[0_12px_40px_rgb(63,102,83,0.5)] transition-all duration-300 hover:-translate-y-1 active:scale-95 flex items-center gap-3"
+                            type="submit">
+                            <span>Enter</span>
+                            <span class="material-symbols-outlined transition-transform group-hover:translate-x-1"
+                                data-icon="chevron_right">chevron_right</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <section id="report-card"
+                class="hidden mt-10 glass-card rounded-xl p-8 md:p-10 shadow-[0_12px_40px_rgba(27,67,50,0.06)] border border-white/40">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                    <div>
+                        <p id="report-badge" class="text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-3">Medical Report</p>
+                        <h2 id="report-title" class="font-headline text-3xl font-extrabold text-on-surface mb-3">Risk analysis ready</h2>
+                        <p id="report-summary" class="text-on-surface-variant text-base leading-relaxed max-w-2xl"></p>
+                    </div>
+                    <div id="risk-score-box" class="bg-surface-container-low rounded-2xl px-6 py-5 min-w-[220px]">
+                        <p class="text-sm font-semibold text-on-surface-variant mb-2">Estimated Risk Score</p>
+                        <p id="risk-score" class="font-headline text-4xl font-extrabold text-primary">0%</p>
+                        <p id="risk-level" class="mt-2 text-sm font-semibold text-on-surface"></p>
+                    </div>
+                </div>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-surface-container-low rounded-2xl p-5">
+                        <p class="text-sm font-semibold text-on-surface-variant mb-2">Primary Concern</p>
+                        <p id="report-concern" class="text-on-surface font-semibold leading-relaxed"></p>
+                    </div>
+                    <div class="bg-surface-container-low rounded-2xl p-5">
+                        <p class="text-sm font-semibold text-on-surface-variant mb-2">Recommended Action</p>
+                        <p id="report-action" class="text-on-surface font-semibold leading-relaxed"></p>
+                    </div>
+                    <div class="bg-surface-container-low rounded-2xl p-5">
+                        <p class="text-sm font-semibold text-on-surface-variant mb-2">Lifestyle Note</p>
+                        <p id="report-note" class="text-on-surface font-semibold leading-relaxed"></p>
+                    </div>
+                </div>
+                <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                    <a href="consult.html"
+                        class="flex-1 inline-flex items-center justify-center gap-3 bg-primary text-on-primary font-headline font-bold text-lg py-4 px-8 rounded-full shadow-[0_8px_30px_rgb(63,102,83,0.25)] hover:-translate-y-1 transition-all duration-300">
+                        <span class="material-symbols-outlined">medical_services</span>
+                        <span>Consult a Doctor</span>
+                    </a>
+                    <a href="medicines.html"
+                        class="flex-1 inline-flex items-center justify-center gap-3 bg-surface-container-lowest text-primary border border-primary/15 font-headline font-bold text-lg py-4 px-8 rounded-full hover:-translate-y-1 transition-all duration-300">
+                        <span class="material-symbols-outlined">local_pharmacy</span>
+                        <span>Buy Medicines</span>
+                    </a>
+                </div>
+            </section>
+            <!-- Asymmetric Data Visualization Placeholder -->
+            <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="md:col-span-2 rounded-xl bg-primary-container/30 p-8 flex flex-col justify-between h-64 overflow-hidden relative">
+                    <div>
+                        <h3 class="font-headline text-xl font-bold text-primary mb-2">Neural Analysis Active</h3>
+                        <p class="text-on-primary-fixed-variant text-sm max-w-xs">Our prediction engine uses a
+                            multi-layer perceptron model trained on 10,000+ anonymized clinical cases.</p>
+                    </div>
+                    <div class="flex items-end space-x-2 h-20">
+                        <div class="w-4 bg-primary rounded-t-full h-[30%]"></div>
+                        <div class="w-4 bg-primary/60 rounded-t-full h-[50%]"></div>
+                        <div class="w-4 bg-primary rounded-t-full h-[80%]"></div>
+                        <div class="w-4 bg-primary/40 rounded-t-full h-[40%]"></div>
+                        <div class="w-4 bg-primary rounded-t-full h-[90%]"></div>
+                        <div class="w-4 bg-primary/70 rounded-t-full h-[60%]"></div>
+                    </div>
+                    <span class="absolute -right-4 -bottom-4 text-primary/10 material-symbols-outlined text-[12rem]"
+                        data-icon="psychology">psychology</span>
+                </div>
+                <div
+                    class="bg-surface-container-highest rounded-xl p-8 flex flex-col items-center justify-center text-center space-y-4">
+                    <div
+                        class="w-16 h-16 rounded-full bg-on-primary flex items-center justify-center text-primary shadow-sm">
+                        <span class="material-symbols-outlined text-3xl" data-icon="verified_user"
+                            data-weight="fill">verified_user</span>
+                    </div>
+                    <h4 class="font-headline font-bold">Privacy First</h4>
+                    <p class="text-on-surface-variant text-xs leading-relaxed">Your health data is encrypted locally and
+                        never stored on our servers without consent.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-emerald-50 dark:bg-emerald-900/20 w-full py-12">
+        <div
+            class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto space-y-6 md:space-y-0">
+            <div class="flex flex-col items-center md:items-start space-y-2">
+                <span class="text-lg font-bold text-emerald-900 dark:text-emerald-50 font-headline">SuperCareDiabetes</span>
+                <p class="text-emerald-800 dark:text-emerald-200 font-body text-sm">© 2024 SuperCareDiabetes. Clinical
+                    Ethereality.</p>
+            </div>
+            <div class="flex space-x-8 font-body text-sm">
+                <a class="text-emerald-700 dark:text-emerald-300 hover:underline transition-all" href="#">Privacy
+                    Policy</a>
+                <a class="text-emerald-700 dark:text-emerald-300 hover:underline transition-all" href="#">Terms of
+                    Service</a>
+                <a class="text-emerald-700 dark:text-emerald-300 hover:underline transition-all" href="#">Cookie
+                    Settings</a>
+            </div>
+        </div>
+    </footer>
+    <script src="scroll-reveal.js"></script>
+    <script src="chatbot.js"></script>
+    <script>
+        const predictionForm = document.getElementById("prediction-form");
+        const reportCard = document.getElementById("report-card");
+        const reportTitle = document.getElementById("report-title");
+        const reportSummary = document.getElementById("report-summary");
+        const reportBadge = document.getElementById("report-badge");
+        const riskScoreBox = document.getElementById("risk-score-box");
+        const riskScore = document.getElementById("risk-score");
+        const riskLevel = document.getElementById("risk-level");
+        const reportConcern = document.getElementById("report-concern");
+        const reportAction = document.getElementById("report-action");
+        const reportNote = document.getElementById("report-note");
+        const STORAGE_KEY = "supercareDiabetesPredictionHistory";
+        const LANGUAGE_KEY = "lang";
+        const reportTranslations = {
+            en: {
+                highRisk: "High risk",
+                highTitle: "Your ML report suggests a higher diabetes risk",
+                highSummary: "The diabetes model found a strong risk pattern in your submitted values. Please consult a doctor soon for lab confirmation and a tailored treatment plan.",
+                highConcern: "Glucose, BMI, age, and related metabolic indicators are contributing to a higher predicted risk.",
+                highAction: "Use the doctor consultation option first, then discuss medicine choices with a qualified clinician.",
+                highNote: "This result comes from a trained diabetes model and should be treated as a screening estimate, not a final diagnosis.",
+                moderateRisk: "Moderate risk",
+                moderateTitle: "Your ML report shows moderate diabetes risk markers",
+                moderateSummary: "The model detected a moderate probability of diabetes based on the health details you entered. A preventive consultation would be a smart next step.",
+                moderateConcern: "Some of your inputs are aligned with patterns commonly seen in diabetes-positive cases.",
+                moderateAction: "Consult a doctor for confirmation and focus on lifestyle improvements while monitoring your glucose.",
+                moderateNote: "Early medical advice and consistent diet and exercise changes can lower long-term risk.",
+                lowerRisk: "Lower risk",
+                lowerTitle: "Your ML report shows lower immediate diabetes risk",
+                lowerSummary: "The model predicts a lower diabetes probability from the values you entered. Even so, regular screening and healthy habits remain important.",
+                lowerConcern: "No dominant high-risk diabetes pattern stands out in the submitted values.",
+                lowerAction: "Continue healthy monitoring and use consultation if symptoms or future readings change.",
+                lowerNote: "This prediction is based on a model trained on 768 diabetes cases and is best used as an early screening signal."
+            },
+            hi: {
+                highRisk: "उच्च जोखिम",
+                highTitle: "आपकी एमएल रिपोर्ट डायबिटीज़ के अधिक जोखिम का संकेत देती है",
+                highSummary: "डायबिटीज़ मॉडल ने आपके भरे गए डेटा में मजबूत जोखिम पैटर्न पाया है। लैब कन्फर्मेशन और सही ट्रीटमेंट प्लान के लिए जल्द डॉक्टर से सलाह लें।",
+                highConcern: "ग्लूकोज़, बीएमआई, उम्र और अन्य मेटाबोलिक संकेतक अधिक अनुमानित जोखिम में योगदान दे रहे हैं।",
+                highAction: "पहले डॉक्टर कंसल्टेशन विकल्प का उपयोग करें, फिर योग्य चिकित्सक से दवाइयों पर चर्चा करें।",
+                highNote: "यह परिणाम प्रशिक्षित डायबिटीज़ मॉडल से आया है और इसे अंतिम डायग्नोसिस नहीं, बल्कि स्क्रीनिंग अनुमान माना जाना चाहिए।",
+                moderateRisk: "मध्यम जोखिम",
+                moderateTitle: "आपकी एमएल रिपोर्ट मध्यम डायबिटीज़ जोखिम संकेत दिखाती है",
+                moderateSummary: "आपके द्वारा भरी गई हेल्थ डिटेल्स के आधार पर मॉडल ने डायबिटीज़ की मध्यम संभावना पाई है। रोकथाम के लिए डॉक्टर से सलाह लेना अच्छा अगला कदम होगा।",
+                moderateConcern: "आपके कुछ इनपुट उन पैटर्न से मेल खाते हैं जो आमतौर पर डायबिटीज़ पॉजिटिव मामलों में देखे जाते हैं।",
+                moderateAction: "कन्फर्मेशन के लिए डॉक्टर से सलाह लें और ग्लूकोज़ मॉनिटर करते हुए लाइफस्टाइल सुधारों पर ध्यान दें।",
+                moderateNote: "समय पर मेडिकल सलाह और लगातार डाइट व एक्सरसाइज़ बदलाव लंबे समय का जोखिम घटा सकते हैं।",
+                lowerRisk: "कम जोखिम",
+                lowerTitle: "आपकी एमएल रिपोर्ट अभी कम डायबिटीज़ जोखिम दिखाती है",
+                lowerSummary: "आपके द्वारा भरी गई वैल्यूज़ के आधार पर मॉडल ने डायबिटीज़ की कम संभावना बताई है। फिर भी, नियमित स्क्रीनिंग और हेल्दी आदतें जरूरी हैं।",
+                lowerConcern: "सबमिट की गई वैल्यूज़ में कोई प्रमुख उच्च-जोखिम डायबिटीज़ पैटर्न नहीं दिखता।",
+                lowerAction: "स्वस्थ मॉनिटरिंग जारी रखें और यदि लक्षण या भविष्य की रीडिंग बदलें तो डॉक्टर से सलाह लें।",
+                lowerNote: "यह प्रेडिक्शन 768 डायबिटीज़ मामलों पर प्रशिक्षित मॉडल पर आधारित है और शुरुआती स्क्रीनिंग संकेत के रूप में सबसे उपयोगी है।"
+            }
+        };
+        const diabetesModel = {
+            featureNames: [
+                "Pregnancies",
+                "Glucose",
+                "BloodPressure",
+                "SkinThickness",
+                "Insulin",
+                "BMI",
+                "DiabetesPedigreeFunction",
+                "Age"
+            ],
+            zeroAsMissing: ["Glucose", "BloodPressure", "SkinThickness", "Insulin", "BMI"],
+            imputerMedians: [3.0, 117.0, 72.0, 29.0, 125.0, 32.3, 0.3725, 29.0],
+            scalerMean: [3.8450520833333335, 121.65625, 72.38671875, 29.108072916666668, 140.671875, 32.45520833333333, 0.47187630208333325, 33.240885416666664],
+            scalerScale: [3.3673836124089958, 30.418462775166116, 12.088763750899638, 8.785495707586254, 86.32680240314153, 6.870699333517456, 0.3311128160286291, 11.752572645994181],
+            coefficients: [0.41389532346955227, 1.134030041694898, -0.10679824805885577, 0.035357655879986606, -0.09370641021818897, 0.6354336678404929, 0.2867520104854389, 0.15344865206859323],
+            intercept: -0.8577043567624192,
+            trainingRows: 768,
+            metrics: {
+                logistic: { accuracy: 0.7077922077922078, auc: 0.812962962962963 }
+            }
+        };
+
+        function getNumberValue(id) {
+            return Number(document.getElementById(id).value) || 0;
+        }
+
+        function sigmoid(value) {
+            return 1 / (1 + Math.exp(-value));
+        }
+
+        function buildFeatureVector(values) {
+            const featureMap = {
+                Pregnancies: values.pregnancies,
+                Glucose: values.glucose,
+                BloodPressure: values.bloodPressure,
+                SkinThickness: values.skinThickness,
+                Insulin: values.insulin,
+                BMI: values.bmi,
+                DiabetesPedigreeFunction: values.pedigree,
+                Age: values.age
+            };
+
+            return diabetesModel.featureNames.map(function (featureName, index) {
+                let value = featureMap[featureName];
+                const shouldImpute = diabetesModel.zeroAsMissing.includes(featureName) && value === 0;
+
+                if (shouldImpute) {
+                    value = diabetesModel.imputerMedians[index];
+                }
+
+                return (value - diabetesModel.scalerMean[index]) / diabetesModel.scalerScale[index];
+            });
+        }
+
+        function predictDiabetesProbability(values) {
+            const features = buildFeatureVector(values);
+            let linearScore = diabetesModel.intercept;
+
+            features.forEach(function (feature, index) {
+                linearScore += feature * diabetesModel.coefficients[index];
+            });
+
+            return sigmoid(linearScore);
+        }
+
+        function buildReport(values) {
+            const language = localStorage.getItem(LANGUAGE_KEY) || "en";
+            const t = reportTranslations[language] || reportTranslations.en;
+            const probability = predictDiabetesProbability(values);
+            const score = Math.max(1, Math.min(99, Math.round(probability * 100)));
+
+            if (score > 60) {
+                return {
+                    score,
+                    level: t.highRisk,
+                    title: t.highTitle,
+                    summary: t.highSummary,
+                    concern: t.highConcern,
+                    action: t.highAction,
+                    note: t.highNote
+                };
+            }
+
+            if (score >= 30) {
+                return {
+                    score,
+                    level: t.moderateRisk,
+                    title: t.moderateTitle,
+                    summary: t.moderateSummary,
+                    concern: t.moderateConcern,
+                    action: t.moderateAction,
+                    note: t.moderateNote
+                };
+            }
+
+            return {
+                score,
+                level: t.lowerRisk,
+                title: t.lowerTitle,
+                summary: t.lowerSummary,
+                concern: t.lowerConcern,
+                action: t.lowerAction,
+                note: t.lowerNote
+            };
+        }
+
+        function applyRiskTheme(score) {
+            const theme = score < 30
+                ? {
+                    card: "risk-theme-green",
+                    badge: "text-green-600",
+                    score: "text-green-600",
+                    level: "text-green-700",
+                    box: "bg-green-50"
+                }
+                : score <= 60
+                    ? {
+                        card: "risk-theme-yellow",
+                        badge: "text-yellow-600",
+                        score: "text-yellow-600",
+                        level: "text-yellow-700",
+                        box: "bg-yellow-50"
+                    }
+                    : {
+                        card: "risk-theme-red",
+                        badge: "text-red-600",
+                        score: "text-red-600",
+                        level: "text-red-700",
+                        box: "bg-red-50"
+                    };
+
+            reportCard.classList.remove("risk-theme-green", "risk-theme-yellow", "risk-theme-red");
+            reportBadge.classList.remove("text-primary", "text-green-600", "text-yellow-600", "text-red-600");
+            riskScore.classList.remove("text-primary", "text-green-600", "text-yellow-600", "text-red-600");
+            riskLevel.classList.remove("text-on-surface", "text-green-700", "text-yellow-700", "text-red-700");
+            riskScoreBox.classList.remove("bg-surface-container-low", "bg-green-50", "bg-yellow-50", "bg-red-50");
+
+            reportCard.classList.add(theme.card);
+            reportBadge.classList.add(theme.badge);
+            riskScore.classList.add(theme.score);
+            riskLevel.classList.add(theme.level);
+            riskScoreBox.classList.add(theme.box);
+        }
+
+        function savePrediction(values, report) {
+            const payload = {
+                id: Date.now(),
+                checkedAt: new Date().toISOString(),
+                inputs: values,
+                result: {
+                    score: report.score,
+                    level: report.level,
+                    title: report.title,
+                    summary: report.summary
+                }
+            };
+
+            const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+            existing.unshift(payload);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(existing.slice(0, 12)));
+        }
+
+        predictionForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const values = {
+                pregnancies: getNumberValue("pregnancies"),
+                glucose: getNumberValue("glucose"),
+                bloodPressure: getNumberValue("blood-pressure"),
+                skinThickness: getNumberValue("skin-thickness"),
+                insulin: getNumberValue("insulin"),
+                bmi: getNumberValue("bmi"),
+                pedigree: getNumberValue("pedigree"),
+                age: getNumberValue("age")
+            };
+
+            const report = buildReport(values);
+            savePrediction(values, report);
+
+            reportTitle.textContent = report.title;
+            reportSummary.textContent = report.summary;
+            riskScore.textContent = report.score + "%";
+            riskLevel.textContent = report.level;
+            reportConcern.textContent = report.concern;
+            reportAction.textContent = report.action;
+            reportNote.textContent = report.note;
+            applyRiskTheme(report.score);
+
+            reportCard.classList.remove("hidden");
+            reportCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    </script>
+    <script src="translation.js"></script>
+    <script src="page-transitions.js"></script>
+</body>
+
+</html>

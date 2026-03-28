@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Profile | SuperCareDiabetes</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3f6653",
+                        "dark-green": "#1B4332",
+                        "outline-variant": "#bfc9c3",
+                        "surface": "#f5fbf8",
+                        "surface-container": "#e9efec",
+                        "surface-container-low": "#eff5f2",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#171d1b",
+                        "on-surface-variant": "#404945",
+                        "primary-container": "#b7e3cb",
+                        "secondary-container": "#aeedd5"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen">
+    <nav class="fixed top-0 w-full z-50 rounded-b-3xl bg-emerald-50/70 backdrop-blur-lg shadow-[0_12px_40px_rgba(27,67,50,0.06)]">
+        <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 bg-dark-green rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-white text-lg">monitoring</span>
+                    </div>
+                    <div class="text-2xl font-bold tracking-tighter text-dark-green font-headline group-hover:text-primary transition-colors duration-300">
+                        SuperCareDiabetes
+                    </div>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-emerald-800/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="index.html">Home</a>
+                <a class="text-emerald-800/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="features.html">Features</a>
+                <a class="text-emerald-800/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="about.html">About</a>
+                <a class="text-emerald-800/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="pricing.html">Pricing</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://accounts.google.com/ServiceLogin" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
+                    <span class="text-sm font-semibold text-on-surface-variant">Sign In</span>
+                </a>
+                <a href="profile.html" class="px-6 py-2.5 bg-dark-green text-white rounded-full font-semibold hover:opacity-90 transition-all hover:-translate-y-1 active:scale-95 duration-300 shadow-lg shadow-dark-green/20 hover:shadow-xl hover:shadow-dark-green/30">
+                    Profile
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-20 px-6 max-w-6xl mx-auto">
+        <section class="glass-card rounded-[2rem] border border-white/60 shadow-[0_20px_60px_rgba(27,67,50,0.08)] p-8 md:p-10">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 border-b border-outline-variant/20 pb-8">
+                <div class="flex items-center gap-6">
+                    <div class="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center border-4 border-surface text-primary">
+                        <span class="material-symbols-outlined text-5xl">account_circle</span>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl md:text-4xl font-headline font-extrabold text-dark-green" data-i18n="profile.heading">Health Profile</h1>
+                        <p class="text-on-surface-variant mt-2" data-i18n="profile.subheading">Your saved prediction data and diabetes risk trend at a glance.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 min-w-[280px]">
+                    <div class="bg-surface-container-low rounded-2xl p-4">
+                        <p class="text-xs uppercase tracking-[0.18em] text-on-surface-variant font-semibold" data-i18n="profile.savedChecks">Saved Checks</p>
+                        <p id="saved-check-count" class="mt-2 text-3xl font-headline font-extrabold text-primary">0</p>
+                    </div>
+                    <div class="bg-surface-container-low rounded-2xl p-4">
+                        <p class="text-xs uppercase tracking-[0.18em] text-on-surface-variant font-semibold" data-i18n="profile.latestRisk">Latest Risk</p>
+                        <p id="latest-risk-score" class="mt-2 text-3xl font-headline font-extrabold text-primary">0%</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="mt-8 bg-surface-container-low rounded-[1.5rem] border border-outline-variant/15 p-5 shadow-sm">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div>
+                        <p class="text-xs uppercase tracking-[0.18em] text-on-surface-variant font-semibold" data-i18n="profile.languageLabel">Language</p>
+                        <h2 class="text-xl font-headline font-bold text-dark-green mt-2" data-i18n="profile.languageTitle">Choose Your Preferred Language</h2>
+                    </div>
+                    <div class="flex gap-3">
+                        <button id="lang-en" class="px-5 py-2.5 rounded-full bg-dark-green text-white font-semibold transition-all active:scale-95">
+                            English
+                        </button>
+                        <button id="lang-hi" class="px-5 py-2.5 rounded-full border border-outline-variant text-on-surface font-semibold transition-all active:scale-95">
+                            हिंदी
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="mt-8 grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8">
+                <section class="bg-surface-container-lowest rounded-[1.75rem] border border-outline-variant/15 p-6 shadow-sm">
+                    <div class="flex items-center justify-between gap-4 mb-5">
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.18em] text-on-surface-variant font-semibold" data-i18n="profile.resultTrend">Result Trend</p>
+                            <h2 class="text-2xl font-headline font-bold text-dark-green mt-2" data-i18n="profile.graphTitle">Checked Results Graph</h2>
+                        </div>
+                        <div class="px-4 py-2 rounded-full bg-primary-container text-primary text-sm font-semibold" data-i18n="profile.lastChecks">
+                            Last 12 checks
+                        </div>
+                    </div>
+                    <div id="chart-empty" class="hidden rounded-2xl bg-surface-container-low p-10 text-center text-on-surface-variant" data-i18n="profile.chartEmpty">
+                        Run your first diabetes prediction to start building your health history graph.
+                    </div>
+                    <div id="chart-wrapper" class="rounded-2xl bg-surface-container-low p-4">
+                        <svg id="history-chart" class="w-full h-[280px]" viewBox="0 0 720 280" preserveAspectRatio="none"></svg>
+                    </div>
+                    <div class="mt-4 flex items-center gap-3 text-sm text-on-surface-variant">
+                        <span class="w-3 h-3 rounded-full bg-primary inline-block"></span>
+                        <span data-i18n="profile.graphCaption">Risk score from your saved diabetes prediction checks</span>
+                    </div>
+                </section>
+
+                <section class="bg-surface-container-lowest rounded-[1.75rem] border border-outline-variant/15 p-6 shadow-sm">
+                    <p class="text-xs uppercase tracking-[0.18em] text-on-surface-variant font-semibold" data-i18n="profile.latestSavedData">Latest Saved Data</p>
+                    <h2 class="text-2xl font-headline font-bold text-dark-green mt-2" data-i18n="profile.recentHealthDetails">Recent Health Details</h2>
+                    <div id="latest-empty" class="hidden mt-6 rounded-2xl bg-surface-container-low p-8 text-center text-on-surface-variant" data-i18n="profile.latestEmpty">
+                        No saved user data yet. Submit the diabetes prediction form to store your values here.
+                    </div>
+                    <div id="latest-data-card" class="mt-6 space-y-4">
+                        <div class="bg-surface-container-low rounded-2xl p-5">
+                            <div class="flex items-center justify-between gap-4">
+                                <div>
+                                    <p class="text-sm font-semibold text-on-surface-variant">Latest Prediction</p>
+                                    <p id="latest-level" class="text-xl font-headline font-bold text-dark-green mt-1">No data</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm font-semibold text-on-surface-variant">Checked On</p>
+                                    <p id="latest-date" class="text-sm font-semibold text-on-surface mt-1">-</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-surface-container-low rounded-2xl p-4"><p class="text-on-surface-variant">Pregnancies</p><p id="field-pregnancies" class="mt-1 font-bold text-on-surface">-</p></div>
+                            <div class="bg-surface-container-low rounded-2xl p-4"><p class="text-on-surface-variant">Glucose</p><p id="field-glucose" class="mt-1 font-bold text-on-surface">-</p></div>
+                            <div class="bg-surface-container-low rounded-2xl p-4"><p class="text-on-surface-variant">Blood Pressure</p><p id="field-blood-pressure" class="mt-1 font-bold text-on-surface">-</p></div>
+                            <div class="bg-surface-container-low rounded-2xl p-4"><p class="text-on-surface-variant">Skin Thickness</p><p id="field-skin-thickness" class="mt-1 font-bold text-on-surface">-</p></div>
+                            <div class="bg-surface-container-low rounded-2xl p-4"><p class="text-on-surface-variant">Insulin</p><p id="field-insulin" class="mt-1 font-bold text-on-surface">-</p></div>
+                            <div class="bg-surface-container-low rounded-2xl p-4"><p class="text-on-surface-variant">BMI</p><p id="field-bmi" class="mt-1 font-bold text-on-surface">-</p></div>
+                            <div class="bg-surface-container-low rounded-2xl p-4"><p class="text-on-surface-variant">Pedigree</p><p id="field-pedigree" class="mt-1 font-bold text-on-surface">-</p></div>
+                            <div class="bg-surface-container-low rounded-2xl p-4"><p class="text-on-surface-variant">Age</p><p id="field-age" class="mt-1 font-bold text-on-surface">-</p></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <section class="mt-8 bg-surface-container-lowest rounded-[1.75rem] border border-outline-variant/15 p-6 shadow-sm">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                    <div>
+                        <p class="text-xs uppercase tracking-[0.18em] text-on-surface-variant font-semibold" data-i18n="profile.history">History</p>
+                        <h2 class="text-2xl font-headline font-bold text-dark-green mt-2" data-i18n="profile.timelineTitle">Saved Prediction Timeline</h2>
+                    </div>
+                    <button id="clear-history" class="px-5 py-3 rounded-full bg-red-50 text-red-600 font-bold hover:bg-red-100 transition-colors" data-i18n="profile.clearSavedData">
+                        Clear Saved Data
+                    </button>
+                </div>
+                <div id="history-empty" class="hidden rounded-2xl bg-surface-container-low p-10 text-center text-on-surface-variant" data-i18n="profile.historyEmpty">
+                    Your saved prediction timeline will appear here after you check results in the diabetes prediction page.
+                </div>
+                <div id="history-list" class="space-y-4"></div>
+            </section>
+        </section>
+    </main>
+
+    <script>
+        const STORAGE_KEY = "supercareDiabetesPredictionHistory";
+        const LANGUAGE_KEY = "lang";
+        const translations = {
+            en: {
+                "profile.heading": "Health Profile",
+                "profile.subheading": "Your saved prediction data and diabetes risk trend at a glance.",
+                "profile.savedChecks": "Saved Checks",
+                "profile.latestRisk": "Latest Risk",
+                "profile.languageLabel": "Language",
+                "profile.languageTitle": "Choose Your Preferred Language",
+                "profile.resultTrend": "Result Trend",
+                "profile.graphTitle": "Checked Results Graph",
+                "profile.lastChecks": "Last 12 checks",
+                "profile.chartEmpty": "Run your first diabetes prediction to start building your health history graph.",
+                "profile.graphCaption": "Risk score from your saved diabetes prediction checks",
+                "profile.latestSavedData": "Latest Saved Data",
+                "profile.recentHealthDetails": "Recent Health Details",
+                "profile.latestEmpty": "No saved user data yet. Submit the diabetes prediction form to store your values here.",
+                "profile.history": "History",
+                "profile.timelineTitle": "Saved Prediction Timeline",
+                "profile.clearSavedData": "Clear Saved Data",
+                "profile.historyEmpty": "Your saved prediction timeline will appear here after you check results in the diabetes prediction page."
+            },
+            hi: {
+                "profile.heading": "हेल्थ प्रोफाइल",
+                "profile.subheading": "आपका सेव किया गया प्रेडिक्शन डेटा और डायबिटीज़ रिस्क ट्रेंड एक नज़र में।",
+                "profile.savedChecks": "सेव्ड चेक्स",
+                "profile.latestRisk": "लेटेस्ट रिस्क",
+                "profile.languageLabel": "भाषा",
+                "profile.languageTitle": "अपनी पसंदीदा भाषा चुनें",
+                "profile.resultTrend": "रिज़ल्ट ट्रेंड",
+                "profile.graphTitle": "चेक किए गए रिज़ल्ट्स ग्राफ",
+                "profile.lastChecks": "पिछले 12 चेक",
+                "profile.chartEmpty": "अपना हेल्थ हिस्ट्री ग्राफ शुरू करने के लिए पहला डायबिटीज़ प्रेडिक्शन चलाएं।",
+                "profile.graphCaption": "आपके सेव किए गए डायबिटीज़ प्रेडिक्शन चेक्स का रिस्क स्कोर",
+                "profile.latestSavedData": "लेटेस्ट सेव्ड डेटा",
+                "profile.recentHealthDetails": "हाल की हेल्थ डिटेल्स",
+                "profile.latestEmpty": "अभी तक कोई यूज़र डेटा सेव नहीं है। अपनी वैल्यू यहां स्टोर करने के लिए डायबिटीज़ प्रेडिक्शन फॉर्म सबमिट करें।",
+                "profile.history": "हिस्ट्री",
+                "profile.timelineTitle": "सेव्ड प्रेडिक्शन टाइमलाइन",
+                "profile.clearSavedData": "सेव्ड डेटा साफ करें",
+                "profile.historyEmpty": "डायबिटीज़ प्रेडिक्शन पेज पर रिज़ल्ट चेक करने के बाद आपकी सेव्ड प्रेडिक्शन टाइमलाइन यहां दिखाई देगी।"
+            }
+        };
+
+        function applyLanguage(lang) {
+            const selectedLanguage = translations[lang] ? lang : "en";
+            localStorage.setItem(LANGUAGE_KEY, selectedLanguage);
+            document.documentElement.lang = selectedLanguage;
+
+            document.querySelectorAll("[data-i18n]").forEach(function (element) {
+                const key = element.getAttribute("data-i18n");
+                element.textContent = translations[selectedLanguage][key] || translations.en[key] || element.textContent;
+            });
+
+            document.getElementById("lang-en").className = selectedLanguage === "en"
+                ? "px-5 py-2.5 rounded-full bg-dark-green text-white font-semibold transition-all active:scale-95"
+                : "px-5 py-2.5 rounded-full border border-outline-variant text-on-surface font-semibold transition-all active:scale-95";
+
+            document.getElementById("lang-hi").className = selectedLanguage === "hi"
+                ? "px-5 py-2.5 rounded-full bg-dark-green text-white font-semibold transition-all active:scale-95"
+                : "px-5 py-2.5 rounded-full border border-outline-variant text-on-surface font-semibold transition-all active:scale-95";
+        }
+
+        function readHistory() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        }
+
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleString("en-IN", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+        }
+
+        function setText(id, value) {
+            document.getElementById(id).textContent = value;
+        }
+
+        function drawChart(history) {
+            const chart = document.getElementById("history-chart");
+            const chartEmpty = document.getElementById("chart-empty");
+            const chartWrapper = document.getElementById("chart-wrapper");
+
+            if (!history.length) {
+                chartEmpty.classList.remove("hidden");
+                chartWrapper.classList.add("hidden");
+                return;
+            }
+
+            chartEmpty.classList.add("hidden");
+            chartWrapper.classList.remove("hidden");
+
+            const points = history.slice(0, 12).reverse();
+            const width = 720;
+            const height = 280;
+            const paddingX = 56;
+            const paddingTop = 28;
+            const paddingBottom = 42;
+            const innerHeight = height - paddingTop - paddingBottom;
+            const stepX = points.length === 1 ? 0 : (width - paddingX * 2) / (points.length - 1);
+
+            const coordinates = points.map(function (entry, index) {
+                const x = paddingX + stepX * index;
+                const y = paddingTop + innerHeight * (1 - (entry.result.score / 100));
+                return { x, y, score: entry.result.score };
+            });
+
+            const linePath = coordinates.map(function (point, index) {
+                return (index === 0 ? "M" : "L") + point.x + " " + point.y;
+            }).join(" ");
+
+            const areaPath = linePath +
+                " L " + coordinates[coordinates.length - 1].x + " " + (height - paddingBottom) +
+                " L " + coordinates[0].x + " " + (height - paddingBottom) + " Z";
+
+            const gridLines = [0, 25, 50, 75, 100].map(function (value) {
+                const y = paddingTop + innerHeight * (1 - value / 100);
+                return `
+                    <line x1="${paddingX}" y1="${y}" x2="${width - paddingX}" y2="${y}" stroke="rgba(64,73,69,0.12)" stroke-width="1" />
+                    <text x="${paddingX - 14}" y="${y + 4}" text-anchor="end" font-size="11" fill="#707974">${value}%</text>
+                `;
+            }).join("");
+
+            const dots = coordinates.map(function (point, index) {
+                return `
+                    <circle cx="${point.x}" cy="${point.y}" r="5.5" fill="#3f6653" />
+                    <circle cx="${point.x}" cy="${point.y}" r="10" fill="transparent">
+                        <title>Check ${index + 1}: ${point.score}% risk</title>
+                    </circle>
+                    <text x="${point.x}" y="${height - 16}" text-anchor="middle" font-size="11" fill="#707974">${index + 1}</text>
+                `;
+            }).join("");
+
+            chart.innerHTML = `
+                <defs>
+                    <linearGradient id="riskFill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="rgba(63,102,83,0.32)" />
+                        <stop offset="100%" stop-color="rgba(63,102,83,0.03)" />
+                    </linearGradient>
+                </defs>
+                ${gridLines}
+                <path d="${areaPath}" fill="url(#riskFill)"></path>
+                <path d="${linePath}" fill="none" stroke="#3f6653" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                ${dots}
+            `;
+        }
+
+        function renderLatest(history) {
+            const latestEmpty = document.getElementById("latest-empty");
+            const latestCard = document.getElementById("latest-data-card");
+
+            if (!history.length) {
+                latestEmpty.classList.remove("hidden");
+                latestCard.classList.add("hidden");
+                setText("latest-risk-score", "0%");
+                return;
+            }
+
+            latestEmpty.classList.add("hidden");
+            latestCard.classList.remove("hidden");
+
+            const latest = history[0];
+            setText("latest-risk-score", latest.result.score + "%");
+            setText("latest-level", latest.result.level);
+            setText("latest-date", formatDate(latest.checkedAt));
+            setText("field-pregnancies", latest.inputs.pregnancies);
+            setText("field-glucose", latest.inputs.glucose + " mg/dL");
+            setText("field-blood-pressure", latest.inputs.bloodPressure + " mm Hg");
+            setText("field-skin-thickness", latest.inputs.skinThickness + " mm");
+            setText("field-insulin", latest.inputs.insulin + " mu U/ml");
+            setText("field-bmi", latest.inputs.bmi + " kg/m2");
+            setText("field-pedigree", latest.inputs.pedigree);
+            setText("field-age", latest.inputs.age + " years");
+        }
+
+        function renderHistoryList(history) {
+            const historyList = document.getElementById("history-list");
+            const historyEmpty = document.getElementById("history-empty");
+
+            if (!history.length) {
+                historyEmpty.classList.remove("hidden");
+                historyList.innerHTML = "";
+                return;
+            }
+
+            historyEmpty.classList.add("hidden");
+            historyList.innerHTML = history.map(function (entry, index) {
+                return `
+                    <article class="bg-surface-container-low rounded-2xl p-5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+                        <div>
+                            <div class="flex items-center gap-3 flex-wrap">
+                                <span class="px-3 py-1 rounded-full bg-primary-container text-primary text-xs font-bold uppercase tracking-[0.16em]">Check ${history.length - index}</span>
+                                <span class="text-sm font-semibold text-on-surface-variant">${formatDate(entry.checkedAt)}</span>
+                            </div>
+                            <h3 class="mt-3 text-xl font-headline font-bold text-dark-green">${entry.result.title}</h3>
+                            <p class="mt-2 text-sm text-on-surface-variant">${entry.result.summary}</p>
+                            <p class="mt-3 text-sm text-on-surface"><strong>Inputs:</strong> Glucose ${entry.inputs.glucose}, BMI ${entry.inputs.bmi}, Age ${entry.inputs.age}, Blood Pressure ${entry.inputs.bloodPressure}</p>
+                        </div>
+                        <div class="min-w-[140px] rounded-2xl bg-white p-5 text-center shadow-sm">
+                            <p class="text-sm font-semibold text-on-surface-variant">Risk Score</p>
+                            <p class="mt-2 text-3xl font-headline font-extrabold text-primary">${entry.result.score}%</p>
+                            <p class="mt-2 text-sm font-semibold text-on-surface">${entry.result.level}</p>
+                        </div>
+                    </article>
+                `;
+            }).join("");
+        }
+
+        function renderProfile() {
+            applyLanguage(localStorage.getItem(LANGUAGE_KEY) || "en");
+            const history = readHistory();
+            setText("saved-check-count", history.length);
+            renderLatest(history);
+            renderHistoryList(history);
+            drawChart(history);
+        }
+
+        document.getElementById("clear-history").addEventListener("click", function () {
+            localStorage.removeItem(STORAGE_KEY);
+            renderProfile();
+        });
+
+        document.getElementById("lang-en").addEventListener("click", function () {
+            applyLanguage("en");
+        });
+
+        document.getElementById("lang-hi").addEventListener("click", function () {
+            applyLanguage("hi");
+        });
+
+        renderProfile();
+    </script>
+    <script src="translation.js"></script>
+    <script src="scroll-reveal.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="page-transitions.js"></script>
+</body>
+</html>

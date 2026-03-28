@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SuperCareDiabetes | Medicines</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary": "#ffffff",
+              "primary-container": "#b7e3cb",
+              "inverse-surface": "#2b3230",
+              "inverse-primary": "#a5d0b9",
+              "inverse-on-surface": "#ecf2ef",
+              "on-primary": "#ffffff",
+              "on-error-container": "#93000a",
+              "secondary-fixed-dim": "#96d3bd",
+              "outline": "#707974",
+              "primary-fixed": "#c1ecd4",
+              "on-tertiary-container": "#536260",
+              "on-surface-variant": "#404945",
+              "on-secondary-fixed": "#002118",
+              "on-primary-fixed": "#002114",
+              "on-surface": "#171d1b",
+              "error": "#ba1a1a",
+              "surface-dim": "#d5dbd9",
+              "surface-container-lowest": "#ffffff",
+              "secondary": "#2c6956",
+              "on-primary-container": "#3f6754",
+              "surface": "#f5fbf8",
+              "on-primary-fixed-variant": "#274e3d",
+              "on-error": "#ffffff",
+              "surface-bright": "#f5fbf8",
+              "surface-container-highest": "#dee4e1",
+              "on-tertiary-fixed": "#101e1d",
+              "surface-container-low": "#eff5f2",
+              "primary": "#3f6653",
+              "background": "#f5fbf8",
+              "on-tertiary-fixed-variant": "#3b4a48",
+              "tertiary": "#53615f",
+              "surface-container-high": "#e3eae7",
+              "on-secondary-fixed-variant": "#0d503f",
+              "tertiary-container": "#cdddda",
+              "secondary-fixed": "#b1efd8",
+              "error-container": "#ffdad6",
+              "tertiary-fixed": "#d6e6e3",
+              "surface-variant": "#dee4e1",
+              "tertiary-fixed-dim": "#bacac7",
+              "surface-tint": "#3f6653",
+              "secondary-container": "#aeedd5",
+              "on-secondary-container": "#316d5b",
+              "primary-fixed-dim": "#a5d0b9",
+              "on-background": "#171d1b",
+              "outline-variant": "#bfc9c3",
+              "on-tertiary": "#ffffff",
+              "surface-container": "#e9efec"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+      .tonal-transition {
+        transition: background-color 0.3s ease;
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-white/60 backdrop-blur-xl shadow-[0_12px_40px_rgba(27,67,50,0.06)]">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold text-emerald-900 tracking-tighter font-headline">
+                SuperCareDiabetes
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-emerald-900 font-bold border-b-2 border-emerald-900 pb-1 font-headline tracking-tight" href="#">Shop</a>
+<a class="text-emerald-800/70 hover:text-emerald-900 transition-all duration-300 font-headline tracking-tight font-semibold" href="#">Prescriptions</a>
+<a class="text-emerald-800/70 hover:text-emerald-900 transition-all duration-300 font-headline tracking-tight font-semibold" href="#">Wellness</a>
+<a class="text-emerald-800/70 hover:text-emerald-900 transition-all duration-300 font-headline tracking-tight font-semibold" href="#">Support</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-emerald-50/50 transition-all">
+<span class="material-symbols-outlined text-emerald-900">shopping_cart</span>
+</button>
+<button class="p-2 rounded-full hover:bg-emerald-50/50 transition-all">
+<span class="material-symbols-outlined text-emerald-900">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Floating Action Element -->
+<div class="fixed bottom-8 right-8 z-40 group">
+<div class="relative">
+<button class="w-16 h-16 rounded-full bg-primary text-on-primary shadow-xl flex items-center justify-center transition-transform duration-200 active:scale-95">
+<span class="material-symbols-outlined text-3xl">shopping_cart</span>
+</button>
+<span class="absolute -top-1 -right-1 bg-error text-on-error text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center shadow-sm">
+                3
+            </span>
+</div>
+</div>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="px-8 py-20 max-w-screen-2xl mx-auto flex flex-col items-center text-center">
+<h1 class="font-headline text-5xl md:text-7xl font-extrabold text-on-surface tracking-tighter mb-6">
+                Pharmacy &amp; Medicines
+            </h1>
+<p class="text-on-surface-variant text-xl md:text-2xl max-w-2xl font-body leading-relaxed">
+                Order trusted diabetes medications with ease. Clinical grade precision delivered directly to your sanctuary.
+            </p>
+<!-- Trust Section -->
+<div class="mt-16 w-full max-w-4xl">
+<div class="glass-card p-10 rounded-xl border border-white/20 text-left relative overflow-hidden">
+<div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+<div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-4xl" data-weight="fill">verified_user</span>
+</div>
+<div>
+<h3 class="font-headline text-2xl font-bold text-primary mb-2">Safety First Compliance</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                                All prescription medications require a valid consultation. Our certified doctors review every order to ensure your neurological and metabolic safety remains our highest priority.
+                            </p>
+</div>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-all whitespace-nowrap">
+                            Consult Now
+                        </button>
+</div>
+<!-- Decorative element -->
+<div class="absolute -right-20 -bottom-20 w-64 h-64 bg-primary-container/20 rounded-full blur-3xl"></div>
+</div>
+</div>
+</section>
+<!-- Product Grid Section -->
+<section class="px-8 py-16 bg-surface-container-low">
+<div class="max-w-screen-2xl mx-auto">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-headline text-3xl font-bold text-on-surface tracking-tight mb-2">Prescription Inventory</h2>
+<div class="h-1 w-20 bg-primary rounded-full"></div>
+</div>
+<div class="hidden md:flex gap-4">
+<button class="px-6 py-2 rounded-full border border-outline-variant hover:bg-white transition-all text-sm font-medium">All Medicines</button>
+<button class="px-6 py-2 rounded-full border border-outline-variant hover:bg-white transition-all text-sm font-medium">Tablets</button>
+<button class="px-6 py-2 rounded-full border border-outline-variant hover:bg-white transition-all text-sm font-medium">Insulin</button>
+</div>
+</div>
+<!-- Bento-ish Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+<!-- Product Card 1 -->
+<div class="group bg-surface-container-lowest rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(27,67,50,0.1)]">
+<div class="aspect-square rounded-lg bg-surface flex items-center justify-center mb-6 overflow-hidden">
+<img alt="Metformin Tablets" class="w-48 h-48 object-contain transition-transform duration-500 group-hover:scale-110" data-alt="Modern clinical blister pack of white metformin tablets on a clean sterile white background with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl7-OyaI49RIHOPqMtKl7bu8S-yK17kwxiyQKy3IVHpwq9rlc0mmw_J2bzATukjwUxLhWR8h3lUnZ_KHsEVFzRz9m37PIXhAklVvdriq6dtIui6GTq5psRWoY_mlAvYIemj1j-rg78C8t3aLxGlq_P8TTZI627seupVtMiLAzMKZUmh6rb3TMzwso19kqtwFG-dtN_4U25fQTefxsR6Lh_LLDoZXgvt9yjc1y4zfArfQ1tBtak8dkSgshVoLhurfw2h0z0G5mXhOM"/>
+</div>
+<div class="space-y-2">
+<span class="text-xs font-bold tracking-widest text-primary uppercase">Tablet</span>
+<h3 class="text-xl font-bold text-on-surface font-headline">Metformin</h3>
+<p class="text-sm text-on-surface-variant leading-snug">First-line medication for type 2 diabetes management and blood sugar control.</p>
+<div class="pt-4 flex items-center justify-between">
+<span class="text-2xl font-bold text-primary">Rs.1,038</span>
+<span class="text-xs text-on-surface-variant font-medium">500mg • 30 Qty</span>
+</div>
+<div class="pt-6 grid grid-cols-2 gap-3">
+<button class="bg-primary text-on-primary py-3 rounded-full text-sm font-bold active:scale-95 transition-all">Buy Now</button>
+<button class="border border-primary text-primary py-3 rounded-full text-sm font-bold hover:bg-primary-container transition-all">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group bg-surface-container-lowest rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(27,67,50,0.1)]">
+<div class="aspect-square rounded-lg bg-surface flex items-center justify-center mb-6 overflow-hidden">
+<img alt="Insulin Pen" class="w-48 h-48 object-contain transition-transform duration-500 group-hover:scale-110" data-alt="Professional clinical insulin injection pen with clear markings and needle cap on a bright medical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBotjF0aS2_lXfQsB5gMS23KNTWeHLRNhJIfUFYDR4u7pXpBuDwwbYNhoUOV26DvUxOlJO2nnMOa6EK20I5mS9PS2eL6prmtlfiyvzKhsWufDSYOEwAmyuIwc0PMxTNm_kwtBC4Rd3mJNh93ygJqHv9cXIv6hNysBGO406P2DViU_DTUc-t7sGdrTGJ1oQXOnVTm9Q14sq2KFqolqt6NPQM4tWowtCdR8mhXIxHnTBh2kscD7F2b43AlXt46MvzY5_3jFez_rr5P5M"/>
+</div>
+<div class="space-y-2">
+<span class="text-xs font-bold tracking-widest text-primary uppercase">Insulin</span>
+<h3 class="text-xl font-bold text-on-surface font-headline">Glargine Insulin</h3>
+<p class="text-sm text-on-surface-variant leading-snug">Long-acting basal insulin for 24-hour glycemic control in adults and children.</p>
+<div class="pt-4 flex items-center justify-between">
+<span class="text-2xl font-bold text-primary">Rs.3,735</span>
+<span class="text-xs text-on-surface-variant font-medium">3ml • 5 Pens</span>
+</div>
+<div class="pt-6 grid grid-cols-2 gap-3">
+<button class="bg-primary text-on-primary py-3 rounded-full text-sm font-bold active:scale-95 transition-all">Buy Now</button>
+<button class="border border-primary text-primary py-3 rounded-full text-sm font-bold hover:bg-primary-container transition-all">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group bg-surface-container-lowest rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(27,67,50,0.1)]">
+<div class="aspect-square rounded-lg bg-surface flex items-center justify-center mb-6 overflow-hidden">
+<img alt="Medicine Bottle" class="w-48 h-48 object-contain transition-transform duration-500 group-hover:scale-110" data-alt="White plastic medical bottle with clean label on a soft green gradient background showing professional pharmacy packaging" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7K4HY_N_4DwLACGvIlBz2SxzFqLGwoDOsnJ7za0BY5lHpgpr_8vzbdfNmCWk0-eU57JkQ9GZHJ7a08_GxvG7R8hRhiidsEga9F92LVHTI6RE7dGj86io6THmTA2TpMpOkhJgdFiuo_HKxHvJTpkrr87HPLTKzDT6bHkIXEiNKqy4DlApv_lAm0itQ5RKYExcPWKpwpqnozE4uKaWdTNuxXhfzMQldhMu9Dp9Svx7BEDVuIC5VGpnqWQraXcN1ygbqRakytrUX8O4"/>
+</div>
+<div class="space-y-2">
+<span class="text-xs font-bold tracking-widest text-primary uppercase">Capsule</span>
+<h3 class="text-xl font-bold text-on-surface font-headline">Sitagliptin</h3>
+<p class="text-sm text-on-surface-variant leading-snug">Inhibits DPP-4 to help increase insulin levels when blood sugar is high.</p>
+<div class="pt-4 flex items-center justify-between">
+<span class="text-2xl font-bold text-primary">Rs.2,677</span>
+<span class="text-xs text-on-surface-variant font-medium">100mg • 28 Qty</span>
+</div>
+<div class="pt-6 grid grid-cols-2 gap-3">
+<button class="bg-primary text-on-primary py-3 rounded-full text-sm font-bold active:scale-95 transition-all">Buy Now</button>
+<button class="border border-primary text-primary py-3 rounded-full text-sm font-bold hover:bg-primary-container transition-all">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group bg-surface-container-lowest rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(27,67,50,0.1)]">
+<div class="aspect-square rounded-lg bg-surface flex items-center justify-center mb-6 overflow-hidden">
+<img alt="Blister pack" class="w-48 h-48 object-contain transition-transform duration-500 group-hover:scale-110" data-alt="Silver foil and transparent plastic blister pack of medicine tablets on a clean surface in an online pharmacy setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc-KfbLq1sd7ZCxdbYy9CPyFf4NS3wHOWBUZasdfQPLPLW_ovXPpo3hE9q3yUAP1NMLzmUQfzG_2wNmXdAaBvqhQWCDphVN76-7rb9PdOVF2G2g3aJQys0D11W0OhOETJZDLXbTp4VxKI6oFCBZbV8DWje7IWUmDZWmq526i30ejwwNpBWC9hrcxL3qqJFL2tCiLFWjEckj2kjuMROu3yQmglVgeU_AiyD0JIXtpwJWJ6GmV3TsKel_9zuDYdpwJlMkAZOsZrph8c"/>
+</div>
+<div class="space-y-2">
+<span class="text-xs font-bold tracking-widest text-primary uppercase">Tablet</span>
+<h3 class="text-xl font-bold text-on-surface font-headline">Dapagliflozin</h3>
+<p class="text-sm text-on-surface-variant leading-snug">SGLT2 inhibitor that helps kidneys remove glucose from the bloodstream.</p>
+<div class="pt-4 flex items-center justify-between">
+<span class="text-2xl font-bold text-primary">Rs.2,399</span>
+<span class="text-xs text-on-surface-variant font-medium">10mg • 30 Qty</span>
+</div>
+<div class="pt-6 grid grid-cols-2 gap-3">
+<button class="bg-primary text-on-primary py-3 rounded-full text-sm font-bold active:scale-95 transition-all">Buy Now</button>
+<button class="border border-primary text-primary py-3 rounded-full text-sm font-bold hover:bg-primary-container transition-all">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Product Card 5 -->
+<!-- Product Card 6 -->
+<!-- Product Card 7 -->
+<!-- CTA Feature Card -->
+<div class="group relative overflow-hidden bg-primary text-on-primary rounded-xl p-8 flex flex-col justify-between shadow-lg">
+<div class="relative z-10">
+<h3 class="text-2xl font-bold font-headline mb-4">Subscription Plan</h3>
+<p class="text-primary-container mb-6">Never miss a dose. Automated monthly refills delivered to your door with 15% savings.</p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-2 text-sm font-medium">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                                    Free Clinical Shipping
+                                </li>
+<li class="flex items-center gap-2 text-sm font-medium">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                                    Priority Doctor Review
+                                </li>
+<li class="flex items-center gap-2 text-sm font-medium">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                                    Smart Dosage Reminders
+                                </li>
+</ul>
+</div>
+<button class="relative z-10 bg-white text-primary w-full py-4 rounded-full font-bold hover:bg-primary-container transition-all">
+                            Start Subscription
+                        </button>
+<div class="absolute -right-10 -top-10 w-48 h-48 bg-primary-container/20 rounded-full blur-2xl"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Trust Section -->
+<section class="px-8 py-20 bg-white">
+<div class="max-w-4xl mx-auto text-center">
+<div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-900 px-4 py-2 rounded-full text-sm font-bold mb-8">
+<span class="material-symbols-outlined text-base">lock</span>
+                    Secure Health Platform
+                </div>
+<h2 class="font-headline text-4xl font-bold text-on-surface mb-6">Your Data, Protected.</h2>
+<p class="text-on-surface-variant text-lg mb-10 leading-relaxed">
+                    SuperCareDiabetes employs end-to-end encryption for all medical records and prescription data. We meet and exceed global healthcare privacy standards to ensure your health information remains private.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<input class="px-8 py-4 bg-surface-container-low rounded-full border-none focus:ring-2 focus:ring-primary w-full max-w-sm" placeholder="Enter email for health updates" type="email"/>
+<button class="bg-primary text-on-primary px-10 py-4 rounded-full font-bold hover:opacity-90 transition-all">Join Sanctuary</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-emerald-50 w-full mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-12 py-16 max-w-screen-2xl mx-auto">
+<div class="mb-8 md:mb-0 text-center md:text-left">
+<div class="font-headline font-bold text-emerald-900 text-2xl mb-4">SuperCareDiabetes</div>
+<p class="font-body text-sm tracking-wide text-emerald-700/80 max-w-xs">
+                    © 2024 SuperCareDiabetes. Clinical Grade Precision.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-emerald-700/80 hover:text-emerald-900 transition-colors font-body text-sm tracking-wide" href="#">Privacy Policy</a>
+<a class="text-emerald-700/80 hover:text-emerald-900 transition-colors font-body text-sm tracking-wide" href="#">Terms of Service</a>
+<a class="text-emerald-700/80 hover:text-emerald-900 transition-colors font-body text-sm tracking-wide" href="#">FDA Compliance</a>
+<a class="text-emerald-700/80 hover:text-emerald-900 transition-colors font-body text-sm tracking-wide" href="#">Clinical Trust Signals</a>
+</div>
+</div>
+</footer>
+<script src="translation.js"></script>
+<script src="page-transitions.js"></script>
+</body></html>

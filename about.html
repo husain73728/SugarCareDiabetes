@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>About Us | SuperCareDiabetes</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "dark-green": "#1B4332",
+                        "inverse-on-surface": "#ecf2ef",
+                        "surface-container-high": "#e3eae7",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#cdddda",
+                        "on-surface-variant": "#404945",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#101e1d",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#002118",
+                        "secondary-fixed-dim": "#96d3bd",
+                        "inverse-primary": "#a5d0b9",
+                        "on-tertiary-fixed-variant": "#3b4a48",
+                        "on-surface": "#171d1b",
+                        "outline-variant": "#bfc9c3",
+                        "surface-bright": "#f5fbf8",
+                        "on-primary-container": "#3f6754",
+                        "surface": "#f5fbf8",
+                        "tertiary": "#53615f",
+                        "surface-container": "#e9efec",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#002114",
+                        "secondary-container": "#aeedd5",
+                        "primary": "#3f6653",
+                        "secondary-fixed": "#b1efd8",
+                        "on-tertiary-container": "#536260",
+                        "background": "#f5fbf8",
+                        "surface-container-highest": "#dee4e1",
+                        "on-error": "#ffffff",
+                        "on-background": "#171d1b",
+                        "on-secondary-container": "#316d5b",
+                        "primary-container": "#b7e3cb",
+                        "surface-tint": "#3f6653",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "outline": "#707974",
+                        "tertiary-fixed-dim": "#bacac7",
+                        "surface-variant": "#dee4e1",
+                        "surface-container-low": "#eff5f2",
+                        "secondary": "#2c6956",
+                        "on-secondary-fixed-variant": "#0d503f",
+                        "tertiary-fixed": "#d6e6e3",
+                        "primary-fixed": "#c1ecd4",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2b3230",
+                        "surface-dim": "#d5dbd9"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #f5fbf8 0%, #b7e3cb 100%);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(63, 102, 83, 0.2);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-surface font-body text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 rounded-b-3xl bg-emerald-50/70 dark:bg-emerald-950/70 backdrop-blur-lg shadow-[0_12px_40px_rgba(27,67,50,0.06)]">
+        <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 bg-dark-green rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-white text-lg">monitoring</span>
+                    </div>
+                    <div class="text-2xl font-bold tracking-tighter text-dark-green dark:text-emerald-50 font-headline group-hover:text-primary transition-colors duration-300">
+                        SuperCareDiabetes
+                    </div>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="index.html">Home</a>
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="features.html">Features</a>
+                <a class="text-emerald-700 dark:text-emerald-300 border-b-2 border-primary/50 pb-1 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 transition-all duration-300" href="about.html">About</a>
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="pricing.html">Pricing</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://accounts.google.com/ServiceLogin" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
+                    <span class="text-sm font-semibold text-on-surface-variant">Sign In</span>
+                </a>
+                <a href="profile.html" class="px-6 py-2.5 bg-dark-green text-white rounded-full font-semibold hover:opacity-90 transition-all hover:-translate-y-1 active:scale-95 duration-300 shadow-lg shadow-dark-green/20 hover:shadow-xl hover:shadow-dark-green/30">
+                    Profile
+                </a>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-24">
+        <!-- Hero Section -->
+        <section class="relative min-h-[716px] flex items-center justify-center overflow-hidden px-8">
+            <div class="absolute inset-0 hero-gradient opacity-40 -z-10"></div>
+            <!-- Decorative Health Graph Background Element -->
+            <div class="absolute inset-0 -z-10 opacity-10 pointer-events-none">
+                <svg class="w-full h-full preserve-3d" viewbox="0 0 1000 400">
+                    <path class="text-primary" d="M0,200 Q150,50 300,200 T600,200 T900,100 T1200,250" fill="none"
+                        stroke="currentColor" stroke-width="2"></path>
+                </svg>
+            </div>
+            <div class="max-w-4xl text-center">
+                <h1
+                    class="font-headline text-5xl md:text-7xl font-extrabold tracking-tighter text-on-surface mb-6 leading-tight">
+                    About SuperCareDiabetes
+                </h1>
+                <p
+                    class="font-body text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed font-light">
+                    Empowering preventive healthcare with intelligent AI solutions that prioritize clarity, precision,
+                    and the human touch.
+                </p>
+                <div class="mt-12 flex justify-center gap-4">
+                    <button
+                        class="bg-primary text-on-primary px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-primary/20 transition-all hover:-translate-y-1">
+                        Explore Our Vision
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Content Cards Grid -->
+        <section class="py-24 px-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mission -->
+                <div
+                    class="glass-card p-10 rounded-xl border border-white/20 shadow-[0_12px_40px_rgba(27,67,50,0.06)] hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-12 h-12 bg-primary-container flex items-center justify-center rounded-lg mb-6">
+                        <span class="material-symbols-outlined text-primary"
+                            data-icon="rocket_launch">health_and_safety</span>
+                    </div>
+                    <h3 class="font-headline text-2xl font-bold text-on-surface mb-4">Mission</h3>
+                    <p class="text-on-surface-variant leading-relaxed">To democratize neurological health tracking
+                        through accessible, non-invasive AI technology that saves lives.</p>
+                </div>
+                <!-- Vision -->
+                <div
+                    class="glass-card p-10 rounded-xl border border-white/20 shadow-[0_12px_40px_rgba(27,67,50,0.06)] hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-12 h-12 bg-secondary-container flex items-center justify-center rounded-lg mb-6">
+                        <span class="material-symbols-outlined text-secondary" data-icon="visibility">biotech</span>
+                    </div>
+                    <h3 class="font-headline text-2xl font-bold text-on-surface mb-4">Vision</h3>
+                    <p class="text-on-surface-variant leading-relaxed">A world where neuro-preventive care is a
+                        seamless, quiet companion in every individual's daily wellness journey.</p>
+                </div>
+                <!-- Technology -->
+                <div
+                    class="glass-card p-10 rounded-xl border border-white/20 shadow-[0_12px_40px_rgba(27,67,50,0.06)] hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-12 h-12 bg-tertiary-container flex items-center justify-center rounded-lg mb-6">
+                        <span class="material-symbols-outlined text-tertiary" data-icon="neurology">psychology</span>
+                    </div>
+                    <h3 class="font-headline text-2xl font-bold text-on-surface mb-4">Technology</h3>
+                    <p class="text-on-surface-variant leading-relaxed">Proprietary neural-link algorithms that process
+                        biometric data with clinical-grade accuracy in real-time.</p>
+                </div>
+                <!-- Impact -->
+                <div
+                    class="glass-card p-10 rounded-xl border border-white/20 shadow-[0_12px_40px_rgba(27,67,50,0.06)] hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-12 h-12 bg-primary-container flex items-center justify-center rounded-lg mb-6">
+                        <span class="material-symbols-outlined text-primary" data-icon="public">monitoring</span>
+                    </div>
+                    <h3 class="font-headline text-2xl font-bold text-on-surface mb-4">Impact</h3>
+                    <p class="text-on-surface-variant leading-relaxed">Over 2 million screenings performed globally,
+                        leading to a 30% increase in early-stage detection rates.</p>
+                </div>
+                <!-- Team -->
+                <div
+                    class="glass-card p-10 rounded-xl border border-white/20 shadow-[0_12px_40px_rgba(27,67,50,0.06)] hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-12 h-12 bg-secondary-container flex items-center justify-center rounded-lg mb-6">
+                        <span class="material-symbols-outlined text-secondary" data-icon="groups">groups_3</span>
+                    </div>
+                    <h3 class="font-headline text-2xl font-bold text-on-surface mb-4">Team</h3>
+                    <p class="text-on-surface-variant leading-relaxed">A multidisciplinary collective of
+                        neuroscientists, ethical AI researchers, and compassionate care designers.</p>
+                </div>
+                <!-- Why Choose Us -->
+                <div
+                    class="glass-card p-10 rounded-xl border border-white/20 shadow-[0_12px_40px_rgba(27,67,50,0.06)] hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-12 h-12 bg-tertiary-container flex items-center justify-center rounded-lg mb-6">
+                        <span class="material-symbols-outlined text-tertiary" data-icon="verified">fact_check</span>
+                    </div>
+                    <h3 class="font-headline text-2xl font-bold text-on-surface mb-4">Why Choose Us</h3>
+                    <p class="text-on-surface-variant leading-relaxed">We blend clinical rigor with an ethereal user
+                        experience, ensuring health tracking feels like a sanctuary, not a task.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Tagline Section -->
+        <section class="py-32 bg-surface-container-low text-center px-8">
+            <div class="max-w-4xl mx-auto">
+                <h2
+                    class="font-headline text-4xl md:text-6xl font-extrabold text-primary text-glow leading-tight tracking-tighter">
+                    Transforming Healthcare with Intelligence &amp; Care
+                </h2>
+                <div class="mt-8 h-1 w-24 bg-primary-container mx-auto rounded-full"></div>
+            </div>
+        </section>
+        <!-- Patient Reviews Section -->
+        <section class="py-24 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-8 mb-12">
+                <h2 class="font-headline text-3xl font-bold text-on-surface">Voices from the Sanctuary</h2>
+                <p class="text-on-surface-variant mt-2">Real stories from individuals using SuperCareDiabetes daily.</p>
+            </div>
+            <div class="flex gap-8 overflow-x-auto px-8 pb-12 hide-scrollbar scroll-pl-8 snap-x">
+                <!-- Review 1 -->
+                <div class="snap-start flex-shrink-0 w-[350px] bg-surface-container-lowest p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img alt="Patient portrait" class="w-14 h-14 rounded-full object-cover"
+                            data-alt="close-up portrait of a serene woman in natural sunlight with a soft calm expression"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLCDtNZIQarGX2U_T89jyYlo0kbelt_1WFw8dBVwjlJ34GAbGWQghB-Aam35J_J7uCSZn2KMwHo9yRKPNZS5sofq01Xewuu-YAgCYfjC4Qz72vv13rGC2FemCHd9wI_VFF3nVHofbfTipb_JeyF6gq4sf_G-8rR_4EMcHxTrxQY98qh00lxld6tl4bdUCFimf4YPJpMwWwNYVtUPszsft6U0qIaVf1f4-lkaLL55N43PcOq12CZG2yFdDX0AZ94kxo9AcISBnS0PY" />
+                        <div>
+                            <p class="font-bold text-on-surface">Elena Rodriguez</p>
+                            <div class="flex text-yellow-500 text-sm">
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant italic leading-relaxed">"SuperCareDiabetes has given me a sense of peace
+                        I haven't felt in years. The interface is calming, and the insights are genuinely helpful."</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="snap-start flex-shrink-0 w-[350px] bg-surface-container-lowest p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img alt="Patient portrait" class="w-14 h-14 rounded-full object-cover"
+                            data-alt="professional headshot of a middle-aged man with a friendly smile and warm eyes in a clinical office setting"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0e_6DxAeCIQYpxGBQdRYFlNA7FZEXllGOKrsArnOxKnXiU-0fyrDfPbDYvxrXZiQOJHyYbzjIj2NC6gZNy4GaJ6VSPv3oIgjOOw1zdIziAVxnGdgzJqW1UIKNwVQezu6AeZ0Gelsn1WrjB-r60WrGBidDdr1ddahndx6ZIkeae8onAqAb1s8F74vbhCLVOj_V89MiTInbC3vgTAnULZW6g4YZgzh0XyO1AlLeLBYmfoohrqzxiQA45l32tG193bgWZB4HVq96EZE" />
+                        <div>
+                            <p class="font-bold text-on-surface">David Chen</p>
+                            <div class="flex text-yellow-500 text-sm">
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant italic leading-relaxed">"The technology is impressive, but the way
+                        it's presented is what makes it special. It doesn't feel like a medical app; it feels like a
+                        partner."</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="snap-start flex-shrink-0 w-[350px] bg-surface-container-lowest p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img alt="Patient portrait" class="w-14 h-14 rounded-full object-cover"
+                            data-alt="portrait of a confident woman in a modern architectural space with soft diffused light"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn7_ujQa2u3skJ-I35CRQ-FJzZu0yhW_v515J4db4JamtmUES5TBJ3qmEqlNQt-iI9A7UENUdSRdY9R12pG0Bye4VORYo7vvwSF7UcADTfH-_jsxyeI7LBPb8mrU4Q43q9dG4wc9dEOpDs2FmmiV4DOxitq7jqpbq3_WuM55QR5zaFjaBR8Tcf7Gfv6evmBDUkpGzCBLj3XtB04ee6drgK-uDMzeHJBFEuhJSdQKY2IEKMI-BYlwogjeivMkkgSLqmNQTnV-MI7DQ" />
+                        <div>
+                            <p class="font-bold text-on-surface">Sarah Jenkins</p>
+                            <div class="flex text-yellow-500 text-sm">
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant italic leading-relaxed">"Clean design, actionable data, and
+                        privacy that I can trust. SuperCareDiabetes sets the gold standard for healthcare UX."</p>
+                </div>
+                <!-- Review 4 -->
+                <div class="snap-start flex-shrink-0 w-[350px] bg-surface-container-lowest p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img alt="Patient portrait" class="w-14 h-14 rounded-full object-cover"
+                            data-alt="close-up of a smiling young man in a light green shirt against a soft blurred background"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsIgN-lg8Nf8_uTh1K4D-BZGhMUeRImi3IEd3xLGIylF80TuLTOTCdO8OnK9upQIxRNPvosBlFEOXN5xCGFGl0LHX08qQmxXFxkg1xwM7Psj-AL7MtnJILdXPOfSxj5c6aOBctf3fAS6-rIisS-i9EleAOSQnwWgsOeHGG82OIveQOXcrgkJmQ9T28rIYRCAoL0qntgJVY5fIVzpvaY5IjeCp9jp4-qIcL4bHs4s_lIa-nYQlYzcY4PVeVlskDIYR8bKovS8XmcIk" />
+                        <div>
+                            <p class="font-bold text-on-surface">Marcus Thorne</p>
+                            <div class="flex text-yellow-500 text-sm">
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant italic leading-relaxed">"I was skeptical about AI in health, but
+                        the transparency here is refreshing. It's transformed how I approach preventive care."</p>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Us Section -->
+        <section class="relative py-24 px-8 overflow-hidden bg-surface">
+            <!-- Background Decoration -->
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary-container/20 rounded-full blur-[100px] -z-10">
+            </div>
+            <div class="absolute inset-x-0 bottom-24 -z-10 opacity-5 pointer-events-none">
+                <svg class="w-full h-32" viewbox="0 0 1440 120">
+                    <path class="text-primary"
+                        d="M0,64L80,74.7C160,85,320,107,480,112C640,117,800,107,960,90.7C1120,75,1280,53,1360,42.7L1440,32"
+                        fill="none" stroke="currentColor" stroke-width="2"></path>
+                </svg>
+            </div>
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="font-headline text-4xl md:text-5xl font-bold text-on-surface tracking-tight mb-6">Get in
+                    Touch</h2>
+                <p class="text-on-surface-variant text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+                    Have questions about our technology? Our team of clinical experts is here to help.
+                </p>
+            </div>
+            <div class="max-w-2xl mx-auto">
+                <div
+                    class="glass-card p-8 md:p-12 rounded-2xl border border-white/40 shadow-[0_20px_50px_rgba(27,67,50,0.08)]">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-on-surface-variant ml-1"
+                                    for="name">Name</label>
+                                <input
+                                    class="w-full bg-white/50 border-outline-variant rounded-xl px-4 py-3 focus:ring-primary focus:border-primary transition-all"
+                                    id="name" placeholder="Your name" type="text" />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-on-surface-variant ml-1"
+                                    for="email">Email</label>
+                                <input
+                                    class="w-full bg-white/50 border-outline-variant rounded-xl px-4 py-3 focus:ring-primary focus:border-primary transition-all"
+                                    id="email" placeholder="email@example.com" type="email" />
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-on-surface-variant ml-1"
+                                for="subject">Subject</label>
+                            <select
+                                class="w-full bg-white/50 border-outline-variant rounded-xl px-4 py-3 focus:ring-primary focus:border-primary transition-all"
+                                id="subject">
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="partnership">Medical Partnerships</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-on-surface-variant ml-1"
+                                for="message">Message</label>
+                            <textarea
+                                class="w-full bg-white/50 border-outline-variant rounded-xl px-4 py-3 min-h-[150px] focus:ring-primary focus:border-primary transition-all"
+                                id="message" placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button
+                            class="w-full bg-[#1B4332] text-white py-4 rounded-xl font-bold shadow-xl hover:shadow-[#1B4332]/20 hover:-translate-y-0.5 transition-all duration-300"
+                            type="submit">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-emerald-50 dark:bg-slate-950 w-full py-12 border-t border-emerald-100/10">
+        <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
+            <div class="text-lg font-bold text-emerald-900 dark:text-emerald-50 font-headline">
+                SuperCareDiabetes
+            </div>
+            <div class="flex flex-wrap justify-center gap-8 font-inter text-xs tracking-wide">
+                <a class="text-emerald-800/60 dark:text-emerald-400/60 hover:text-emerald-900 dark:hover:text-emerald-50 transition-colors"
+                    href="#">Privacy Policy</a>
+                <a class="text-emerald-800/60 dark:text-emerald-400/60 hover:text-emerald-900 dark:hover:text-emerald-50 transition-colors"
+                    href="#">Terms of Service</a>
+                <a class="text-emerald-800/60 dark:text-emerald-400/60 hover:text-emerald-900 dark:hover:text-emerald-50 transition-colors"
+                    href="#">Contact Support</a>
+                <a class="text-emerald-800/60 dark:text-emerald-400/60 hover:text-emerald-900 dark:hover:text-emerald-50 transition-colors"
+                    href="#">Global Ethics</a>
+            </div>
+            <div class="text-emerald-800/60 dark:text-emerald-400/60 font-inter text-xs">
+                © 2024 SuperCareDiabetes. Clinical Ethereality in Healthcare.
+            </div>
+        </div>
+    </footer>
+    <!-- Floating AI Chatbot Button -->
+    <button
+        class="fixed bottom-8 right-8 w-16 h-16 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+        <span class="material-symbols-outlined text-3xl" data-icon="smart_toy">smart_toy</span>
+    </button>
+    <script src="translation.js"></script>
+    <script src="scroll-reveal.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="page-transitions.js"></script>
+</body>
+
+</html>

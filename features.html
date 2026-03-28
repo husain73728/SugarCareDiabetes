@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SuperCareDiabetes | Advanced Neural Features</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "dark-green": "#1B4332",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#a5d0b9",
+                        "surface-tint": "#3f6653",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#101e1d",
+                        "on-secondary-fixed-variant": "#0d503f",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#404945",
+                        "primary-fixed": "#c1ecd4",
+                        "outline-variant": "#bfc9c3",
+                        "on-secondary-fixed": "#002118",
+                        "background": "#f5fbf8",
+                        "secondary-container": "#aeedd5",
+                        "surface-container-high": "#e3eae7",
+                        "secondary-fixed-dim": "#96d3bd",
+                        "tertiary-fixed": "#d6e6e3",
+                        "on-primary-container": "#3f6754",
+                        "on-primary": "#ffffff",
+                        "primary": "#3f6653",
+                        "on-primary-fixed": "#002114",
+                        "secondary": "#2c6956",
+                        "on-surface": "#171d1b",
+                        "surface-dim": "#d5dbd9",
+                        "surface-container-low": "#eff5f2",
+                        "surface-bright": "#f5fbf8",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "inverse-surface": "#2b3230",
+                        "surface-variant": "#dee4e1",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#316d5b",
+                        "surface-container-highest": "#dee4e1",
+                        "inverse-on-surface": "#ecf2ef",
+                        "surface-container": "#e9efec",
+                        "outline": "#707974",
+                        "on-tertiary-container": "#536260",
+                        "on-error": "#ffffff",
+                        "tertiary": "#53615f",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "secondary-fixed": "#b1efd8",
+                        "surface": "#f5fbf8",
+                        "primary-container": "#b7e3cb",
+                        "on-background": "#171d1b",
+                        "tertiary-container": "#cdddda",
+                        "tertiary-fixed-dim": "#bacac7",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#3b4a48"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5fbf8;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .bg-mesh {
+            background-image:
+                radial-gradient(at 0% 0%, rgba(183, 227, 203, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(63, 102, 83, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(183, 227, 203, 0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(63, 102, 83, 0.05) 0px, transparent 50%);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 rounded-b-3xl bg-emerald-50/70 dark:bg-emerald-950/70 backdrop-blur-lg shadow-[0_12px_40px_rgba(27,67,50,0.06)]">
+        <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 bg-dark-green rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-white text-lg">monitoring</span>
+                    </div>
+                    <div class="text-2xl font-bold tracking-tighter text-dark-green dark:text-emerald-50 font-headline group-hover:text-primary transition-colors duration-300">
+                        SuperCareDiabetes
+                    </div>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="index.html">Home</a>
+                <a class="text-emerald-700 dark:text-emerald-300 border-b-2 border-primary/50 pb-1 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 transition-all duration-300" href="features.html">Features</a>
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="about.html">About</a>
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="pricing.html">Pricing</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://accounts.google.com/ServiceLogin" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
+                    <span class="text-sm font-semibold text-on-surface-variant">Sign In</span>
+                </a>
+                <a href="profile.html" class="px-6 py-2.5 bg-dark-green text-white rounded-full font-semibold hover:opacity-90 transition-all hover:-translate-y-1 active:scale-95 duration-300 shadow-lg shadow-dark-green/20 hover:shadow-xl hover:shadow-dark-green/30">
+                    Profile
+                </a>
+            </div>
+        </div>
+    </nav>
+    <main class="relative min-h-screen pt-24 pb-32 bg-mesh overflow-hidden">
+        <!-- Abstract Background Elements -->
+        <div class="absolute inset-0 pointer-events-none opacity-20">
+            <svg class="absolute top-1/4 left-0 w-full h-64" preserveaspectratio="none" viewbox="0 0 1440 320">
+                <path
+                    d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,144C672,139,768,181,864,181.3C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128"
+                    fill="none" opacity="0.3" stroke="#3f6653" stroke-width="1"></path>
+            </svg>
+        </div>
+        <!-- Hero Section -->
+        <section class="max-w-7xl mx-auto px-8 pt-16 pb-12 text-center relative z-10">
+            <span
+                class="inline-block py-1 px-4 mb-6 rounded-full bg-primary-container text-on-primary-container text-xs font-bold tracking-widest uppercase">Clinical
+                Precision</span>
+            <h1 class="text-6xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface mb-6">
+                Advanced Neural <span class="text-primary italic">Features</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-on-surface-variant font-body leading-relaxed">
+                Experience the intersection of biological accuracy and computational power. Our ecosystem is designed to
+                adapt to your unique metabolic fingerprint.
+            </p>
+        </section>
+        <!-- Main Features Section: Bento/Horizontal Grid -->
+        <section class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10">
+            <!-- Card 1: AI Diabetes Prediction -->
+            <div
+                class="glass-card group p-8 rounded-xl flex flex-col justify-between transition-all duration-500 hover:translate-y-[-8px] hover:shadow-[0_20px_50px_rgba(63,102,83,0.12)] border border-white/20">
+                <div class="mb-8 overflow-hidden rounded-lg h-[260px] relative bg-surface-container-low">
+                    <img alt="Doctor using an AI-powered medical prediction interface"
+                        class="w-full h-full object-cover object-[center_18%] transition-transform duration-700 group-hover:scale-105"
+                        data-alt="Doctor in a clinical setting interacting with a futuristic AI healthcare interface used for smart medical prediction"
+                        src="assets/ai-prediction.jpeg" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-white/40 to-transparent"></div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-headline font-bold text-on-surface mb-3">AI Diabetes Prediction</h3>
+                    <p class="text-on-surface-variant font-body mb-8 leading-relaxed">
+                        Predicting diabetes using clinical-grade ML algorithms that analyze over 50 unique biometric
+                        markers.
+                    </p>
+                </div>
+                <a href="prediction.html"
+                    class="w-full py-4 px-8 rounded-full bg-primary text-on-primary font-bold tracking-tight transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
+                    Start Now
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+            <!-- Card 2: Personalized Diet Plan -->
+            <div
+                class="glass-card group p-8 rounded-xl flex flex-col justify-between transition-all duration-500 hover:translate-y-[-8px] hover:shadow-[0_20px_50px_rgba(63,102,83,0.12)] border border-white/20">
+                <div class="mb-8 overflow-hidden rounded-lg h-[260px] relative bg-white/80">
+                    <img alt="Person enjoying a healthy meal"
+                        class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                        data-alt="Smiling person eating a colorful healthy meal in a warm home kitchen with natural light"
+                        src="assets/diet-feature.png" />
+                    <div class="absolute top-4 right-4 flex gap-2">
+                        <span
+                            class="bg-white/80 backdrop-blur p-2 rounded-full shadow-sm material-symbols-outlined text-primary"
+                            data-weight="fill">nutrition</span>
+                        <span
+                            class="bg-white/80 backdrop-blur p-2 rounded-full shadow-sm material-symbols-outlined text-primary"
+                            data-weight="fill">restaurant</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-headline font-bold text-on-surface mb-3">Personalized Diet Plan</h3>
+                    <p class="text-on-surface-variant font-body mb-8 leading-relaxed">
+                        AI-generated nutritional protocols tailored to your metabolism, adjusting daily based on
+                        activity levels.
+                    </p>
+                </div>
+                <a href="diet.html"
+                    class="w-full py-4 px-8 rounded-full bg-primary text-on-primary font-bold tracking-tight transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
+                    View Plan
+                    <span class="material-symbols-outlined text-sm">restaurant_menu</span>
+                </a>
+            </div>
+            <!-- Card 3: Exercise & Fitness Plan -->
+            <div
+                class="glass-card group p-8 rounded-xl flex flex-col justify-between transition-all duration-500 hover:translate-y-[-8px] hover:shadow-[0_20px_50px_rgba(63,102,83,0.12)] border border-white/20">
+                <div class="mb-8 overflow-hidden rounded-lg aspect-[4/3] relative bg-surface-container-low">
+                    <img alt="Person exercising in a clean wellness studio"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        data-alt="Healthy adult doing a guided mobility workout in a bright modern wellness studio with soft daylight, calm clinical tones, and a premium health-tech atmosphere"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAJqfiyhe54-4KKreSehLmNRFO3MmTehvw3vYUTXOyKwAgpmjYhx0WodHWgxObFarE-mmBmSR4s8BsHAYXykvRiBWx9pxxNdp41el66fMNG8i3z_kKEIKe_jSVpgnvLuk4Kqx7zI5oRbmH14_SKBThGxvOhEBwpyScuSZ1rpdI7DLFd05BnqM6O6M2Hfb0xi0_YfpUREzDiNu0YQjhGaXNvkK7kWpAiWaEKK4SDHf_IwQ4ssu4RSBYZBGHK_V8STLNc8Mz7hQpw9c" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-white/35 to-transparent"></div>
+                    <div class="absolute top-4 right-4 flex gap-2">
+                        <span
+                            class="bg-white/80 backdrop-blur p-2 rounded-full shadow-sm material-symbols-outlined text-primary"
+                            data-weight="fill">fitness_center</span>
+                        <span
+                            class="bg-white/80 backdrop-blur p-2 rounded-full shadow-sm material-symbols-outlined text-primary"
+                            data-weight="fill">monitor_heart</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-headline font-bold text-on-surface mb-3">Exercise &amp; Fitness Plan</h3>
+                    <p class="text-on-surface-variant font-body mb-8 leading-relaxed">
+                        Custom workouts based on real-time health data sync from your wearable devices for maximum
+                        efficiency.
+                    </p>
+                </div>
+                <a href="exercise.html"
+                    class="w-full py-4 px-8 rounded-full bg-primary text-on-primary font-bold tracking-tight transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
+                    Checkout
+                    <span class="material-symbols-outlined text-sm">fitness_center</span>
+                </a>
+            </div>
+        </section>
+        <!-- Subtle Stats Section -->
+        <section class="max-w-5xl mx-auto mt-24 px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-t border-primary/10">
+                <div class="text-center">
+                    <div class="text-3xl font-headline font-extrabold text-primary">99.8%</div>
+                    <div class="text-xs font-label uppercase tracking-widest text-on-surface-variant mt-2">Accuracy
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-headline font-extrabold text-primary">12ms</div>
+                    <div class="text-xs font-label uppercase tracking-widest text-on-surface-variant mt-2">Latency</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-headline font-extrabold text-primary">24/7</div>
+                    <div class="text-xs font-label uppercase tracking-widest text-on-surface-variant mt-2">Monitoring
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-headline font-extrabold text-primary">HIPAA</div>
+                    <div class="text-xs font-label uppercase tracking-widest text-on-surface-variant mt-2">Compliant
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Floating AI Assistant Button -->
+    <div class="fixed bottom-8 right-8 z-50 flex items-center justify-center">
+        <button
+            class="group relative w-16 h-16 bg-emerald-800 text-white rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 flex items-center justify-center">
+            <span class="material-symbols-outlined text-3xl animate-pulse-slow">smart_toy</span>
+            <!-- Tooltip -->
+            <div
+                class="absolute right-20 bg-emerald-50/90 backdrop-blur-lg px-4 py-2 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-emerald-100">
+                <div class="text-emerald-900 font-manrope font-bold text-sm">SuperCareDiabetes AI</div>
+                <div class="text-emerald-700 text-xs">How can I assist your health today?</div>
+            </div>
+        </button>
+    </div>
+    <!-- Footer -->
+    <footer class="w-full py-12 bg-emerald-100/20 dark:bg-emerald-950/20">
+        <div class="flex flex-col md:flex-row justify-between items-center px-12 max-w-7xl mx-auto gap-8">
+            <div class="flex flex-col items-center md:items-start gap-2">
+                <div class="font-manrope font-bold text-emerald-900 text-lg">SuperCareDiabetes</div>
+                <p class="font-inter text-xs uppercase tracking-widest text-emerald-700/60 dark:text-emerald-300/60">
+                    © 2024 SuperCareDiabetes. Clinical Ethereality.
+                </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-8 font-inter text-xs uppercase tracking-widest">
+                <a class="text-emerald-700/60 dark:text-emerald-300/60 hover:text-emerald-900 dark:hover:text-emerald-50 transition-colors"
+                    href="#">Privacy Policy</a>
+                <a class="text-emerald-700/60 dark:text-emerald-300/60 hover:text-emerald-900 dark:hover:text-emerald-50 transition-colors"
+                    href="#">Terms of Service</a>
+                <a class="text-emerald-700/60 dark:text-emerald-300/60 hover:text-emerald-900 dark:hover:text-emerald-50 transition-colors"
+                    href="#">Contact Support</a>
+            </div>
+        </div>
+    </footer>
+    <script src="translation.js"></script>
+    <script src="translation.js"></script>
+    <script src="scroll-reveal.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="page-transitions.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html class="light scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Personalized Diet Plan | SuperCareDiabetes</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "dark-green": "#1B4332",
+                        "secondary-container": "#aeedd5",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#101e1d",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "on-tertiary-fixed-variant": "#3b4a48",
+                        "primary": "#3f6653",
+                        "surface-tint": "#3f6653",
+                        "error": "#ba1a1a",
+                        "tertiary": "#53615f",
+                        "on-primary-container": "#3f6754",
+                        "on-primary-fixed": "#002114",
+                        "inverse-primary": "#a5d0b9",
+                        "inverse-surface": "#2b3230",
+                        "surface-bright": "#f5fbf8",
+                        "primary-fixed": "#c1ecd4",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#404945",
+                        "on-secondary-fixed-variant": "#0d503f",
+                        "inverse-on-surface": "#ecf2ef",
+                        "surface-container-low": "#eff5f2",
+                        "secondary-fixed-dim": "#96d3bd",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#bfc9c3",
+                        "secondary-fixed": "#b1efd8",
+                        "surface-dim": "#d5dbd9",
+                        "on-secondary-fixed": "#002118",
+                        "surface-container-high": "#e3eae7",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#e9efec",
+                        "on-background": "#171d1b",
+                        "on-surface": "#171d1b",
+                        "on-secondary-container": "#316d5b",
+                        "surface-variant": "#dee4e1",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#bacac7",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#d6e6e3",
+                        "primary-container": "#b7e3cb",
+                        "surface-container-highest": "#dee4e1",
+                        "background": "#f5fbf8",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "outline": "#707974",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f5fbf8",
+                        "secondary": "#2c6956",
+                        "on-tertiary-container": "#536260",
+                        "tertiary-container": "#cdddda"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .tonal-transition-bg {
+            background: linear-gradient(to bottom, rgba(245, 251, 248, 0.8), rgba(245, 251, 248, 0.6));
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+    <!-- TopAppBar Shell -->
+    <nav class="fixed top-0 w-full z-50 rounded-b-3xl bg-emerald-50/70 dark:bg-emerald-950/70 backdrop-blur-lg shadow-[0_12px_40px_rgba(27,67,50,0.06)]">
+        <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 bg-dark-green rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-white text-lg">monitoring</span>
+                    </div>
+                    <div class="text-2xl font-bold tracking-tighter text-dark-green dark:text-emerald-50 font-headline group-hover:text-primary transition-colors duration-300">
+                        SuperCareDiabetes
+                    </div>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="index.html">Home</a>
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="features.html">Features</a>
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="about.html">About</a>
+                <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="pricing.html">Pricing</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://accounts.google.com/ServiceLogin" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
+                    <span class="text-sm font-semibold text-on-surface-variant">Sign In</span>
+                </a>
+                <a href="profile.html" class="px-6 py-2.5 bg-dark-green text-white rounded-full font-semibold hover:opacity-90 transition-all hover:-translate-y-1 active:scale-95 duration-300 shadow-lg shadow-dark-green/20 hover:shadow-xl hover:shadow-dark-green/30">
+                    Profile
+                </a>
+            </div>
+        </div>
+    </nav>
+    <main class="max-w-7xl mx-auto px-6 py-12 md:py-20">
+        <!-- Hero Section -->
+        <section class="text-center mb-24 max-w-3xl mx-auto">
+            <h1 class="font-headline text-4xl md:text-6xl font-extrabold tracking-tight text-on-surface mb-6">
+                Personalized Diet Plan for Diabetes Care
+            </h1>
+            <p class="text-lg text-on-surface-variant mb-10 leading-relaxed">
+                Experience precision nutrition powered by clinical intelligence. Our smart system crafts your daily
+                meals to maintain optimal glucose levels while celebrating flavors.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <div
+                    class="flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-full text-primary font-medium text-sm">
+                    <span class="material-symbols-outlined text-lg" data-icon="psychology">psychology</span>
+                    AI recommendations
+                </div>
+                <div
+                    class="flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-full text-primary font-medium text-sm">
+                    <span class="material-symbols-outlined text-lg" data-icon="low_density">low_density</span>
+                    Low glycemic index foods
+                </div>
+            </div>
+        </section>
+        <!-- Meal Grid Section -->
+        <section class="mb-32">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Breakfast -->
+                <div class="space-y-6">
+                    <h3 class="font-headline text-xl font-bold px-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary" data-icon="wb_sunny">wb_sunny</span>
+                        Breakfast
+                    </h3>
+                    <div class="glass-card rounded-xl overflow-hidden shadow-sm group">
+                        <div class="h-48 overflow-hidden">
+                            <img alt="Breakfast Bowl"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                data-alt="Overhead shot of a healthy breakfast bowl with rolled oats, fresh blueberries, almond slivers, and a dash of cinnamon on a neutral stone background"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZgfjeQp66LMJJmFaCugvHG5PA1koZCPfnUcxUSHpTOHrgogHCBEl5jmLxNyJURHyet8yzZyTkFZ6TLwPiw7GnX1xxJFOa4UqpG48RBuWmvsBAtS1Pqk9iO363LVTerVljGZkR1kH15t5nU_vwFxkGb16sr2H9gpFTHI1XfcEyibJcwYvbt3SDuHEVqlLDauVqwGSAVbtvIHPqzjJivLuS9XWhsdsTZtQuM6v0sqisaxGjeklea5NH1j82fyEGWSv5VzLz_VX_WS8" />
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-headline font-bold text-lg mb-2">Oats &amp; Fruits Bowl</h4>
+                            <p class="text-sm text-on-surface-variant mb-4">Steel-cut oats with antioxidant-rich berries
+                                and chia seeds.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="text-[10px] uppercase tracking-wider font-bold text-primary bg-primary-container px-2 py-0.5 rounded">High
+                                    fiber</span>
+                                <span
+                                    class="text-[10px] uppercase tracking-wider font-bold text-primary bg-primary-container px-2 py-0.5 rounded">Low
+                                    GI</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl overflow-hidden shadow-sm group">
+                        <div class="h-48 overflow-hidden">
+                            <img alt="Boiled Eggs"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                data-alt="Two perfectly soft-boiled eggs on a bed of fresh arugula and cherry tomatoes with a sprinkle of black pepper"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZKAQXRs_0E7SOQhw7ysq2xMUPrK4pfefXnYMiQchQCJ6SMTtjTONZAcxxquB0JR7BlUw_WH6enWjUjHB5r2J6F7KOvhISWhDNnF4JZYLawcNKxiL2pMQrYtvz5dZudvKJ37ZlNckTH1K6wIq3FeA0n4o7TAiacKGXLgSH-U6f8UF23nBJhD4Wc0LSAOkjo5R3ASXYWZQ_efumTIXMhChwMnOCqhRKKPM9f3jSD1IT9FLCCAfojfG5JNPxe1G7UKuYuX6q0qm7jH4" />
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-headline font-bold text-lg mb-2">Boiled Eggs + Salad</h4>
+                            <p class="text-sm text-on-surface-variant mb-4">Two farm-fresh eggs with a vibrant garden
+                                salad.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="text-[10px] uppercase tracking-wider font-bold text-primary bg-primary-container px-2 py-0.5 rounded">Protein
+                                    boost</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Lunch -->
+                <div class="space-y-6">
+                    <h3 class="font-headline text-xl font-bold px-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary" data-icon="restaurant">restaurant</span>
+                        Lunch
+                    </h3>
+                    <div class="glass-card rounded-xl overflow-hidden shadow-sm group">
+                        <div class="h-48 overflow-hidden">
+                            <img alt="Brown Rice"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                data-alt="Grains of nutty brown rice served with steamed broccoli, carrots, and lightly sautéed seasonal vegetables in a ceramic bowl"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPOeaxHaOXz9pAcwQE499sjEaOtg-UaeekUjraV_9qFd9cL-GUu_I6dKJOvuNxhK11JImEno2Z3WT_gKwK2mZ9AHUdv-fTC-_cnIZgVh5VqR3zwRZ9ulDfdkpwsr_TlDq_VB_olaiamnUooQLE73HRg2dO5JU7x6z0E2pLEmXusM7jafAEC4K7bVUOBXvYc2QtAzqqkKroZbXpvG03CGGcokcdg1f8wYdkK_Nj1UT-TAjr_B55bO3y2wXUXXFWodQ7QYL-xQOIbmI" />
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-headline font-bold text-lg mb-2">Brown Rice + Veggies</h4>
+                            <p class="text-sm text-on-surface-variant mb-4">Slow-digesting complex carbs with seasonal
+                                vegetables.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="text-[10px] uppercase tracking-wider font-bold text-primary bg-primary-container px-2 py-0.5 rounded">Complex
+                                    Carbs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl overflow-hidden shadow-sm group">
+                        <div class="h-48 overflow-hidden">
+                            <img alt="Roti and Dal"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                data-alt="Traditional whole wheat flatbread served with a bowl of yellow lentil soup garnished with coriander and ginger julienne"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQbx-n9QsfA54KnYT-9OnVtzwC80BsJ24m8yxY-DyyBQSAHKmLFuacJfOemmeGtv3paizu74q5XhjxkNc50EcQ_7QiRGubrb3F5_dTf8GHAhFnCYo2slEsOYDx6Gt-v50GQXQu_HGFwk7bwoTGUMjhqo0vEb75F9I9pw-31eKZ_9gdXKXyTfJOM3FNZdqd_xeoW3vn7fBHZAYOY3McAUFGK7kOz2keZZM8QwfzsIS3eqB8WCSzHtrf7rzWjULVhnnzioWoioPhNqU" />
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-headline font-bold text-lg mb-2">Wheat Roti + Dal</h4>
+                            <p class="text-sm text-on-surface-variant mb-4">Fiber-rich whole wheat flatbread with
+                                protein-packed lentils.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="text-[10px] uppercase tracking-wider font-bold text-primary bg-primary-container px-2 py-0.5 rounded">Steady
+                                    Energy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dinner -->
+                <div class="space-y-6">
+                    <h3 class="font-headline text-xl font-bold px-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary" data-icon="dark_mode">dark_mode</span>
+                        Dinner
+                    </h3>
+                    <div class="glass-card rounded-xl overflow-hidden shadow-sm group">
+                        <div class="h-48 overflow-hidden">
+                            <img alt="Light Soup"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                data-alt="Clear vegetable broth with sliced mushrooms and scallions, served alongside a crisp fresh salad with lemon vinaigrette"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_6yMUF5SJ9qGBCbG8chLveIAhk38dadKqe19jXVW4nRhaQwcSRfpWCEStPSFIn7JHRqZyO9JlEFhcGvU5xDh3pZbZMtL9Rm1wx4t7y65vVn0IWRhNNN7ad-_xaasDeZqn63OJXRfFPOpKOqflNKwUZ_IpKxr9j4U9rhf0DoWpvYVP_i05kD82ida3oyT3qQvLku7fqaQFk31Etq5O3L4Z0Iz8oTg7s6PyUnhcry5euWxCp0ea-swIH1yaEeCEzxWndD5IALjRBLs" />
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-headline font-bold text-lg mb-2">Light Soup + Salad</h4>
+                            <p class="text-sm text-on-surface-variant mb-4">Calorie-controlled dinner to support resting
+                                metabolism.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="text-[10px] uppercase tracking-wider font-bold text-primary bg-primary-container px-2 py-0.5 rounded">Low
+                                    Calorie</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl overflow-hidden shadow-sm group">
+                        <div class="h-48 overflow-hidden">
+                            <img alt="Grilled Veggies"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                data-alt="Artfully arranged grilled bell peppers, zucchini, and asparagus with char marks and olive oil drizzle on a white plate"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb9zKCkc1E9GB244d4w7-UnC3sX-EbdOVBwG7rAYnW0DjRy6Rjip8lrpYZiANKEHA_aAVCHykgbVU1YJgN-kXbC8wrHjLy8j6VrYc2hV_2FpQkOFbe4eDfWUd4IAvCd8jZhblX33LUrtDebMaDNFVNt9wyHqobSOzFq24MFQ2MS-NC0Sk3teTtc8umBhXD44thkfHMSrcwaiLkS9mJ3qBKot0kGXgQgXoCiadCeWuBhv0knUZqFYzdQBayKtmOP92_ysDhmWxfcb0" />
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-headline font-bold text-lg mb-2">Grilled Vegetables</h4>
+                            <p class="text-sm text-on-surface-variant mb-4">Medley of char-grilled vegetables rich in
+                                micronutrients.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="text-[10px] uppercase tracking-wider font-bold text-primary bg-primary-container px-2 py-0.5 rounded">Micronutrients</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Snacks -->
+                <div class="space-y-6">
+                    <h3 class="font-headline text-xl font-bold px-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary" data-icon="apple">ios</span> Snacks
+                    </h3>
+                    <div class="glass-card rounded-xl overflow-hidden shadow-sm group">
+                        <div class="h-48 overflow-hidden">
+                            <img alt="Fruits"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                data-alt="Assorted bowl of sliced green apples and grapefruit segments on a light wooden table in bright morning sunlight"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt7GCcvP4O74PN66M9fKOQBlabGl2iBAPyRtIaOGxDCk_qH6Tg6S-M3Aec_c4taDJB5Oy80STWvNwop8yQAW2xVtwqmwxBYmci5Rv2Vmf1q1NIPn6PCGxJ9RthbdwzkdaYNlu85lJ9mN7sgvDZkOKNud901wNS_HDzJoXtkgnh9YIDUVRfqbNBcl63osmT09TVZ-Uf3MZ8QvqM5gAHObkkv4rz9v95gxvkaYWB7NQ5VkGRsA5QjkHicWyVZPtx3H3ZACjzAweAdoI" />
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-headline font-bold text-lg mb-2">Fresh Fruits</h4>
+                            <p class="text-sm text-on-surface-variant mb-4">Low-sugar fruits like apples or citrus to
+                                curb cravings.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="text-[10px] uppercase tracking-wider font-bold text-primary bg-primary-container px-2 py-0.5 rounded">Natural
+                                    Sugars</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl overflow-hidden shadow-sm group">
+                        <div class="h-48 overflow-hidden">
+                            <img alt="Mixed Almonds and Cashews"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                data-alt="Professional top-down photograph of a premium mix of whole roasted almonds and creamy cashews in a minimalist ceramic bowl, soft natural lighting"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw_O_x8OY-251GmN8FzkeHw3FiL45PBTOXDdLoSioE_JUwrZEatBOfdTBlp94wTMfotUdF4bvPZVpmBK-FZ4GKPtL9bCwJ7-AnpkxXMNJ1xNs6R2WFUPac_hgGNwUoibTZY8pZ7oosrx-gXeBDyNn6Metjm2WHsZYRSSDa3oFdKdsMzzIXL1iQSlXz3HhVo-XjqTWt4j5Csfg2w2Drv-MjxHeMm3ybnqetetmxkK0GPO2S5X_1xifZCXnbMfB1ESA1q97vTa1J37g" />
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-headline font-bold text-lg mb-2">Mixed Nuts</h4>
+                            <p class="text-sm text-on-surface-variant mb-4">Unsalted almonds and walnuts for healthy
+                                fats.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="text-[10px] uppercase tracking-wider font-bold text-primary bg-primary-container px-2 py-0.5 rounded">Healthy
+                                    Fats</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Healthy Tips Section -->
+        <section class="mb-32">
+            <h2 class="font-headline text-3xl font-extrabold mb-12 text-center">Healthy Tips for Diabetes Management
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="glass-card p-8 rounded-xl shadow-[0_12px_40px_rgba(27,67,50,0.06)] flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-primary text-3xl"
+                            data-icon="no_drinks">no_drinks</span>
+                    </div>
+                    <h3 class="font-headline text-xl font-bold mb-3">Avoid sugary drinks</h3>
+                    <p class="text-on-surface-variant">Switch to sparkling water or herbal teas to prevent sharp glucose
+                        spikes.</p>
+                </div>
+                <div
+                    class="glass-card p-8 rounded-xl shadow-[0_12px_40px_rgba(27,67,50,0.06)] flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-primary text-3xl"
+                            data-icon="water_drop">water_drop</span>
+                    </div>
+                    <h3 class="font-headline text-xl font-bold mb-3">Stay hydrated</h3>
+                    <p class="text-on-surface-variant">Drink 2-3 liters of water daily to help your kidneys flush out
+                        excess sugar.</p>
+                </div>
+                <div
+                    class="glass-card p-8 rounded-xl shadow-[0_12px_40px_rgba(27,67,50,0.06)] flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-primary text-3xl" data-icon="timer">timer</span>
+                    </div>
+                    <h3 class="font-headline text-xl font-bold mb-3">Timed Meals</h3>
+                    <p class="text-on-surface-variant">Consistency is key. Eat at the same time every day to stabilize
+                        metabolism.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Benefits Section -->
+        <section class="mb-20">
+            <div class="bg-primary p-12 md:p-16 rounded-xl relative overflow-hidden">
+                <!-- Background Decoration -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+                <div
+                    class="absolute bottom-0 left-0 w-64 h-64 bg-primary-container/20 rounded-full -ml-32 -mb-32 blur-3xl">
+                </div>
+                <div class="relative z-10">
+                    <h2 class="font-headline text-3xl md:text-4xl font-extrabold text-white mb-12 text-center">
+                        Transformation Goals</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-lg text-white border border-white/10">
+                            <span class="material-symbols-outlined mb-4 opacity-80"
+                                data-icon="trending_down">trending_down</span>
+                            <p class="font-headline font-bold text-lg">Improved blood sugar control</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-lg text-white border border-white/10">
+                            <span class="material-symbols-outlined mb-4 opacity-80"
+                                data-icon="monitor_weight">monitor_weight</span>
+                            <p class="font-headline font-bold text-lg">Weight management</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-lg text-white border border-white/10">
+                            <span class="material-symbols-outlined mb-4 opacity-80" data-icon="bolt">bolt</span>
+                            <p class="font-headline font-bold text-lg">Higher energy levels</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-lg text-white border border-white/10">
+                            <span class="material-symbols-outlined mb-4 opacity-80" data-icon="favorite">favorite</span>
+                            <p class="font-headline font-bold text-lg">Heart health support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- BottomNavBar Shell (Mobile) -->
+    <nav
+        class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-6 py-4 pb-8 bg-[#f5fbf8]/80 backdrop-blur-xl z-50">
+        <a class="flex flex-col items-center justify-center text-emerald-700/50" href="#">
+            <span class="material-symbols-outlined" data-icon="home">home</span>
+            <span class="text-[11px] font-['Inter'] font-medium uppercase tracking-wider mt-1">Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center bg-emerald-100 text-emerald-900 rounded-full px-6 py-2 transition-all"
+            href="#">
+            <span class="material-symbols-outlined" data-icon="restaurant"
+                style="font-variation-settings: 'FILL' 1;">restaurant</span>
+            <span class="text-[11px] font-['Inter'] font-medium uppercase tracking-wider mt-1">Nutrition</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-emerald-700/50" href="#">
+            <span class="material-symbols-outlined" data-icon="insights">insights</span>
+            <span class="text-[11px] font-['Inter'] font-medium uppercase tracking-wider mt-1">Trends</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-emerald-700/50" href="#">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span class="text-[11px] font-['Inter'] font-medium uppercase tracking-wider mt-1">Profile</span>
+        </a>
+    </nav>
+    <!-- FAB (Contextual for Diet Plan) -->
+    <div class="fixed bottom-24 right-6 md:bottom-12 md:right-12 z-40">
+        <button
+            class="w-16 h-16 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-105 active:scale-90 transition-transform">
+            <span class="material-symbols-outlined text-3xl" data-icon="add_notes"
+                style="font-variation-settings: 'FILL' 1;">add_notes</span>
+        </button>
+    </div>
+    <script src="translation.js"></script>
+    <script src="scroll-reveal.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="page-transitions.js"></script>
+</body>
+
+</html>

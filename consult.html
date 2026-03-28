@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SuperCareDiabetes | Professional Doctor Consultancy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary": "#53615f",
+              "secondary-fixed-dim": "#96d3bd",
+              "outline-variant": "#bfc9c3",
+              "inverse-on-surface": "#ecf2ef",
+              "outline": "#707974",
+              "inverse-primary": "#a5d0b9",
+              "on-tertiary-container": "#536260",
+              "surface-bright": "#f5fbf8",
+              "on-primary-container": "#3f6754",
+              "surface-tint": "#3f6653",
+              "primary-fixed": "#c1ecd4",
+              "on-surface-variant": "#404945",
+              "on-secondary-fixed": "#002118",
+              "on-error": "#ffffff",
+              "on-primary-fixed-variant": "#274e3d",
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#d6e6e3",
+              "surface-container-low": "#eff5f2",
+              "secondary": "#2c6956",
+              "tertiary-fixed-dim": "#bacac7",
+              "secondary-fixed": "#b1efd8",
+              "tertiary-container": "#cdddda",
+              "primary-fixed-dim": "#a5d0b9",
+              "inverse-surface": "#2b3230",
+              "on-primary-fixed": "#002114",
+              "error-container": "#ffdad6",
+              "on-secondary-fixed-variant": "#0d503f",
+              "on-primary": "#ffffff",
+              "surface": "#f5fbf8",
+              "surface-container-highest": "#dee4e1",
+              "on-tertiary": "#ffffff",
+              "on-secondary": "#ffffff",
+              "primary-container": "#b7e3cb",
+              "primary": "#3f6653",
+              "on-tertiary-fixed-variant": "#3b4a48",
+              "error": "#ba1a1a",
+              "background": "#f5fbf8",
+              "surface-dim": "#d5dbd9",
+              "secondary-container": "#aeedd5",
+              "on-tertiary-fixed": "#101e1d",
+              "surface-container-lowest": "#ffffff",
+              "on-surface": "#171d1b",
+              "on-secondary-container": "#316d5b",
+              "on-background": "#171d1b",
+              "surface-container": "#e9efec",
+              "surface-variant": "#dee4e1",
+              "surface-container-high": "#e3eae7"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .glass-card {
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .bg-health-gradient {
+        background: radial-gradient(circle at top right, rgba(183, 227, 203, 0.4), transparent 40%),
+                    radial-gradient(circle at bottom left, rgba(63, 102, 83, 0.05), transparent 30%);
+      }
+      .doctor-img-mask {
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+      }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-emerald-50/60 dark:bg-slate-900/60 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-xl font-extrabold text-emerald-800 dark:text-emerald-200 font-headline tracking-tight">
+                SuperCareDiabetes
+            </div>
+<div class="hidden md:flex items-center gap-8 font-headline font-bold tracking-tight">
+<a class="text-emerald-900/70 hover:text-emerald-900 transition-colors" href="#">Home</a>
+<a class="text-emerald-900/70 hover:text-emerald-900 transition-colors" href="#">Features</a>
+<a class="text-emerald-900/70 hover:text-emerald-900 transition-colors" href="#">About</a>
+<a class="text-emerald-700 border-b-2 border-emerald-600 pb-1" href="#">Profile</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-emerald-100/50 rounded-full transition-all flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-900" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-emerald-100/50 rounded-full transition-all flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-900" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-6 max-w-7xl mx-auto bg-health-gradient">
+<!-- Hero Section -->
+<section class="mt-12 mb-16 relative">
+<div class="max-w-3xl">
+<div class="inline-flex items-center gap-2 px-4 py-2 bg-error-container text-on-error-container rounded-full text-sm font-semibold mb-6 shadow-sm">
+<span class="material-symbols-outlined text-sm" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+                    Moderate Risk ⚠️ — Doctor consultation recommended
+                </div>
+<h1 class="text-5xl md:text-6xl font-headline font-extrabold text-on-surface tracking-tight leading-tight mb-6">
+                    Consult a Doctor
+                </h1>
+<p class="text-xl text-on-surface-variant leading-relaxed max-w-2xl">
+                    Based on your recent neurological and metabolic health analysis, we've identified key markers that require clinical oversight. Connect with our curated panel of specialists.
+                </p>
+</div>
+<!-- Health Graph Decoration -->
+<div class="absolute -top-10 -right-10 opacity-10 pointer-events-none hidden lg:block">
+<svg fill="none" height="200" viewbox="0 0 400 200" width="400" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 150C50 140 80 180 120 160C160 140 180 80 230 100C280 120 320 40 400 60" stroke="#3f6653" stroke-linecap="round" stroke-width="4"></path>
+<path d="M0 150C50 140 80 180 120 160C160 140 180 80 230 100C280 120 320 40 400 60V200H0V150Z" fill="url(#grad1)"></path>
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="grad1" x1="200" x2="200" y1="60" y2="200">
+<stop stop-color="#3f6653" stop-opacity="0.3"></stop>
+<stop offset="1" stop-color="#3f6653" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+</section>
+<!-- Search & Filter Bar -->
+<section class="mb-12 flex flex-col md:flex-row gap-4 items-center">
+<div class="relative flex-grow w-full md:w-auto">
+<span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-14 pr-6 py-4 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary-container text-on-surface placeholder:text-outline-variant" placeholder="Search by name, clinic, or health condition..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0">
+<button class="px-6 py-4 bg-primary text-on-primary rounded-full font-semibold whitespace-nowrap">All Specialists</button>
+<button class="px-6 py-4 bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full font-semibold whitespace-nowrap">Diabetologists</button>
+<button class="px-6 py-4 bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full font-semibold whitespace-nowrap">Endocrinologists</button>
+<button class="px-6 py-4 bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full font-semibold whitespace-nowrap">Neurologists</button>
+</div>
+</section>
+<!-- Doctors Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Doctor Card 1 -->
+<div class="glass-card rounded-xl overflow-hidden group hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 flex flex-col">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="Dr. Sarah Mitchell" class="w-full h-full object-cover doctor-img-mask transition-transform duration-500 group-hover:scale-105" data-alt="female doctor portrait in a white coat with a stethoscope against a light background" src="assets/doctor-sarah-mitchell.jpeg"/>
+<div class="absolute top-4 left-4 flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-bold rounded-full uppercase tracking-wider">Best Match for You</span>
+</div>
+<div class="absolute bottom-4 left-6">
+<div class="flex items-center gap-1 text-on-primary-fixed-variant bg-primary-fixed/80 backdrop-blur-md px-3 py-1 rounded-full text-sm font-bold">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                            4.9 (120 reviews)
+                        </div>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<div class="mb-4">
+<h3 class="text-2xl font-headline font-bold text-on-surface mb-1">Dr. Sarah Mitchell</h3>
+<p class="text-primary font-semibold">Senior Endocrinologist</p>
+</div>
+<div class="flex items-center gap-6 mb-6 text-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="work_history">work_history</span>
+                            12+ Years
+                        </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="event_available">event_available</span>
+                            Available Today
+                        </div>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8 flex-grow">
+                        Specializes in advanced metabolic tracking and personalized insulin management protocols for complex neurological interactions.
+                    </p>
+<div class="grid grid-cols-2 gap-4">
+<button class="py-3 px-4 bg-primary text-on-primary rounded-full font-bold text-sm hover:brightness-110 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_month">calendar_month</span>
+                            Book Appointment
+                        </button>
+<button class="py-3 px-4 bg-on-surface text-surface rounded-full font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="videocam">videocam</span>
+                            Video Call
+                        </button>
+</div>
+</div>
+</div>
+<!-- Doctor Card 2 -->
+<div class="glass-card rounded-xl overflow-hidden group hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 flex flex-col">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="Dr. Rahul Sharma" class="w-full h-full object-cover doctor-img-mask transition-transform duration-500 group-hover:scale-105" data-alt="male doctor portrait in a white coat against a dark background" src="assets/doctor-rahul-sharma.png"/>
+<div class="absolute top-4 left-4 flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full uppercase tracking-wider">Top Rated</span>
+</div>
+<div class="absolute bottom-4 left-6">
+<div class="flex items-center gap-1 text-on-primary-fixed-variant bg-primary-fixed/80 backdrop-blur-md px-3 py-1 rounded-full text-sm font-bold">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                            4.8 (245 reviews)
+                        </div>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<div class="mb-4">
+<h3 class="text-2xl font-headline font-bold text-on-surface mb-1">Dr. Rahul Sharma</h3>
+<p class="text-primary font-semibold">Chief Diabetologist</p>
+</div>
+<div class="flex items-center gap-6 mb-6 text-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="work_history">work_history</span>
+                            15+ Years
+                        </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="event_available">event_available</span>
+                            Available 10 AM
+                        </div>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8 flex-grow">
+                        Expert in Type-2 diabetes reversal and metabolic syndrome management using data-driven clinical insights.
+                    </p>
+<div class="grid grid-cols-2 gap-4">
+<button class="py-3 px-4 bg-primary text-on-primary rounded-full font-bold text-sm hover:brightness-110 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_month">calendar_month</span>
+                            Book Appointment
+                        </button>
+<button class="py-3 px-4 bg-on-surface text-surface rounded-full font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="videocam">videocam</span>
+                            Video Call
+                        </button>
+</div>
+</div>
+</div>
+<!-- Doctor Card 3 -->
+<div class="glass-card rounded-xl overflow-hidden group hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 flex flex-col">
+<div class="relative h-64 overflow-hidden bg-surface-container">
+<img alt="Dr. Elena Petrova" class="w-full h-full object-cover doctor-img-mask transition-transform duration-500 group-hover:scale-105" data-alt="female doctor portrait in a white coat with a stethoscope against a studio background" src="assets/doctor-elena-petrova.jpeg"/>
+<div class="absolute top-4 left-4 flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container text-xs font-bold rounded-full uppercase tracking-wider">Recommended by AI</span>
+</div>
+<div class="absolute bottom-4 left-6">
+<div class="flex items-center gap-1 text-on-primary-fixed-variant bg-primary-fixed/80 backdrop-blur-md px-3 py-1 rounded-full text-sm font-bold">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                            4.7 (89 reviews)
+                        </div>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<div class="mb-4">
+<h3 class="text-2xl font-headline font-bold text-on-surface mb-1">Dr. Elena Petrova</h3>
+<p class="text-primary font-semibold">Neurologist</p>
+</div>
+<div class="flex items-center gap-6 mb-6 text-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="work_history">work_history</span>
+                            8+ Years
+                        </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="event_available">event_available</span>
+                            Tomorrow
+                        </div>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8 flex-grow">
+                        Focused on neuro-metabolic pathways and cognitive health maintenance for high-performance individuals.
+                    </p>
+<div class="grid grid-cols-2 gap-4">
+<button class="py-3 px-4 bg-primary text-on-primary rounded-full font-bold text-sm hover:brightness-110 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_month">calendar_month</span>
+                            Book Appointment
+                        </button>
+<button class="py-3 px-4 bg-on-surface text-surface rounded-full font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="videocam">videocam</span>
+                            Video Call
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- UI Context: Upcoming Appointment Preview -->
+<section class="mt-20">
+<div class="glass-card rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-8 border-none ring-1 ring-primary/5">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-3xl" data-icon="video_chat">video_chat</span>
+</div>
+<div>
+<h4 class="text-xl font-headline font-bold text-on-surface">Next Step: Pre-Consultation</h4>
+<p class="text-on-surface-variant">Complete your health questionnaire to save 15 minutes during the call.</p>
+</div>
+</div>
+<button class="px-8 py-4 bg-surface-container-high text-primary rounded-full font-bold hover:bg-surface-container-highest transition-all">
+                    Fill Questionnaire
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-[3rem] mt-20 bg-emerald-100/30 dark:bg-slate-950">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-12 py-16 w-full max-w-7xl mx-auto">
+<div>
+<div class="font-manrope font-black text-emerald-800 dark:text-emerald-200 text-2xl mb-4">
+                    SuperCareDiabetes
+                </div>
+<p class="text-emerald-800/60 dark:text-emerald-200/60 font-inter text-sm max-w-sm">
+                    Advanced health diagnostics and clinical consultancy powered by ethical AI. Your digital sanctuary for neurological wellness.
+                </p>
+<div class="mt-8 text-emerald-800/60 dark:text-emerald-200/60 font-inter text-sm antialiased">
+                    © 2024 SuperCareDiabetes. HIPAA Compliant.
+                </div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-3">
+<h5 class="text-emerald-900 dark:text-emerald-100 font-bold mb-2">Legal</h5>
+<a class="text-emerald-800/60 dark:text-emerald-200/60 text-sm hover:text-emerald-600 underline-offset-4 hover:underline" href="#">Privacy Policy</a>
+<a class="text-emerald-800/60 dark:text-emerald-200/60 text-sm hover:text-emerald-600 underline-offset-4 hover:underline" href="#">Terms of Service</a>
+<a class="text-emerald-800/60 dark:text-emerald-200/60 text-sm hover:text-emerald-600 underline-offset-4 hover:underline" href="#">Medical Disclaimer</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="text-emerald-900 dark:text-emerald-100 font-bold mb-2">Support</h5>
+<a class="text-emerald-800/60 dark:text-emerald-200/60 text-sm hover:text-emerald-600 underline-offset-4 hover:underline" href="#">Contact Support</a>
+<a class="text-emerald-800/60 dark:text-emerald-200/60 text-sm hover:text-emerald-600 underline-offset-4 hover:underline" href="#">FAQs</a>
+<a class="text-emerald-800/60 dark:text-emerald-200/60 text-sm hover:text-emerald-600 underline-offset-4 hover:underline" href="#">Resources</a>
+</div>
+</div>
+</div>
+</footer>
+<script src="translation.js"></script>
+<script src="page-transitions.js"></script>
+</body></html>
