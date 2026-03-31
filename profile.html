@@ -571,20 +571,17 @@
 
         window.supabaseAuth.getUser().then(function (user) {
             setProfileAuthUi(user);
-            if (user) {
-                window.supabaseAuth.promptForMissingProfile(user).then(function () {
-                    renderProfile();
-                });
-            }
+            renderProfile();
         });
 
-        window.supabaseAuth.onAuthStateChange(function (_event, session) {
+        window.supabaseAuth.onAuthStateChange(function (event, session) {
             const signedInUser = session ? session.user : null;
             setProfileAuthUi(signedInUser);
-            if (signedInUser) {
+            if (signedInUser && event === "SIGNED_IN") {
                 window.supabaseAuth.promptForMissingProfile(signedInUser).then(function () {
                     renderProfile();
                 });
+                return;
             }
             renderProfile();
         });
@@ -616,7 +613,6 @@
             applyLanguage("hi");
         });
 
-        renderProfile();
     </script>
     <script src="translation.js"></script>
     <script src="scroll-reveal.js"></script>

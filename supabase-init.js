@@ -100,10 +100,16 @@
         var payload = {
             id: user.id,
             email: user.email || "",
-            full_name: user.user_metadata && user.user_metadata.full_name ? user.user_metadata.full_name : null,
-            gender: user.user_metadata && user.user_metadata.gender ? user.user_metadata.gender : null,
             updated_at: new Date().toISOString()
         };
+
+        if (user.user_metadata && user.user_metadata.full_name) {
+            payload.full_name = user.user_metadata.full_name;
+        }
+
+        if (user.user_metadata && user.user_metadata.gender) {
+            payload.gender = user.user_metadata.gender;
+        }
 
         if (extraProfileData && typeof extraProfileData === "object") {
             Object.keys(extraProfileData).forEach(function (key) {

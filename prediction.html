@@ -144,10 +144,10 @@
                 <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="pricing.html">Pricing</a>
             </div>
             <div class="flex items-center gap-4">
-                <button id="prediction-sign-in" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
+                <button id="prediction-sign-in" style="display:none" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
                     <span class="text-sm font-semibold text-on-surface-variant">Sign In with Google</span>
                 </button>
-                <button id="prediction-sign-out" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
+                <button id="prediction-sign-out" style="display: none" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
                     <span class="text-sm font-semibold text-on-surface-variant">Sign Out</span>
                 </button>
                 <a href="profile.html" class="px-6 py-2.5 bg-dark-green text-white rounded-full font-semibold hover:opacity-90 transition-all hover:-translate-y-1 active:scale-95 duration-300 shadow-lg shadow-dark-green/20 hover:shadow-xl hover:shadow-dark-green/30">
@@ -687,15 +687,12 @@
 
         window.supabaseAuth.getUser().then(function (user) {
             setPredictionAuthUi(user);
-            if (user) {
-                window.supabaseAuth.promptForMissingProfile(user);
-            }
         });
 
-        window.supabaseAuth.onAuthStateChange(function (_event, session) {
+        window.supabaseAuth.onAuthStateChange(function (event, session) {
             const signedInUser = session ? session.user : null;
             setPredictionAuthUi(signedInUser);
-            if (signedInUser) {
+            if (signedInUser && event === "SIGNED_IN") {
                 window.supabaseAuth.promptForMissingProfile(signedInUser);
             }
         });

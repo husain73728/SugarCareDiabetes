@@ -342,15 +342,16 @@
             setAuthUi(user);
             if (user) {
                 window.supabaseAuth.ensureUserProfile(user);
-                window.supabaseAuth.promptForMissingProfile(user);
             }
         });
-        window.supabaseAuth.onAuthStateChange(function (_event, session) {
+        window.supabaseAuth.onAuthStateChange(function (event, session) {
             const signedInUser = session ? session.user : null;
             setAuthUi(signedInUser);
             if (signedInUser) {
                 window.supabaseAuth.ensureUserProfile(signedInUser);
-                window.supabaseAuth.promptForMissingProfile(signedInUser);
+                if (event === "SIGNED_IN") {
+                    window.supabaseAuth.promptForMissingProfile(signedInUser);
+                }
             }
         });
         (function doctorRegistryDashboard() {
