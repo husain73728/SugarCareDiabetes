@@ -961,7 +961,7 @@
         }
 
         function renderPersonalizedPlans(report) {
-            personalizedPlanCaption.textContent = "Showing hard-coded guidance for " + riskCategoryLabels[report.category];
+            personalizedPlanCaption.textContent = "Showing guidance for " + riskCategoryLabels[report.category];
             renderDietPlan(report.category);
             renderExercisePlan(report.category);
             personalizedPlanShell.classList.remove("hidden");
