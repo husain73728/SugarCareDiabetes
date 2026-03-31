@@ -301,7 +301,13 @@
                 return;
             }
 
-            await window.supabaseAuth.signInWithGoogle(window.location.origin + "/profile.html");
+            const existingUser = await window.supabaseAuth.getUser();
+            if (existingUser) {
+                window.location.href = "prediction.html";
+                return;
+            }
+
+            await window.supabaseAuth.signInWithGoogle(window.location.origin + "/prediction.html");
         }
         function setAuthUi(user) {
             if (!openDemoAuth || !signOutButton || !authUserEmail) {
