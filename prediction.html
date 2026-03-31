@@ -144,9 +144,12 @@
                 <a class="text-emerald-800/70 dark:text-emerald-200/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="pricing.html">Pricing</a>
             </div>
             <div class="flex items-center gap-4">
-                <a href="https://accounts.google.com/ServiceLogin" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
-                    <span class="text-sm font-semibold text-on-surface-variant">Sign In</span>
-                </a>
+                <button id="prediction-sign-in" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
+                    <span class="text-sm font-semibold text-on-surface-variant">Sign In with Google</span>
+                </button>
+                <button id="prediction-sign-out" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
+                    <span class="text-sm font-semibold text-on-surface-variant">Sign Out</span>
+                </button>
                 <a href="profile.html" class="px-6 py-2.5 bg-dark-green text-white rounded-full font-semibold hover:opacity-90 transition-all hover:-translate-y-1 active:scale-95 duration-300 shadow-lg shadow-dark-green/20 hover:shadow-xl hover:shadow-dark-green/30">
                     Profile
                 </a>
@@ -395,6 +398,14 @@
     </footer>
     <script src="scroll-reveal.js"></script>
     <script src="chatbot.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.SUPABASE_CONFIG = window.SUPABASE_CONFIG || {
+            url: "https://dqpxczumrcbftwikpdcp.supabase.co",
+            anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxcHhjenVtcmNiZnR3aWtwZGNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5MzY4NjMsImV4cCI6MjA5MDUxMjg2M30.7tm6XacZ8D2mdWqA0ImAiap3rm98Iee1LKEqYwL_xQg"
+        };
+    </script>
+    <script src="supabase-init.js"></script>
     <script>
         const predictionForm = document.getElementById("prediction-form");
         const reportCard = document.getElementById("report-card");
@@ -407,6 +418,8 @@
         const reportConcern = document.getElementById("report-concern");
         const reportAction = document.getElementById("report-action");
         const reportNote = document.getElementById("report-note");
+        const predictionSignIn = document.getElementById("prediction-sign-in");
+        const predictionSignOut = document.getElementById("prediction-sign-out");
         const STORAGE_KEY = "supercareDiabetesPredictionHistory";
         const LANGUAGE_KEY = "lang";
         const reportTranslations = {
@@ -596,7 +609,7 @@
             riskScoreBox.classList.add(theme.box);
         }
 
-        function savePrediction(values, report) {
+        function savePredictionLocally(values, report) {
             const payload = {
                 id: Date.now(),
                 checkedAt: new Date().toISOString(),
@@ -614,7 +627,73 @@
             localStorage.setItem(STORAGE_KEY, JSON.stringify(existing.slice(0, 12)));
         }
 
-        predictionForm.addEventListener("submit", function (event) {
+        async function savePrediction(values, report) {
+            const canUseSupabase = window.supabaseAuth && window.supabaseAuth.isConfigured();
+
+            if (!canUseSupabase) {
+                savePredictionLocally(values, report);
+                return;
+            }
+
+            const user = await window.supabaseAuth.getUser();
+            if (!user) {
+                savePredictionLocally(values, report);
+                return;
+            }
+
+            await window.supabaseAuth.ensureUserProfile(user);
+            const result = await window.supabaseClient.from("predictions").insert({
+                user_id: user.id,
+                pregnancies: values.pregnancies,
+                glucose: values.glucose,
+                blood_pressure: values.bloodPressure,
+                skin_thickness: values.skinThickness,
+                insulin: values.insulin,
+                bmi: values.bmi,
+                diabetes_pedigree: values.pedigree,
+                age: values.age,
+                risk_score: report.score,
+                risk_level: report.level
+            });
+
+            if (result.error) {
+                console.warn("Saving to Supabase failed, using local fallback:", result.error.message);
+                savePredictionLocally(values, report);
+            }
+        }
+
+        function setPredictionAuthUi(user) {
+            if (!predictionSignIn || !predictionSignOut) {
+                return;
+            }
+
+            if (user) {
+                predictionSignIn.classList.add("hidden");
+                predictionSignOut.classList.remove("hidden");
+                return;
+            }
+
+            predictionSignIn.classList.remove("hidden");
+            predictionSignOut.classList.add("hidden");
+        }
+
+        predictionSignIn.addEventListener("click", async function () {
+            await window.supabaseAuth.signInWithGoogle(window.location.href);
+        });
+
+        predictionSignOut.addEventListener("click", async function () {
+            await window.supabaseAuth.signOut("prediction.html");
+        });
+
+        window.supabaseAuth.getUser().then(function (user) {
+            setPredictionAuthUi(user);
+        });
+
+        window.supabaseAuth.onAuthStateChange(function (_event, session) {
+            setPredictionAuthUi(session ? session.user : null);
+        });
+
+        predictionForm.addEventListener("submit", async function (event) {
             event.preventDefault();
 
             const values = {
@@ -629,7 +708,7 @@
             };
 
             const report = buildReport(values);
-            savePrediction(values, report);
+            await savePrediction(values, report);
 
             reportTitle.textContent = report.title;
             reportSummary.textContent = report.summary;

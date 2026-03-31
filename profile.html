@@ -67,9 +67,12 @@
                 <a class="text-emerald-800/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="pricing.html">Pricing</a>
             </div>
             <div class="flex items-center gap-4">
-                <a href="https://accounts.google.com/ServiceLogin" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
-                    <span class="text-sm font-semibold text-on-surface-variant">Sign In</span>
-                </a>
+                <button id="profile-sign-in" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
+                    <span class="text-sm font-semibold text-on-surface-variant">Sign In with Google</span>
+                </button>
+                <button id="profile-sign-out" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
+                    <span class="text-sm font-semibold text-on-surface-variant">Sign Out</span>
+                </button>
                 <a href="profile.html" class="px-6 py-2.5 bg-dark-green text-white rounded-full font-semibold hover:opacity-90 transition-all hover:-translate-y-1 active:scale-95 duration-300 shadow-lg shadow-dark-green/20 hover:shadow-xl hover:shadow-dark-green/30">
                     Profile
                 </a>
@@ -192,9 +195,19 @@
         </section>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.SUPABASE_CONFIG = window.SUPABASE_CONFIG || {
+            url: "https://dqpxczumrcbftwikpdcp.supabase.co",
+            anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxcHhjenVtcmNiZnR3aWtwZGNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5MzY4NjMsImV4cCI6MjA5MDUxMjg2M30.7tm6XacZ8D2mdWqA0ImAiap3rm98Iee1LKEqYwL_xQg"
+        };
+    </script>
+    <script src="supabase-init.js"></script>
     <script>
         const STORAGE_KEY = "supercareDiabetesPredictionHistory";
         const LANGUAGE_KEY = "lang";
+        const profileSignIn = document.getElementById("profile-sign-in");
+        const profileSignOut = document.getElementById("profile-sign-out");
         const translations = {
             en: {
                 "profile.heading": "Health Profile",
@@ -257,8 +270,56 @@
                 : "px-5 py-2.5 rounded-full border border-outline-variant text-on-surface font-semibold transition-all active:scale-95";
         }
 
-        function readHistory() {
-            return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        function buildFallbackReport(score, level) {
+            return {
+                score: score,
+                level: level || "Risk",
+                title: level || "Risk assessment",
+                summary: "Synced from your Supabase prediction history."
+            };
+        }
+
+        async function readHistory() {
+            const canUseSupabase = window.supabaseAuth && window.supabaseAuth.isConfigured();
+            if (!canUseSupabase) {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+            }
+
+            const user = await window.supabaseAuth.getUser();
+            if (!user) {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+            }
+
+            await window.supabaseAuth.ensureUserProfile(user);
+            const result = await window.supabaseClient
+                .from("predictions")
+                .select("id, created_at, pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, diabetes_pedigree, age, risk_score, risk_level")
+                .eq("user_id", user.id)
+                .order("created_at", { ascending: false })
+                .limit(12);
+
+            if (result.error) {
+                console.warn("History fetch failed, using local fallback:", result.error.message);
+                return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+            }
+
+            return (result.data || []).map(function (row) {
+                return {
+                    id: row.id,
+                    checkedAt: row.created_at,
+                    inputs: {
+                        pregnancies: row.pregnancies,
+                        glucose: row.glucose,
+                        bloodPressure: row.blood_pressure,
+                        skinThickness: row.skin_thickness,
+                        insulin: row.insulin,
+                        bmi: row.bmi,
+                        pedigree: row.diabetes_pedigree,
+                        age: row.age
+                    },
+                    result: buildFallbackReport(row.risk_score || 0, row.risk_level)
+                };
+            });
         }
 
         function formatDate(dateString) {
@@ -405,18 +466,64 @@
             }).join("");
         }
 
-        function renderProfile() {
+        function setProfileAuthUi(user) {
+            if (!profileSignIn || !profileSignOut) {
+                return;
+            }
+
+            if (user) {
+                profileSignIn.classList.add("hidden");
+                profileSignOut.classList.remove("hidden");
+                return;
+            }
+
+            profileSignIn.classList.remove("hidden");
+            profileSignOut.classList.add("hidden");
+        }
+
+        async function renderProfile() {
             applyLanguage(localStorage.getItem(LANGUAGE_KEY) || "en");
-            const history = readHistory();
+            const history = await readHistory();
             setText("saved-check-count", history.length);
             renderLatest(history);
             renderHistoryList(history);
             drawChart(history);
         }
 
-        document.getElementById("clear-history").addEventListener("click", function () {
-            localStorage.removeItem(STORAGE_KEY);
+        profileSignIn.addEventListener("click", async function () {
+            await window.supabaseAuth.signInWithGoogle(window.location.href);
+        });
+
+        profileSignOut.addEventListener("click", async function () {
+            await window.supabaseAuth.signOut("profile.html");
+        });
+
+        window.supabaseAuth.getUser().then(function (user) {
+            setProfileAuthUi(user);
+        });
+
+        window.supabaseAuth.onAuthStateChange(function (_event, session) {
+            setProfileAuthUi(session ? session.user : null);
             renderProfile();
+        });
+
+        document.getElementById("clear-history").addEventListener("click", async function () {
+            const canUseSupabase = window.supabaseAuth && window.supabaseAuth.isConfigured();
+            if (canUseSupabase) {
+                const user = await window.supabaseAuth.getUser();
+                if (user) {
+                    const deleteResult = await window.supabaseClient.from("predictions").delete().eq("user_id", user.id);
+                    if (deleteResult.error) {
+                        alert("Failed to clear synced history: " + deleteResult.error.message);
+                        return;
+                    }
+                    await renderProfile();
+                    return;
+                }
+            }
+
+            localStorage.removeItem(STORAGE_KEY);
+            await renderProfile();
         });
 
         document.getElementById("lang-en").addEventListener("click", function () {

@@ -85,9 +85,12 @@
                 <a class="text-emerald-800/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="features.html">Features</a>
                 <a class="text-emerald-800/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="about.html">About</a>
                 <a class="text-emerald-800/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="pricing.html">Pricing</a>
+                <!-- <a class="text-emerald-800/70 dark:text-emerald-200/70 hover:text-emerald-900 hover:bg-emerald-100/50 dark:hover:bg-emerald-800/50 transition-all duration-300 px-3 py-1 rounded-full" href="consult.html">Support</a> -->
             </div>
             <div class="flex items-center gap-4">
-                <button id="open-demo-auth" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1"><span class="text-sm font-semibold text-on-surface-variant">Sign In</span></button>
+                <button id="open-demo-auth" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1"><span class="text-sm font-semibold text-on-surface-variant">Sign In with Google</span></button>
+                <button style = "display: none" id ="sign-out-btn" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1"><span class="text-sm font-semibold text-on-surface-variant">Sign Out</span></button>
+                <span id="auth-user-email" class="hidden md:inline text-xs font-semibold text-on-surface-variant"></span>
                 <a href="profile.html" class="px-6 py-2.5 bg-dark-green text-white rounded-full font-semibold hover:opacity-90 transition-all hover:-translate-y-1 active:scale-95 duration-300 shadow-lg shadow-dark-green/20 hover:shadow-xl hover:shadow-dark-green/30">Profile</a>
             </div>
         </div>
@@ -258,6 +261,14 @@
         </div>
         <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-6"><div class="text-on-surface-variant/60 text-xs font-bold tracking-widest uppercase">© 2024 SuperCareDiabetes • Clinical Ethereality.</div><div class="flex gap-8 text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest"><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a><a class="hover:text-primary transition-colors" href="#">Terms of Service</a><a class="hover:text-primary transition-colors" href="#">Cookie Policy</a></div></div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.SUPABASE_CONFIG = window.SUPABASE_CONFIG || {
+            url: "https://dqpxczumrcbftwikpdcp.supabase.co",
+            anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxcHhjenVtcmNiZnR3aWtwZGNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5MzY4NjMsImV4cCI6MjA5MDUxMjg2M30.7tm6XacZ8D2mdWqA0ImAiap3rm98Iee1LKEqYwL_xQg"
+        };
+    </script>
+    <script src="supabase-init.js"></script>
     <script>
         const healthCore = document.getElementById("health-core");
         const healthCoreShell = document.getElementById("health-core-shell");
@@ -265,6 +276,8 @@
         const startHealthScan = document.getElementById("start-health-scan");
         const ctaHealthScan = document.getElementById("cta-health-scan");
         const openDemoAuth = document.getElementById("open-demo-auth");
+        const signOutButton = document.getElementById("sign-out-btn");
+        const authUserEmail = document.getElementById("auth-user-email");
         const demoAuthModal = document.getElementById("demo-auth-modal");
         const demoAuthBackdrop = document.getElementById("demo-auth-backdrop");
         const closeDemoAuth = document.getElementById("close-demo-auth");
@@ -280,10 +293,38 @@
         function showDemoAuth(redirectTarget) { pendingRedirect = redirectTarget || null; demoAuthModal.classList.remove("hidden"); demoAuthModal.classList.add("flex"); window.setTimeout(function () { demoAuthName.focus(); }, 60); }
         function hideDemoAuth() { demoAuthModal.classList.add("hidden"); demoAuthModal.classList.remove("flex"); pendingRedirect = null; }
         function goToFeatures(button, openAuth) { button.classList.add("scan-expand"); if (openAuth) { showDemoAuth("features.html"); return; } window.setTimeout(function () { window.location.href = "features.html"; }, 260); }
+        function setAuthUi(user) {
+            if (!openDemoAuth || !signOutButton || !authUserEmail) {
+                return;
+            }
+
+            if (user) {
+                openDemoAuth.classList.add("hidden");
+                signOutButton.classList.remove("hidden");
+                authUserEmail.classList.remove("hidden");
+                authUserEmail.textContent = user.email || "Signed in";
+                return;
+            }
+
+            openDemoAuth.classList.remove("hidden");
+            signOutButton.classList.add("hidden");
+            authUserEmail.classList.add("hidden");
+            authUserEmail.textContent = "";
+        }
         healthCore.addEventListener("click", function () { goToFeatures(startHealthScan, false); });
         startHealthScan.addEventListener("click", function () { goToFeatures(startHealthScan, true); });
         ctaHealthScan.addEventListener("click", function () { goToFeatures(ctaHealthScan, false); });
-        openDemoAuth.addEventListener("click", function () { showDemoAuth(null); });
+        openDemoAuth.addEventListener("click", async function () {
+            if (!window.supabaseAuth || !window.supabaseAuth.isConfigured()) {
+                showDemoAuth(null);
+                return;
+            }
+
+            await window.supabaseAuth.signInWithGoogle(window.location.origin + "/profile.html");
+        });
+        signOutButton.addEventListener("click", async function () {
+            await window.supabaseAuth.signOut("index.html");
+        });
         closeDemoAuth.addEventListener("click", hideDemoAuth);
         demoAuthCancel.addEventListener("click", hideDemoAuth);
         demoAuthBackdrop.addEventListener("click", hideDemoAuth);
@@ -292,6 +333,19 @@
         const observer = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { storySteps.forEach(function (step) { step.classList.remove("active-step"); }); entry.target.classList.add("active-step"); } }); }, { threshold: 0.55 });
         storySteps.forEach(function (step) { observer.observe(step); });
         window.addEventListener("scroll", function () { const progress = Math.min(window.scrollY / 700, 1); document.getElementById("hero-ecg-path").style.opacity = String(0.35 + progress * 0.55); });
+        window.supabaseAuth.getUser().then(function (user) {
+            setAuthUi(user);
+            if (user) {
+                window.supabaseAuth.ensureUserProfile(user);
+            }
+        });
+        window.supabaseAuth.onAuthStateChange(function (_event, session) {
+            const signedInUser = session ? session.user : null;
+            setAuthUi(signedInUser);
+            if (signedInUser) {
+                window.supabaseAuth.ensureUserProfile(signedInUser);
+            }
+        });
         (function doctorRegistryDashboard() {
             var form = document.getElementById("doctor-verify-form");
             var input = document.getElementById("doctor-verify-input");

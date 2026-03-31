@@ -39,6 +39,7 @@ SugarCareDiabetes is a web-based platform designed to assist users in understand
 
 * **Frontend:** HTML, CSS, JavaScript
 * **Machine Learning:** Diabetes prediction model (JSON-based integration)
+* **Backend (Optional):** Supabase Auth + Postgres (Google OAuth, profile and prediction history sync)
 * **Tools:** Browser-based execution / Local server
 
 ---
@@ -92,6 +93,41 @@ run_local_server.bat
 
 ---
 
+## 🔐 Supabase Setup (Login + Synced Data)
+
+Use this setup to enable Google login and cloud storage for profile + prediction history.
+
+1. Create a Supabase project.
+2. In Supabase SQL Editor, run [supabase/schema.sql](supabase/schema.sql).
+3. In Supabase dashboard, enable Google provider under Authentication > Providers.
+4. Add redirect URLs:
+
+```
+http://localhost:8000/profile.html
+https://your-domain/profile.html
+```
+
+5. Open [index.html](index.html), [prediction.html](prediction.html), and [profile.html](profile.html), then set:
+
+```html
+<script>
+  window.SUPABASE_CONFIG = {
+    url: "https://YOUR_PROJECT.supabase.co",
+    anonKey: "YOUR_SUPABASE_ANON_KEY"
+  };
+</script>
+```
+
+6. Keep using the anon key only in frontend. Never expose the Supabase service role key.
+
+### Current behavior
+
+* Signed-in users: prediction history is stored in Supabase.
+* Signed-out users: prediction history uses local browser storage.
+* Profile page automatically reads Supabase history when signed in and local history when signed out.
+
+---
+
 ### Option 2: Direct Run
 
 Simply open:
@@ -129,7 +165,6 @@ To provide an accessible, AI-driven solution that helps users:
 
 ## 💡 Future Improvements
 
-* 🔐 User authentication and login system
 * 📊 Progress tracking dashboard with graphs
 * 🌐 Backend integration (API-based model serving)
 * 🤖 Advanced chatbot with LLM integration
