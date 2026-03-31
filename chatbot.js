@@ -163,11 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. Simulated AI Intelligence (Swap this section to integrate real APIs)
     const getMockAIResponse = (query) => {
         const q = query.toLowerCase();
-        if (q.includes('hello') || q.includes('hi')) return "Greetings! I'm here to help manage your health. Should we look into adjusting your diet or adding an exercise routine?";
+        if (q.includes('hello')) return "Greetings! I'm here to help manage your health. Should we look into adjusting your diet or adding an exercise routine?";
         if (q.includes('diet') || q.includes('food') || q.includes('eat')) return "Based on contemporary neurological nutrition data, adopting a Mediterranean-style diet high in omega-3s drastically supports cognitive function and stabilizes circulating glucose.";
         if (q.includes('exercise') || q.includes('workout') || q.includes('gym')) return "Just 20 minutes of moderate aerobic workouts like swimming or cycling effectively increases insulin sensitivity. Visit our Exercise tab for step-by-step guides!";
         if (q.includes('sugar') || q.includes('diabetes') || q.includes('blood')) return "Your biometrics look stable, but if you want robust forecasting, navigate to our Prediction model to analyze exact statistical risks.";
         if (q.includes('price') || q.includes('cost') || q.includes('pro')) return "We offer a Free basic tier to track daily variables, and a $29/mo Pro tier that streams data directly from Apple Health and Garmin wearables.";
+        if (q.includes('low')||q.includes('low risk')||q.includes('reason for low risk')) return "Your current health metrics indicate a low risk of diabetes complications. This is likely due to your consistent physical activity and balanced diet, which help maintain stable blood sugar levels.";
+        if (q.includes('high')||q.includes('high risk')||q.includes('reason for high risk')) return "Your current health metrics indicate a high risk of diabetes complications. This may be due to elevated blood sugar levels and low physical activity. I recommend consulting with a healthcare provider for personalized advice.";
+        if (q.includes('moderate')||q.includes('moderate risk')||q.includes('reason for moderate risk')) return "Your current health metrics indicate a moderate risk of diabetes complications. This could be due to occasional elevated blood sugar levels or inconsistent physical activity. Consider making lifestyle adjustments and consulting with a healthcare provider for personalized advice.";
         return "That's an excellent question. While I'm operating as a simulated assistant right now to demonstrate the UI, you can seamlessly plug a real LLM API (like OpenAI) into my code to generate live inferences!";
     };
 
