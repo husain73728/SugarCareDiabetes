@@ -687,10 +687,17 @@
 
         window.supabaseAuth.getUser().then(function (user) {
             setPredictionAuthUi(user);
+            if (user) {
+                window.supabaseAuth.promptForMissingProfile(user);
+            }
         });
 
         window.supabaseAuth.onAuthStateChange(function (_event, session) {
-            setPredictionAuthUi(session ? session.user : null);
+            const signedInUser = session ? session.user : null;
+            setPredictionAuthUi(signedInUser);
+            if (signedInUser) {
+                window.supabaseAuth.promptForMissingProfile(signedInUser);
+            }
         });
 
         predictionForm.addEventListener("submit", async function (event) {

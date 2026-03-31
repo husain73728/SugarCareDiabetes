@@ -67,7 +67,7 @@
                 <a class="text-emerald-800/70 font-['Manrope'] tracking-tight font-semibold hover:bg-emerald-100/40 px-2 py-1 rounded-md transition-all duration-300" href="pricing.html">Pricing</a>
             </div>
             <div class="flex items-center gap-4">
-                <button id="profile-sign-in" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
+                <button id="profile-sign-in" style = "display:none" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
                     <span class="text-sm font-semibold text-on-surface-variant">Sign In with Google</span>
                 </button>
                 <button id="profile-sign-out" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 duration-300 border border-outline-variant/20 hover:-translate-y-1">
@@ -118,6 +118,23 @@
                             हिंदी
                         </button>
                     </div>
+                </div>
+            </section>
+
+            <section class="mt-8 bg-surface-container-lowest rounded-[1.75rem] border border-outline-variant/15 p-6 shadow-sm">
+                <div class="flex items-center justify-between gap-4 mb-6">
+                    <div>
+                        <p class="text-xs uppercase tracking-[0.18em] text-on-surface-variant font-semibold">User Profile</p>
+                        <h2 class="text-2xl font-headline font-bold text-dark-green mt-2">Saved Personal Details</h2>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+                    <div class="bg-surface-container-low rounded-2xl p-4 md:col-span-2 lg:col-span-1"><p class="text-on-surface-variant">Name</p><p id="profile-user-name" class="mt-1 font-bold text-on-surface">-</p></div>
+                    <div class="bg-surface-container-low rounded-2xl p-4 md:col-span-2 lg:col-span-1"><p class="text-on-surface-variant">Email</p><p id="profile-user-email" class="mt-1 font-bold text-on-surface">-</p></div>
+                    <div class="bg-surface-container-low rounded-2xl p-4"><p class="text-on-surface-variant">Age</p><p id="profile-user-age" class="mt-1 font-bold text-on-surface">-</p></div>
+                    <div class="bg-surface-container-low rounded-2xl p-4"><p class="text-on-surface-variant">Height</p><p id="profile-user-height" class="mt-1 font-bold text-on-surface">-</p></div>
+                    <div class="bg-surface-container-low rounded-2xl p-4"><p class="text-on-surface-variant">Weight</p><p id="profile-user-weight" class="mt-1 font-bold text-on-surface">-</p></div>
+                    <div class="bg-surface-container-low rounded-2xl p-4"><p class="text-on-surface-variant">Gender</p><p id="profile-user-gender" class="mt-1 font-bold text-on-surface">-</p></div>
                 </div>
             </section>
 
@@ -336,6 +353,57 @@
             document.getElementById(id).textContent = value;
         }
 
+        async function readUserProfile(user) {
+            if (!user || !window.supabaseAuth || !window.supabaseAuth.isConfigured()) {
+                return null;
+            }
+
+            const result = await window.supabaseClient
+                .from("user_profiles")
+                .select("full_name, email, age, height_cm, weight_kg, gender")
+                .eq("id", user.id)
+                .maybeSingle();
+
+            if (result.error) {
+                console.warn("Failed to load user profile:", result.error.message);
+                return null;
+            }
+
+            return result.data || null;
+        }
+
+        function getDisplayName(user, profile) {
+            if (profile && profile.full_name && profile.full_name.trim()) {
+                return profile.full_name.trim();
+            }
+
+            if (user && user.user_metadata && user.user_metadata.full_name) {
+                return String(user.user_metadata.full_name).trim();
+            }
+
+            if (user && user.email) {
+                return user.email.split("@")[0];
+            }
+
+            return "Guest User";
+        }
+
+        function renderUserProfileDetails(user, profile) {
+            const name = getDisplayName(user, profile);
+            const email = (profile && profile.email) || (user && user.email) || "Not signed in";
+            const age = profile && Number(profile.age) > 0 ? profile.age + " years" : "Not set";
+            const height = profile && Number(profile.height_cm) > 0 ? profile.height_cm + " cm" : "Not set";
+            const weight = profile && Number(profile.weight_kg) > 0 ? profile.weight_kg + " kg" : "Not set";
+            const gender = profile && profile.gender ? profile.gender : "Not set";
+
+            setText("profile-user-name", name);
+            setText("profile-user-email", email);
+            setText("profile-user-age", age);
+            setText("profile-user-height", height);
+            setText("profile-user-weight", weight);
+            setText("profile-user-gender", gender);
+        }
+
         function drawChart(history) {
             const chart = document.getElementById("history-chart");
             const chartEmpty = document.getElementById("chart-empty");
@@ -483,6 +551,9 @@
 
         async function renderProfile() {
             applyLanguage(localStorage.getItem(LANGUAGE_KEY) || "en");
+            const user = window.supabaseAuth ? await window.supabaseAuth.getUser() : null;
+            const profile = await readUserProfile(user);
+            renderUserProfileDetails(user, profile);
             const history = await readHistory();
             setText("saved-check-count", history.length);
             renderLatest(history);
@@ -500,10 +571,21 @@
 
         window.supabaseAuth.getUser().then(function (user) {
             setProfileAuthUi(user);
+            if (user) {
+                window.supabaseAuth.promptForMissingProfile(user).then(function () {
+                    renderProfile();
+                });
+            }
         });
 
         window.supabaseAuth.onAuthStateChange(function (_event, session) {
-            setProfileAuthUi(session ? session.user : null);
+            const signedInUser = session ? session.user : null;
+            setProfileAuthUi(signedInUser);
+            if (signedInUser) {
+                window.supabaseAuth.promptForMissingProfile(signedInUser).then(function () {
+                    renderProfile();
+                });
+            }
             renderProfile();
         });
 
