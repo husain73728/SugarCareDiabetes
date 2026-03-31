@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    var fallbackStorageKey = "supercareDiabetesPredictionHistory";
+    var fallbackStorageKey = "sugarcareDiabetesPredictionHistory";
     var config = window.SUPABASE_CONFIG || {
         url: "",
         anonKey: ""

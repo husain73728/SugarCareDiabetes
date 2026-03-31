@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
                         </div>
                         <div>
-                            <h3 class="font-headline font-bold text-dark-green text-sm">SuperCareDiabetes AI</h3>
+                            <h3 class="font-headline font-bold text-dark-green text-sm">SugarCareDiabetes AI</h3>
                             <p class="text-[10px] text-dark-green/75 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Online Pipeline</p>
                         </div>
                     </div>
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="material-symbols-outlined text-primary text-sm">smart_toy</span>
                         </div>
                         <div class="bg-surface-container shadow-sm p-4 rounded-2xl rounded-tl-sm text-sm text-on-surface leading-relaxed">
-                            Hello! I am your SuperCareDiabetes clinical assistant. How can I map your health journey today?
+                            Hello! I am your SugarCareDiabetes clinical assistant. How can I map your health journey today?
                         </div>
                     </div>
                 </div>
