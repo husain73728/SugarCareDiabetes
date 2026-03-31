@@ -343,6 +343,93 @@
                     </a>
                 </div>
             </section>
+            <section id="personalized-plan-shell" class="hidden mt-10 space-y-8">
+                <div class="glass-card rounded-xl p-8 md:p-10 shadow-[0_12px_40px_rgba(27,67,50,0.06)] border border-white/40">
+                    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                        <div>
+                            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-3">Personalized Guidance</p>
+                            <h2 class="font-headline text-3xl font-extrabold text-on-surface">Lifestyle recommendations for your current risk profile</h2>
+                        </div>
+                        <p id="personalized-plan-caption" class="text-sm font-semibold text-on-surface-variant md:text-right"></p>
+                    </div>
+                </div>
+                <section id="diet-plan-section"
+                    class="glass-card rounded-xl p-8 md:p-10 shadow-[0_12px_40px_rgba(27,67,50,0.06)] border border-white/40">
+                    <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_0.95fr] gap-8 items-start">
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-primary-container text-primary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl">restaurant</span>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-3">Diet Plan</p>
+                                <h3 id="diet-plan-title" class="font-headline text-3xl font-extrabold text-on-surface"></h3>
+                                <p id="diet-plan-summary" class="mt-3 text-on-surface-variant leading-relaxed max-w-3xl"></p>
+                            </div>
+                        </div>
+                        <div class="group rounded-[1.75rem] border border-white/50 bg-surface-container-low p-3 shadow-sm">
+                            <div class="relative overflow-hidden rounded-[1.35rem] aspect-[4/3] bg-white/70">
+                                <img id="diet-plan-image" alt="Healthy meal recommendations"
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-dark-green/20 via-transparent to-white/20"></div>
+                                <div class="absolute top-4 right-4 flex gap-2">
+                                    <span class="bg-white/80 backdrop-blur p-2 rounded-full shadow-sm material-symbols-outlined text-primary">nutrition</span>
+                                    <span class="bg-white/80 backdrop-blur p-2 rounded-full shadow-sm material-symbols-outlined text-primary">restaurant</span>
+                                </div>
+                            </div>
+                            <div class="px-2 pt-4 pb-1">
+                                <p id="diet-plan-image-caption" class="text-sm font-semibold text-on-surface"></p>
+                                <p class="mt-1 text-xs text-on-surface-variant">Structured meal guidance presented in the same clinical dashboard flow.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="diet-plan-meals" class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                    <div class="mt-6 grid grid-cols-1 lg:grid-cols-[1.1fr_1.4fr] gap-4">
+                        <div class="bg-surface-container-low rounded-2xl p-5">
+                            <p class="text-sm font-semibold text-on-surface-variant mb-3">Healthy snack suggestions</p>
+                            <ul id="diet-plan-snacks" class="space-y-3 text-on-surface font-medium"></ul>
+                        </div>
+                        <div class="bg-surface-container-low rounded-2xl p-5">
+                            <p class="text-sm font-semibold text-on-surface-variant mb-3">Practical dietary tips</p>
+                            <ul id="diet-plan-tips" class="space-y-3 text-on-surface font-medium"></ul>
+                        </div>
+                    </div>
+                </section>
+                <section id="exercise-plan-section"
+                    class="glass-card rounded-xl p-8 md:p-10 shadow-[0_12px_40px_rgba(27,67,50,0.06)] border border-white/40">
+                    <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_0.95fr] gap-8 items-start">
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-secondary-container text-secondary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl">fitness_center</span>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-3">Exercise Plan</p>
+                                <h3 id="exercise-plan-title" class="font-headline text-3xl font-extrabold text-on-surface"></h3>
+                                <p id="exercise-plan-summary" class="mt-3 text-on-surface-variant leading-relaxed max-w-3xl"></p>
+                            </div>
+                        </div>
+                        <div class="group rounded-[1.75rem] border border-white/50 bg-surface-container-low p-3 shadow-sm">
+                            <div class="relative overflow-hidden rounded-[1.35rem] aspect-[4/3] bg-white/70">
+                                <img id="exercise-plan-image" alt="Exercise recommendations"
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-dark-green/20 via-transparent to-white/20"></div>
+                                <div class="absolute top-4 right-4 flex gap-2">
+                                    <span class="bg-white/80 backdrop-blur p-2 rounded-full shadow-sm material-symbols-outlined text-primary">monitor_heart</span>
+                                    <span class="bg-white/80 backdrop-blur p-2 rounded-full shadow-sm material-symbols-outlined text-primary">fitness_center</span>
+                                </div>
+                            </div>
+                            <div class="px-2 pt-4 pb-1">
+                                <p id="exercise-plan-image-caption" class="text-sm font-semibold text-on-surface"></p>
+                                <p class="mt-1 text-xs text-on-surface-variant">A framed visual panel that matches the existing healthcare card system.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="exercise-plan-list" class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                    <div class="mt-6 bg-surface-container-low rounded-2xl p-5">
+                        <p class="text-sm font-semibold text-on-surface-variant mb-3">Safety and consistency tips</p>
+                        <ul id="exercise-plan-tips" class="space-y-3 text-on-surface font-medium"></ul>
+                    </div>
+                </section>
+            </section>
             <!-- Asymmetric Data Visualization Placeholder -->
             <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div
@@ -418,10 +505,193 @@
         const reportConcern = document.getElementById("report-concern");
         const reportAction = document.getElementById("report-action");
         const reportNote = document.getElementById("report-note");
+        const personalizedPlanShell = document.getElementById("personalized-plan-shell");
+        const personalizedPlanCaption = document.getElementById("personalized-plan-caption");
+        const dietPlanTitle = document.getElementById("diet-plan-title");
+        const dietPlanSummary = document.getElementById("diet-plan-summary");
+        const dietPlanImage = document.getElementById("diet-plan-image");
+        const dietPlanImageCaption = document.getElementById("diet-plan-image-caption");
+        const dietPlanMeals = document.getElementById("diet-plan-meals");
+        const dietPlanSnacks = document.getElementById("diet-plan-snacks");
+        const dietPlanTips = document.getElementById("diet-plan-tips");
+        const exercisePlanTitle = document.getElementById("exercise-plan-title");
+        const exercisePlanSummary = document.getElementById("exercise-plan-summary");
+        const exercisePlanImage = document.getElementById("exercise-plan-image");
+        const exercisePlanImageCaption = document.getElementById("exercise-plan-image-caption");
+        const exercisePlanList = document.getElementById("exercise-plan-list");
+        const exercisePlanTips = document.getElementById("exercise-plan-tips");
         const predictionSignIn = document.getElementById("prediction-sign-in");
         const predictionSignOut = document.getElementById("prediction-sign-out");
         const STORAGE_KEY = "sugarcareDiabetesPredictionHistory";
         const LANGUAGE_KEY = "lang";
+        const riskCategoryLabels = {
+            low: "Low Risk",
+            moderate: "Moderate Risk",
+            high: "High Risk"
+        };
+        const dietPlansByRisk = {
+            low: {
+                title: "Low Risk Preventive Diet Plan",
+                summary: "Focus on balanced meals, steady energy, and long-term blood sugar stability with simple preventive choices.",
+                meals: {
+                    breakfast: "Vegetable oats upma with plain curd and one boiled egg or a small bowl of sprouts.",
+                    lunch: "2 whole wheat rotis, grilled paneer or dal, mixed vegetable sabzi, and cucumber salad.",
+                    dinner: "Light khichdi with vegetables, sauteed greens, and a bowl of clear soup.",
+                    snacks: [
+                        "Apple slices",
+                        "Roasted chana",
+                        "Unsalted nuts",
+                        "Buttermilk",
+                        "Carrot sticks with hummus"
+                    ]
+                },
+                tips: [
+                    "Keep meal timings regular to avoid long gaps and sudden overeating.",
+                    "Choose whole grains over refined flour whenever possible.",
+                    "Fill half the plate with vegetables at lunch and dinner.",
+                    "Limit sugary drinks even if your current risk is low.",
+                    "Stay hydrated throughout the day, especially in warmer weather."
+                ]
+            },
+            moderate: {
+                title: "Moderate Risk Controlled Carbohydrate Diet Plan",
+                summary: "Prioritize portion control, fiber-rich foods, and lean proteins to support healthier glucose regulation.",
+                meals: {
+                    breakfast: "Besan chilla or vegetable omelet with mint chutney and one small bowl of unsweetened yogurt.",
+                    lunch: "1 to 2 multigrain rotis, dal or grilled chicken, sauteed vegetables, and a fresh salad.",
+                    dinner: "Paneer stir-fry or lentil soup with lightly cooked vegetables and a small serving of brown rice.",
+                    snacks: [
+                        "Roasted makhana",
+                        "Guava",
+                        "Peanuts in small portions",
+                        "Greek yogurt",
+                        "A handful of seeds"
+                    ]
+                },
+                tips: [
+                    "Pair every carbohydrate source with protein or fiber to slow glucose spikes.",
+                    "Avoid frequent sweets, bakery snacks, and sugar-heavy packaged foods.",
+                    "Use smaller plates or measured portions for rice, roti, and starchy foods.",
+                    "Prefer fruit as a whole food instead of juice.",
+                    "Monitor late-night snacking, which can make glucose control harder."
+                ]
+            },
+            high: {
+                title: "High Risk Structured Low-Sugar Diet Plan",
+                summary: "Use a stricter meal structure with low-sugar, high-fiber, and lower-glycemic foods while you follow up with a clinician.",
+                meals: {
+                    breakfast: "Moong dal chilla with paneer filling or a high-protein egg breakfast with sauteed vegetables.",
+                    lunch: "1 multigrain roti or a small serving of millet, dal or grilled fish, non-starchy vegetables, and salad.",
+                    dinner: "Vegetable soup with tofu or paneer, mixed sauteed vegetables, and a light protein-focused plate.",
+                    snacks: [
+                        "Cucumber slices",
+                        "Sprouts",
+                        "Unsweetened yogurt",
+                        "Boiled chickpeas",
+                        "A very small portion of mixed nuts"
+                    ]
+                },
+                tips: [
+                    "Avoid sweetened beverages, desserts, and large refined carbohydrate portions.",
+                    "Keep meals simple and consistent instead of heavy feast-style eating.",
+                    "Choose low-glycemic foods such as lentils, vegetables, and whole grains in moderate portions.",
+                    "Read nutrition labels carefully for hidden sugar in packaged foods.",
+                    "Seek medical guidance before making major dietary restrictions if you feel unwell or take medicines."
+                ]
+            }
+        };
+        const exercisePlansByRisk = {
+            low: {
+                title: "Low Risk Preventive Exercise Plan",
+                summary: "Aim for a sustainable mix of movement, flexibility, and general fitness to maintain metabolic health.",
+                exercises: [
+                    { name: "Brisk walking", schedule: "30 minutes, 5 days per week" },
+                    { name: "Light stretching", schedule: "10 minutes daily, especially morning or evening" },
+                    { name: "Bodyweight squats", schedule: "2 to 3 sets of 10 to 12 reps, 3 days per week" },
+                    { name: "Cycling or easy jogging", schedule: "20 to 30 minutes, 2 to 3 times per week" },
+                    { name: "Core strengthening", schedule: "10 to 15 minutes, 2 days per week" }
+                ],
+                tips: [
+                    "Start with an intensity that still lets you talk comfortably.",
+                    "Break activity into shorter sessions if your day is busy.",
+                    "Use supportive footwear and warm up before longer sessions.",
+                    "Stay consistent rather than pushing too hard on one day."
+                ]
+            },
+            moderate: {
+                title: "Moderate Risk Glucose Support Exercise Plan",
+                summary: "Use steady cardio and light strength work to improve insulin sensitivity without overwhelming recovery.",
+                exercises: [
+                    { name: "Brisk walking", schedule: "35 to 40 minutes, 5 days per week" },
+                    { name: "Yoga or mobility flow", schedule: "20 minutes, 3 to 4 days per week" },
+                    { name: "Resistance band training", schedule: "20 to 25 minutes, 3 days per week" },
+                    { name: "Chair squats or step-ups", schedule: "2 sets of 10 reps, 3 days per week" },
+                    { name: "Post-meal walking", schedule: "10 to 15 minutes after lunch or dinner" }
+                ],
+                tips: [
+                    "Exercise at roughly the same times each week to build habit strength.",
+                    "A short walk after meals can support better glucose response.",
+                    "Increase duration gradually if you have been inactive recently.",
+                    "Pause and recover if you feel dizzy, unusually fatigued, or short of breath."
+                ]
+            },
+            high: {
+                title: "High Risk Low-Impact Exercise Plan",
+                summary: "Choose safer, low-impact movement that supports circulation and glucose control while respecting fatigue and medical caution.",
+                exercises: [
+                    { name: "Slow to moderate walking", schedule: "15 to 25 minutes, 5 days per week" },
+                    { name: "Seated or supported mobility work", schedule: "10 to 15 minutes daily" },
+                    { name: "Gentle yoga or breathing-led stretching", schedule: "15 to 20 minutes, 3 days per week" },
+                    { name: "Light resistance band exercises", schedule: "10 to 15 minutes, 2 to 3 days per week" },
+                    { name: "Indoor marching or low-impact step touch", schedule: "10 minutes, 3 to 4 days per week" }
+                ],
+                tips: [
+                    "Choose lower-impact sessions if you feel weak, dehydrated, or medically unstable.",
+                    "Keep water nearby and stop if you feel chest discomfort or severe dizziness.",
+                    "Begin slowly and consider medical supervision before intensifying exercise.",
+                    "Consistency matters more than intensity while risk is high.",
+                    "Avoid strenuous workouts on an empty stomach or when unwell."
+                ]
+            }
+        };
+        const planVisualsByRisk = {
+            low: {
+                diet: {
+                    src: "images/personalized-diet.jpeg",
+                    alt: "Colorful preventive meal plan with vegetables and balanced nutrition",
+                    caption: "Balanced preventive meal choices for lower current diabetes risk"
+                },
+                exercise: {
+                    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDUp_gfJg3VF_UVMN-ZdjZm3uv_dUaUl0hTosgJxY-Zb5O2ZyYkmFxkzxvF0d5U2QaLOtyvFhqBkpAMHo4QPfPgubYOHxvdrXG4LTg9WcKVIlTGzGidiDeu6T75H8M8D-kPSZ-QaokD4-ksXUmtPKzoVvJbPilw6A3tMue6jtvi8epyyj0HjtPAOVkyR9aow2F2WQto7g8WyN67U00-_dVTAamTmuT6zU3Kf8TgaxWKfBIThL0WVWiH9o5Mj-GtptrqNgQLHoSS1bU",
+                    alt: "Walking-based preventive exercise for everyday metabolic health",
+                    caption: "Steady daily movement to maintain fitness and glucose balance"
+                }
+            },
+            moderate: {
+                diet: {
+                    src: "images/personalized-diet.jpeg",
+                    alt: "Structured portion-controlled meal with vegetables and protein",
+                    caption: "Controlled-carbohydrate meals designed for moderate diabetes risk"
+                },
+                exercise: {
+                    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAAJqfiyhe54-4KKreSehLmNRFO3MmTehvw3vYUTXOyKwAgpmjYhx0WodHWgxObFarE-mmBmSR4s8BsHAYXykvRiBWx9pxxNdp41el66fMNG8i3z_kKEIKe_jSVpgnvLuk4Kqx7zI5oRbmH14_SKBThGxvOhEBwpyScuSZ1rpdI7DLFd05BnqM6O6M2Hfb0xi0_YfpUREzDiNu0YQjhGaXNvkK7kWpAiWaEKK4SDHf_IwQ4ssu4RSBYZBGHK_V8STLNc8Mz7hQpw9c",
+                    alt: "Moderate-intensity yoga and walking routine in a wellness studio",
+                    caption: "Cardio and mobility work to support better glucose response"
+                }
+            },
+            high: {
+                diet: {
+                    src: "images/personalized-diet.jpeg",
+                    alt: "Carefully portioned low-sugar meal plan with vegetables and protein",
+                    caption: "More structured low-sugar meal planning for high-risk users"
+                },
+                exercise: {
+                    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCON3R9YNCeFY_kq7jlEbK1oMt4EJWU_6pHv_DTz8JKA4HxEAP_DjnNQkvYaVPpYjUg5bwcwBvgJkBy7hA3-2ow2xtgCGT0jA9E454UkLpXgsV1TVZwv4gcgI0LWbCTgGO9Knp8TsVqDUP307Dc5dMgjmPwJgnKIcOzU6x8dzxwXllgyZF6unJeKbtaQMIo7a7ANxfQMG4k4V1vP2JMirHI5-eF5frCw3NAr2VtAhqYwzu3YvPQe4AfY7tS0SShcKpi5IeARCjHOqQ",
+                    alt: "Gentle stretching and low-impact mobility routine for safer exercise",
+                    caption: "Low-impact movement with extra caution and consistency"
+                }
+            }
+        };
         const reportTranslations = {
             en: {
                 highRisk: "High risk",
@@ -487,6 +757,18 @@
             }
         };
 
+        function getRiskCategory(score) {
+            if (score > 60) {
+                return "high";
+            }
+
+            if (score >= 30) {
+                return "moderate";
+            }
+
+            return "low";
+        }
+
         function getNumberValue(id) {
             return Number(document.getElementById(id).value) || 0;
         }
@@ -535,10 +817,12 @@
             const t = reportTranslations[language] || reportTranslations.en;
             const probability = predictDiabetesProbability(values);
             const score = Math.max(1, Math.min(99, Math.round(probability * 100)));
+            const category = getRiskCategory(score);
 
-            if (score > 60) {
+            if (category === "high") {
                 return {
                     score,
+                    category,
                     level: t.highRisk,
                     title: t.highTitle,
                     summary: t.highSummary,
@@ -548,9 +832,10 @@
                 };
             }
 
-            if (score >= 30) {
+            if (category === "moderate") {
                 return {
                     score,
+                    category,
                     level: t.moderateRisk,
                     title: t.moderateTitle,
                     summary: t.moderateSummary,
@@ -562,6 +847,7 @@
 
             return {
                 score,
+                category,
                 level: t.lowerRisk,
                 title: t.lowerTitle,
                 summary: t.lowerSummary,
@@ -572,7 +858,8 @@
         }
 
         function applyRiskTheme(score) {
-            const theme = score < 30
+            const category = getRiskCategory(score);
+            const theme = category === "low"
                 ? {
                     card: "risk-theme-green",
                     badge: "text-green-600",
@@ -580,7 +867,7 @@
                     level: "text-green-700",
                     box: "bg-green-50"
                 }
-                : score <= 60
+                : category === "moderate"
                     ? {
                         card: "risk-theme-yellow",
                         badge: "text-yellow-600",
@@ -607,6 +894,74 @@
             riskScore.classList.add(theme.score);
             riskLevel.classList.add(theme.level);
             riskScoreBox.classList.add(theme.box);
+        }
+
+        function renderBulletList(container, items) {
+            container.innerHTML = items.map(function (item) {
+                return `
+                    <li class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">check_circle</span>
+                        <span>${item}</span>
+                    </li>
+                `;
+            }).join("");
+        }
+
+        function renderDietPlan(category) {
+            const plan = dietPlansByRisk[category];
+            const visuals = planVisualsByRisk[category].diet;
+            const mealCards = [
+                { label: "Suggested breakfast", value: plan.meals.breakfast, icon: "breakfast_dining" },
+                { label: "Suggested lunch", value: plan.meals.lunch, icon: "lunch_dining" },
+                { label: "Suggested dinner", value: plan.meals.dinner, icon: "dinner_dining" }
+            ];
+
+            dietPlanTitle.textContent = plan.title;
+            dietPlanSummary.textContent = plan.summary;
+            dietPlanImage.src = visuals.src;
+            dietPlanImage.alt = visuals.alt;
+            dietPlanImageCaption.textContent = visuals.caption;
+            dietPlanMeals.innerHTML = mealCards.map(function (meal) {
+                return `
+                    <div class="bg-surface-container-low rounded-2xl p-5">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="material-symbols-outlined text-primary">${meal.icon}</span>
+                            <p class="text-sm font-semibold text-on-surface-variant">${meal.label}</p>
+                        </div>
+                        <p class="text-on-surface font-semibold leading-relaxed">${meal.value}</p>
+                    </div>
+                `;
+            }).join("");
+            renderBulletList(dietPlanSnacks, plan.meals.snacks);
+            renderBulletList(dietPlanTips, plan.tips);
+        }
+
+        function renderExercisePlan(category) {
+            const plan = exercisePlansByRisk[category];
+            const visuals = planVisualsByRisk[category].exercise;
+
+            exercisePlanTitle.textContent = plan.title;
+            exercisePlanSummary.textContent = plan.summary;
+            exercisePlanImage.src = visuals.src;
+            exercisePlanImage.alt = visuals.alt;
+            exercisePlanImageCaption.textContent = visuals.caption;
+            exercisePlanList.innerHTML = plan.exercises.map(function (exercise) {
+                return `
+                    <div class="bg-surface-container-low rounded-2xl p-5">
+                        <p class="text-lg font-headline font-bold text-on-surface">${exercise.name}</p>
+                        <p class="mt-3 text-sm font-semibold text-on-surface-variant">Duration / Frequency</p>
+                        <p class="mt-2 text-on-surface font-semibold leading-relaxed">${exercise.schedule}</p>
+                    </div>
+                `;
+            }).join("");
+            renderBulletList(exercisePlanTips, plan.tips);
+        }
+
+        function renderPersonalizedPlans(report) {
+            personalizedPlanCaption.textContent = "Showing hard-coded guidance for " + riskCategoryLabels[report.category];
+            renderDietPlan(report.category);
+            renderExercisePlan(report.category);
+            personalizedPlanShell.classList.remove("hidden");
         }
 
         function savePredictionLocally(values, report) {
@@ -722,6 +1077,7 @@
             reportAction.textContent = report.action;
             reportNote.textContent = report.note;
             applyRiskTheme(report.score);
+            renderPersonalizedPlans(report);
 
             reportCard.classList.remove("hidden");
             reportCard.scrollIntoView({ behavior: "smooth", block: "start" });
