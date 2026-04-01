@@ -160,7 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (el) el.remove();
     };
 
-    // 6. Simulated AI Intelligence (Swap this section to integrate real APIs)
+    // 6. Simulated AI Intelligence (kept commented out for fallback/reference)
+    /*
     const getMockAIResponse = (query) => {
         const q = query.toLowerCase();
         if (q.includes('hello')) return "Greetings! I'm here to help manage your health. Should we look into adjusting your diet or adding an exercise routine?";
@@ -172,6 +173,33 @@ document.addEventListener('DOMContentLoaded', () => {
         if (q.includes('high')||q.includes('high risk')||q.includes('reason for high risk')) return "Your current health metrics indicate a high risk of diabetes complications. This may be due to elevated blood sugar levels and low physical activity. I recommend consulting with a healthcare provider for personalized advice.";
         if (q.includes('moderate')||q.includes('moderate risk')||q.includes('reason for moderate risk')) return "Your current health metrics indicate a moderate risk of diabetes complications. This could be due to occasional elevated blood sugar levels or inconsistent physical activity. Consider making lifestyle adjustments and consulting with a healthcare provider for personalized advice.";
         return "That's an excellent question. While I'm operating as a simulated assistant right now to demonstrate the UI, you can seamlessly plug a real LLM API (like OpenAI) into my code to generate live inferences!";
+    };
+    */
+
+    const API_BASE_URL = (window.CHATBOT_API_BASE_URL || 'http://127.0.0.1:3001').replace(/\/$/, '');
+    const conversationHistory = [];
+
+    const getAIResponse = async (query) => {
+        const response = await fetch(`${API_BASE_URL}/api/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                message: query,
+                history: conversationHistory
+            })
+        });
+
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+            const detail = data && data.error ? ` (${data.error})` : '';
+            throw new Error(`Chat API error: ${response.status}${detail}`);
+        }
+
+        if (!data.reply || typeof data.reply !== 'string') {
+            throw new Error('Invalid AI response format from backend.');
+        }
+
+        return data.reply;
     };
 
     chatForm.addEventListener('submit', async (e) => {
@@ -189,40 +217,33 @@ document.addEventListener('DOMContentLoaded', () => {
         // UI Loading State
         const typingId = showTypingIndicator();
 
-        // Simulate network latency (0.8s - 1.5s)
-        setTimeout(() => {
+        try {
+            const response = await getAIResponse(msg);
+            conversationHistory.push({ role: 'user', content: msg });
+            conversationHistory.push({ role: 'assistant', content: response });
+            if (conversationHistory.length > 20) {
+                conversationHistory.splice(0, conversationHistory.length - 20);
+            }
+
             removeTypingIndicator(typingId);
-            const response = getMockAIResponse(msg);
             appendMessage(response, false);
-            
+        } catch (error) {
+            console.error('Chat request failed:', error);
+            removeTypingIndicator(typingId);
+            const details = String(error && error.message ? error.message : '').toLowerCase();
+            let userFacingError = "I couldn't reach the AI service right now. Please try again in a moment.";
+
+            if (details.includes('429') || details.includes('quota') || details.includes('rate limit')) {
+                userFacingError = 'The AI API quota/rate limit was reached. Please check your provider billing/limits and try again.';
+            } else if (details.includes('401') || details.includes('incorrect api key') || details.includes('unauthorized')) {
+                userFacingError = 'The AI provider API key is invalid or expired. Update your .env key and restart the API server.';
+            }
+
+            appendMessage(userFacingError, false);
+        } finally {
             // Re-enable
             chatInput.disabled = false;
             chatInput.focus();
-        }, 800 + Math.random() * 800);
-
-        /* 
-        ====================================================
-        TEMPLATE CODE TO USE REAL CHATGPT API (OPENAI)
-        ====================================================
-        try {
-            const res = await fetch('https://api.openai.com/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer YOUR_API_KEY_HERE'
-                },
-                body: JSON.stringify({
-                    model: 'gpt-3.5-turbo',
-                    messages: [{role: 'user', content: msg}]
-                })
-            });
-            const data = await res.json();
-            removeTypingIndicator(typingId);
-            appendMessage(data.choices[0].message.content, false);
-        } catch(error) {
-            removeTypingIndicator(typingId);
-            appendMessage("I couldn't reach the servers. Please check your API key.", false);
         }
-        */
     });
 });
