@@ -176,11 +176,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     */
 
-    const API_BASE_URL = (window.CHATBOT_API_BASE_URL || 'http://127.0.0.1:3001').replace(/\/$/, '');
+    const API_ENDPOINT = window.CHATBOT_API_ENDPOINT || 'http://127.0.0.1:3001/api/chat';
     const conversationHistory = [];
 
     const getAIResponse = async (query) => {
-        const response = await fetch(`${API_BASE_URL}/api/chat`, {
+        const response = await fetch(API_ENDPOINT, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
